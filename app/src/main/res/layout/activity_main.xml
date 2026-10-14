@@ -54,16 +54,16 @@
                             android:textSize="10sp"
                             android:textStyle="bold" />
 
-                        <androidx.appcompat.widget.AppCompatButton
+                        <ImageButton
                             android:id="@+id/btnPower"
                             android:layout_width="46dp"
                             android:layout_height="46dp"
                             android:layout_marginTop="2dp"
                             android:background="@drawable/btn_remote_circle_power"
-                            android:text="⏻"
-                            android:textColor="@color/white"
-                            android:textSize="18sp"
-                            android:textStyle="bold" />
+                            android:src="@drawable/ic_power"
+                            android:scaleType="centerInside"
+                            android:padding="10dp"
+                            android:contentDescription="Power" />
                     </LinearLayout>
 
                     <!-- LED IR central con visor integrado -->
@@ -109,15 +109,16 @@
                             android:textSize="10sp"
                             android:textStyle="bold" />
 
-                        <androidx.appcompat.widget.AppCompatButton
+                        <ImageButton
                             android:id="@+id/btnMute"
                             android:layout_width="46dp"
                             android:layout_height="46dp"
                             android:layout_marginTop="2dp"
                             android:background="@drawable/btn_remote_circle_mute"
-                            android:text="🔇"
-                            android:textColor="#064E3B"
-                            android:textSize="16sp" />
+                            android:src="@drawable/ic_mute"
+                            android:scaleType="centerInside"
+                            android:padding="11dp"
+                            android:contentDescription="Mute" />
                     </LinearLayout>
                 </RelativeLayout>
 

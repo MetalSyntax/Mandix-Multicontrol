@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.FrameLayout;
+import android.widget.ImageButton;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
@@ -79,7 +80,7 @@ public final class ActivityMainBinding implements ViewBinding {
   public final AppCompatButton btnMenu;
 
   @NonNull
-  public final AppCompatButton btnMute;
+  public final ImageButton btnMute;
 
   @NonNull
   public final AppCompatButton btnNum0;
@@ -127,7 +128,7 @@ public final class ActivityMainBinding implements ViewBinding {
   public final AppCompatButton btnPlayPause;
 
   @NonNull
-  public final AppCompatButton btnPower;
+  public final ImageButton btnPower;
 
   @NonNull
   public final AppCompatButton btnReturn;
@@ -190,7 +191,7 @@ public final class ActivityMainBinding implements ViewBinding {
       @NonNull AppCompatButton btnFav, @NonNull AppCompatButton btnGuide,
       @NonNull AppCompatButton btnHome, @NonNull AppCompatButton btnInfo,
       @NonNull AppCompatButton btnLeft, @NonNull AppCompatButton btnMenu,
-      @NonNull AppCompatButton btnMute, @NonNull AppCompatButton btnNum0,
+      @NonNull ImageButton btnMute, @NonNull AppCompatButton btnNum0,
       @NonNull AppCompatButton btnNum1, @NonNull AppCompatButton btnNum2,
       @NonNull AppCompatButton btnNum3, @NonNull AppCompatButton btnNum4,
       @NonNull AppCompatButton btnNum5, @NonNull AppCompatButton btnNum6,
@@ -198,7 +199,7 @@ public final class ActivityMainBinding implements ViewBinding {
       @NonNull AppCompatButton btnNum9, @NonNull AppCompatButton btnOk,
       @NonNull AppCompatButton btnPMode, @NonNull TextView btnPlateManual,
       @NonNull TextView btnPlateSettings, @NonNull AppCompatButton btnPlayPause,
-      @NonNull AppCompatButton btnPower, @NonNull AppCompatButton btnReturn,
+      @NonNull ImageButton btnPower, @NonNull AppCompatButton btnReturn,
       @NonNull AppCompatButton btnRewind, @NonNull AppCompatButton btnRight,
       @NonNull AppCompatButton btnSMode, @NonNull AppCompatButton btnSet,
       @NonNull AppCompatButton btnSleep, @NonNull AppCompatButton btnSource,
@@ -405,7 +406,7 @@ public final class ActivityMainBinding implements ViewBinding {
       }
 
       id = R.id.btnMute;
-      AppCompatButton btnMute = ViewBindings.findChildViewById(rootView, id);
+      ImageButton btnMute = ViewBindings.findChildViewById(rootView, id);
       if (btnMute == null) {
         break missingId;
       }
@@ -501,7 +502,7 @@ public final class ActivityMainBinding implements ViewBinding {
       }
 
       id = R.id.btnPower;
-      AppCompatButton btnPower = ViewBindings.findChildViewById(rootView, id);
+      ImageButton btnPower = ViewBindings.findChildViewById(rootView, id);
       if (btnPower == null) {
         break missingId;
       }

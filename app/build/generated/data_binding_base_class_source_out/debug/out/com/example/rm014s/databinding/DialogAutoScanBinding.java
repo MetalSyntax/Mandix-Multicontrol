@@ -7,8 +7,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
-import android.widget.RadioButton;
-import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
@@ -30,31 +29,34 @@ public final class DialogAutoScanBinding implements ViewBinding {
   public final Button btnPauseResume;
 
   @NonNull
+  public final Button btnStartScan;
+
+  @NonNull
   public final Button btnStepBack;
 
   @NonNull
   public final Button btnStopAndSave;
 
   @NonNull
+  public final Button btnTestCameraLed;
+
+  @NonNull
   public final Button btnTestVol;
+
+  @NonNull
+  public final LinearLayout layoutScanControlsBefore;
+
+  @NonNull
+  public final LinearLayout layoutScanProgressBox;
 
   @NonNull
   public final ProgressBar progressBarScan;
 
   @NonNull
-  public final RadioButton rb36k;
+  public final Spinner spinnerFrequency;
 
   @NonNull
-  public final RadioButton rb38k;
-
-  @NonNull
-  public final RadioButton rb40k;
-
-  @NonNull
-  public final RadioButton rb56k;
-
-  @NonNull
-  public final RadioGroup rgFrequency;
+  public final Spinner spinnerScanMode;
 
   @NonNull
   public final TextView tvScanDetails;
@@ -66,23 +68,25 @@ public final class DialogAutoScanBinding implements ViewBinding {
   public final TextView tvScanStatus;
 
   private DialogAutoScanBinding(@NonNull LinearLayout rootView, @NonNull Button btnCancelScan,
-      @NonNull Button btnPauseResume, @NonNull Button btnStepBack, @NonNull Button btnStopAndSave,
-      @NonNull Button btnTestVol, @NonNull ProgressBar progressBarScan, @NonNull RadioButton rb36k,
-      @NonNull RadioButton rb38k, @NonNull RadioButton rb40k, @NonNull RadioButton rb56k,
-      @NonNull RadioGroup rgFrequency, @NonNull TextView tvScanDetails, @NonNull TextView tvScanHex,
-      @NonNull TextView tvScanStatus) {
+      @NonNull Button btnPauseResume, @NonNull Button btnStartScan, @NonNull Button btnStepBack,
+      @NonNull Button btnStopAndSave, @NonNull Button btnTestCameraLed, @NonNull Button btnTestVol,
+      @NonNull LinearLayout layoutScanControlsBefore, @NonNull LinearLayout layoutScanProgressBox,
+      @NonNull ProgressBar progressBarScan, @NonNull Spinner spinnerFrequency,
+      @NonNull Spinner spinnerScanMode, @NonNull TextView tvScanDetails,
+      @NonNull TextView tvScanHex, @NonNull TextView tvScanStatus) {
     this.rootView = rootView;
     this.btnCancelScan = btnCancelScan;
     this.btnPauseResume = btnPauseResume;
+    this.btnStartScan = btnStartScan;
     this.btnStepBack = btnStepBack;
     this.btnStopAndSave = btnStopAndSave;
+    this.btnTestCameraLed = btnTestCameraLed;
     this.btnTestVol = btnTestVol;
+    this.layoutScanControlsBefore = layoutScanControlsBefore;
+    this.layoutScanProgressBox = layoutScanProgressBox;
     this.progressBarScan = progressBarScan;
-    this.rb36k = rb36k;
-    this.rb38k = rb38k;
-    this.rb40k = rb40k;
-    this.rb56k = rb56k;
-    this.rgFrequency = rgFrequency;
+    this.spinnerFrequency = spinnerFrequency;
+    this.spinnerScanMode = spinnerScanMode;
     this.tvScanDetails = tvScanDetails;
     this.tvScanHex = tvScanHex;
     this.tvScanStatus = tvScanStatus;
@@ -127,6 +131,12 @@ public final class DialogAutoScanBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.btnStartScan;
+      Button btnStartScan = ViewBindings.findChildViewById(rootView, id);
+      if (btnStartScan == null) {
+        break missingId;
+      }
+
       id = R.id.btnStepBack;
       Button btnStepBack = ViewBindings.findChildViewById(rootView, id);
       if (btnStepBack == null) {
@@ -139,9 +149,27 @@ public final class DialogAutoScanBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.btnTestCameraLed;
+      Button btnTestCameraLed = ViewBindings.findChildViewById(rootView, id);
+      if (btnTestCameraLed == null) {
+        break missingId;
+      }
+
       id = R.id.btnTestVol;
       Button btnTestVol = ViewBindings.findChildViewById(rootView, id);
       if (btnTestVol == null) {
+        break missingId;
+      }
+
+      id = R.id.layoutScanControlsBefore;
+      LinearLayout layoutScanControlsBefore = ViewBindings.findChildViewById(rootView, id);
+      if (layoutScanControlsBefore == null) {
+        break missingId;
+      }
+
+      id = R.id.layoutScanProgressBox;
+      LinearLayout layoutScanProgressBox = ViewBindings.findChildViewById(rootView, id);
+      if (layoutScanProgressBox == null) {
         break missingId;
       }
 
@@ -151,33 +179,15 @@ public final class DialogAutoScanBinding implements ViewBinding {
         break missingId;
       }
 
-      id = R.id.rb36k;
-      RadioButton rb36k = ViewBindings.findChildViewById(rootView, id);
-      if (rb36k == null) {
+      id = R.id.spinnerFrequency;
+      Spinner spinnerFrequency = ViewBindings.findChildViewById(rootView, id);
+      if (spinnerFrequency == null) {
         break missingId;
       }
 
-      id = R.id.rb38k;
-      RadioButton rb38k = ViewBindings.findChildViewById(rootView, id);
-      if (rb38k == null) {
-        break missingId;
-      }
-
-      id = R.id.rb40k;
-      RadioButton rb40k = ViewBindings.findChildViewById(rootView, id);
-      if (rb40k == null) {
-        break missingId;
-      }
-
-      id = R.id.rb56k;
-      RadioButton rb56k = ViewBindings.findChildViewById(rootView, id);
-      if (rb56k == null) {
-        break missingId;
-      }
-
-      id = R.id.rgFrequency;
-      RadioGroup rgFrequency = ViewBindings.findChildViewById(rootView, id);
-      if (rgFrequency == null) {
+      id = R.id.spinnerScanMode;
+      Spinner spinnerScanMode = ViewBindings.findChildViewById(rootView, id);
+      if (spinnerScanMode == null) {
         break missingId;
       }
 
@@ -200,8 +210,9 @@ public final class DialogAutoScanBinding implements ViewBinding {
       }
 
       return new DialogAutoScanBinding((LinearLayout) rootView, btnCancelScan, btnPauseResume,
-          btnStepBack, btnStopAndSave, btnTestVol, progressBarScan, rb36k, rb38k, rb40k, rb56k,
-          rgFrequency, tvScanDetails, tvScanHex, tvScanStatus);
+          btnStartScan, btnStepBack, btnStopAndSave, btnTestCameraLed, btnTestVol,
+          layoutScanControlsBefore, layoutScanProgressBox, progressBarScan, spinnerFrequency,
+          spinnerScanMode, tvScanDetails, tvScanHex, tvScanStatus);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

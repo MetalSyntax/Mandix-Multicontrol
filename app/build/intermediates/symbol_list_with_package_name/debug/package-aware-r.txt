@@ -3023,6 +3023,8 @@ drawable ic_mtrl_checked_circle
 drawable ic_mtrl_chip_checked_black
 drawable ic_mtrl_chip_checked_circle
 drawable ic_mtrl_chip_close_circle
+drawable ic_mute
+drawable ic_power
 drawable ic_search_black_24
 drawable led_indicator
 drawable led_indicator_active
@@ -3248,9 +3250,11 @@ id btnSMode
 id btnSet
 id btnSleep
 id btnSource
+id btnStartScan
 id btnStepBack
 id btnStop
 id btnStopAndSave
+id btnTestCameraLed
 id btnTestPreset
 id btnTestVol
 id btnUp
@@ -3393,6 +3397,8 @@ id labeled
 id layout
 id layoutOledScreen
 id layoutPlateBottom
+id layoutScanControlsBefore
+id layoutScanProgressBox
 id left
 id leftToRight
 id legacy
@@ -3519,14 +3525,9 @@ id progress_circular
 id progress_horizontal
 id radio
 id ratio
-id rb36k
-id rb38k
-id rb40k
-id rb56k
 id rectangles
 id report_drawn
 id reverseSawtooth
-id rgFrequency
 id right
 id rightToLeft
 id right_icon
@@ -3574,6 +3575,8 @@ id snapMargins
 id south
 id spacer
 id special_effects_controller_view_tag
+id spinnerFrequency
+id spinnerScanMode
 id spline
 id split_action_bar
 id spread

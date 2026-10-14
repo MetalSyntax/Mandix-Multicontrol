@@ -3,6 +3,7 @@ package com.example.rm014s
 import android.content.Context
 import android.hardware.ConsumerIrManager
 import android.util.Log
+import kotlinx.coroutines.delay
 
 class IrManagerHelper(context: Context) {
     private val TAG = "IrManagerHelper"
@@ -13,114 +14,146 @@ class IrManagerHelper(context: Context) {
         get() = irManager?.hasIrEmitter() ?: false
 
     /**
-     * Devuelve los rangos de frecuencias soportados por el hardware del teléfono
+     * Devuelve información de depuración de frecuencias del hardware
      */
-    fun getSupportedFrequencyRanges(): String {
-        val ranges = irManager?.carrierFrequencies ?: return "No disponible"
-        return ranges.joinToString(", ") { "${it.minFrequency / 1000}kHz-${it.maxFrequency / 1000}kHz" }
+    fun getHardwareInfo(): String {
+        if (!hasIrEmitter) return "Sin sensor IR de hardware"
+        val ranges = irManager?.carrierFrequencies ?: return "Frecuencias: Desconocidas"
+        return ranges.joinToString(", ") { "${it.minFrequency / 1000}-${it.maxFrequency / 1000}kHz" }
     }
 
     /**
-     * Transmite una trama de protocolo NEC con DOBLE RÁFAGA / REPETICIÓN
+     * Transmite una trama de protocolo NEC a la frecuencia seleccionada.
+     * Para evitar el error de desbordamiento de buffer del kernel (MAX_BUFFER en MediaTek),
+     * la trama tiene exactamente 68 enteros (longitud par con cierre en OFF).
+     *
      * @param address Dirección (8 bits: 0..255)
-     * @param command Código del comando (8 bits: 0..255)
-     * @param frequency Frecuencia en Hz (por defecto 38000 Hz, o 36000, 40000, 56000)
-     * @param addressHigh Segundo byte de dirección para NEC extendido (opcional)
-     * @param sendRepeat Si es true, envía pulso de repetición/segunda trama para asegurar recepción
+     * @param command Comando (8 bits: 0..255)
+     * @param frequency Frecuencia en Hz (ej. 38000, 36000, 40000, 56000)
+     * @param addressHigh Segundo byte de dirección (opcional para NEC extendido)
+     * @param doubleBurst Si es true, envía una segunda ráfaga tras 45ms (como los mandos físicos)
+     * @param useCyclesMode Si es true, traduce microsegundos a ciclos de portadora (bug MediaTek HAL)
      */
-    fun transmitNec(
+    suspend fun transmitNec(
         address: Int,
         command: Int,
         frequency: Int = 38000,
         addressHigh: Int? = null,
-        sendRepeat: Boolean = true
+        doubleBurst: Boolean = true,
+        useCyclesMode: Boolean = false
     ): Boolean {
         if (!hasIrEmitter) {
-            Log.w(TAG, "Dispositivo sin emisor IR.")
+            Log.w(TAG, "Hardware IR no disponible.")
             return false
         }
 
         try {
-            val pattern = buildNecPattern(
+            // Construye una trama compacta de 68 elementos exactamente
+            val pattern = buildSafeNecFrame(
                 address = address,
                 command = command,
                 addressHigh = addressHigh,
-                includeRepeat = sendRepeat
+                frequency = frequency,
+                useCyclesMode = useCyclesMode
             )
+
+            // Primera transmisión
             irManager?.transmit(frequency, pattern)
+
+            // Si se solicita doble ráfaga, espera 45ms y transmite la segunda trama
+            if (doubleBurst) {
+                delay(45)
+                irManager?.transmit(frequency, pattern)
+            }
+
             return true
         } catch (e: Exception) {
-            Log.e(TAG, "Error transmitiendo señal IR ($frequency Hz): ${e.message}", e)
+            Log.e(TAG, "Error transmitiendo IR ($frequency Hz): ${e.message}", e)
             return false
         }
     }
 
     /**
-     * Construye la secuencia exacta de microsegundos con doble ráfaga:
-     * 1. Pulso Líder: 9000µs ON, 4500µs OFF
-     * 2. 32 bits de datos (LSB first):
-     *    - Byte 0: Address Low
-     *    - Byte 1: Address High (o ~Address Low en NEC estándar)
-     *    - Byte 2: Command
-     *    - Byte 3: ~Command
-     * 3. Bit de parada: 560µs ON
-     * 4. Pausa de repetición: 38000µs OFF
-     * 5. Pulso de repetición NEC oficial: 9000µs ON, 2250µs OFF, 560µs ON
-     *    (o segunda trama completa, lo que garantiza que los receptores con filtro AGC la capten)
+     * Construye una trama NEC oficial de 68 elementos exactos:
+     * - Índice 0: Pulso Líder ON (9000 µs)
+     * - Índice 1: Espacio Líder OFF (4500 µs)
+     * - Índices 2 a 65: 32 bits de datos (32 pares de [560 ON, espacio OFF])
+     * - Índice 66: Pulso Stop ON (560 µs)
+     * - Índice 67: Cierre OFF obligatorio (10000 µs)
+     *
+     * Longitud = 68 enteros. Siempre par, siempre cerrado en OFF.
+     * Cabe en cualquier buffer DMA de Linux/MediaTek/Qualcomm.
      */
-    private fun buildNecPattern(
+    private fun buildSafeNecFrame(
         address: Int,
         command: Int,
         addressHigh: Int?,
-        includeRepeat: Boolean
+        frequency: Int,
+        useCyclesMode: Boolean
     ): IntArray {
-        val pattern = ArrayList<Int>(140)
+        val pattern = IntArray(68)
+        var idx = 0
 
-        fun appendSingleFrame() {
-            // Líder
-            pattern.add(9000)
-            pattern.add(4500)
+        fun toVal(microsec: Int): Int {
+            return if (useCyclesMode) {
+                // Conversión de microsegundos a ciclos de reloj
+                ((microsec.toLong() * frequency) / 1000000L).toInt().coerceAtLeast(1)
+            } else {
+                microsec
+            }
+        }
 
-            val addrLow = address and 0xFF
-            val addrHigh = (addressHigh ?: address.inv()) and 0xFF
-            val cmd = command and 0xFF
-            val invCmd = cmd.inv() and 0xFF
+        // 1. Líder
+        pattern[idx++] = toVal(9000) // ON
+        pattern[idx++] = toVal(4500) // OFF
 
-            val bytes = intArrayOf(addrLow, addrHigh, cmd, invCmd)
+        // 2. Datos: [Dir, ~Dir / DirHigh, Cmd, ~Cmd]
+        val addrLow = address and 0xFF
+        val addrHigh = (addressHigh ?: address.inv()) and 0xFF
+        val cmd = command and 0xFF
+        val invCmd = cmd.inv() and 0xFF
 
-            for (byteVal in bytes) {
-                for (bitIdx in 0 until 8) {
-                    val bit = (byteVal shr bitIdx) and 1
-                    pattern.add(560) // Pulso portadora ON
-                    if (bit == 1) {
-                        pattern.add(1690) // Espacio OFF bit 1
-                    } else {
-                        pattern.add(560)  // Espacio OFF bit 0
-                    }
+        val bytes = intArrayOf(addrLow, addrHigh, cmd, invCmd)
+
+        for (byteVal in bytes) {
+            for (bitIdx in 0 until 8) {
+                val bit = (byteVal shr bitIdx) and 1
+                pattern[idx++] = toVal(560) // Portadora ON siempre 560µs
+                if (bit == 1) {
+                    pattern[idx++] = toVal(1690) // Espacio bit 1
+                } else {
+                    pattern[idx++] = toVal(560)  // Espacio bit 0
                 }
             }
-
-            // Stop bit
-            pattern.add(560)
         }
 
-        // Trama 1
-        appendSingleFrame()
+        // 3. Stop bit y Cierre OFF
+        pattern[idx++] = toVal(560)   // ON stop bit
+        pattern[idx++] = toVal(10000) // OFF cierre (crucial para evitar cuelgues del HAL)
 
-        if (includeRepeat) {
-            // Pausa entre ráfagas (40 ms estándar)
-            pattern.add(40000)
+        return pattern
+    }
 
-            // Ráfaga 2 completa (Doble transmisión para asegurar recepción en placas chinas)
-            appendSingleFrame()
-
-            // Pausa y código de repetición estándar NEC
-            pattern.add(35000)
-            pattern.add(9000)
-            pattern.add(2250)
-            pattern.add(560)
+    /**
+     * Tren de pulsos rápido para que el usuario pueda verificar con la cámara de otro celular
+     * que el LED infrarrojo del Tecno Camon 30 realmente emite luz física.
+     */
+    suspend fun transmitCameraTestSignal(frequency: Int = 38000) {
+        if (!hasIrEmitter) return
+        val testPattern = intArrayOf(
+            15000, 15000,
+            15000, 15000,
+            15000, 15000,
+            15000, 15000,
+            15000, 15000
+        )
+        try {
+            repeat(4) {
+                irManager?.transmit(frequency, testPattern)
+                delay(120)
+            }
+        } catch (e: Exception) {
+            Log.e(TAG, "Error en test de cámara: ${e.message}")
         }
-
-        return pattern.toIntArray()
     }
 }

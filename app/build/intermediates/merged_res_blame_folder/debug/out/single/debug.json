@@ -1,5 +1,9 @@
 [
     {
+        "merged": "com.example.rm014s.app-merged_res-33:/drawable_ic_power.xml.flat",
+        "source": "com.example.rm014s.app-main-35:/drawable/ic_power.xml"
+    },
+    {
         "merged": "/Users/metalsyntax/.gradle/daemon/8.2/com.example.rm014s.app-merged_res-33:/layout_dialog_auto_scan.xml.flat",
         "source": "/Users/metalsyntax/.gradle/daemon/8.2/com.example.rm014s.app-main-35:/layout/dialog_auto_scan.xml"
     },
@@ -28,8 +32,8 @@
         "source": "/Users/metalsyntax/.gradle/daemon/8.2/com.example.rm014s.app-main-35:/drawable/btn_remote_pill_blue.xml"
     },
     {
-        "merged": "com.example.rm014s.app-merged_res-33:/layout_dialog_manual_specs.xml.flat",
-        "source": "com.example.rm014s.app-main-35:/layout/dialog_manual_specs.xml"
+        "merged": "com.example.rm014s.app-merged_res-33:/layout_dialog_auto_scan.xml.flat",
+        "source": "com.example.rm014s.app-main-35:/layout/dialog_auto_scan.xml"
     },
     {
         "merged": "/Users/metalsyntax/.gradle/daemon/8.2/com.example.rm014s.app-merged_res-33:/drawable_btn_remote_circle_power.xml.flat",
@@ -38,6 +42,10 @@
     {
         "merged": "com.example.rm014s.app-merged_res-33:/layout_activity_main.xml.flat",
         "source": "com.example.rm014s.app-main-35:/layout/activity_main.xml"
+    },
+    {
+        "merged": "/Users/metalsyntax/.gradle/daemon/8.2/com.example.rm014s.app-merged_res-33:/layout_dialog_manual_specs.xml.flat",
+        "source": "/Users/metalsyntax/.gradle/daemon/8.2/com.example.rm014s.app-main-35:/layout/dialog_manual_specs.xml"
     },
     {
         "merged": "/Users/metalsyntax/.gradle/daemon/8.2/com.example.rm014s.app-merged_res-33:/drawable_btn_remote_circle_mute.xml.flat",
@@ -50,6 +58,10 @@
     {
         "merged": "/Users/metalsyntax/.gradle/daemon/8.2/com.example.rm014s.app-merged_res-33:/drawable_led_indicator.xml.flat",
         "source": "/Users/metalsyntax/.gradle/daemon/8.2/com.example.rm014s.app-main-35:/drawable/led_indicator.xml"
+    },
+    {
+        "merged": "com.example.rm014s.app-merged_res-33:/drawable_ic_mute.xml.flat",
+        "source": "com.example.rm014s.app-main-35:/drawable/ic_mute.xml"
     },
     {
         "merged": "/Users/metalsyntax/.gradle/daemon/8.2/com.example.rm014s.app-merged_res-33:/drawable_bg_remote_chassis.xml.flat",
