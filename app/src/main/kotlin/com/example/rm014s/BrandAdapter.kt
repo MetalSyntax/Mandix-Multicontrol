@@ -3,18 +3,21 @@ package com.example.rm014s
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 
 class BrandAdapter(
-    private val brands: List<BrandPreset>,
-    private val onBrandSelected: (BrandPreset) -> Unit
+    private val profiles: List<RemoteProfile>,
+    private val onProfileSelected: (RemoteProfile) -> Unit,
+    private val onTestProfile: (RemoteProfile) -> Unit
 ) : RecyclerView.Adapter<BrandAdapter.ViewHolder>() {
 
     class ViewHolder(view: View) : RecyclerView.ViewHolder(view) {
-        val tvBrandHex: TextView = view.findViewById(R.id.tvBrandHex)
+        val tvBrandCombination: TextView = view.findViewById(R.id.tvBrandCombination)
         val tvBrandName: TextView = view.findViewById(R.id.tvBrandName)
-        val tvBrandDesc: TextView = view.findViewById(R.id.tvBrandDesc)
+        val tvBrandCodeInfo: TextView = view.findViewById(R.id.tvBrandCodeInfo)
+        val btnTestPreset: Button = view.findViewById(R.id.btnTestPreset)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -24,16 +27,22 @@ class BrandAdapter(
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        val preset = brands[position]
-        val hex = String.format("0x%02X", preset.defaultAddress)
-        holder.tvBrandHex.text = hex
-        holder.tvBrandName.text = preset.name
-        holder.tvBrandDesc.text = preset.description
+        val profile = profiles[position]
+        holder.tvBrandCombination.text = profile.brandButtonLabel
+        holder.tvBrandName.text = profile.name
+
+        val addrHex = String.format("0x%02X", profile.address)
+        val freqKhz = profile.frequency / 1000
+        holder.tvBrandCodeInfo.text = "Cód: ${profile.codeNumber} • Dir: $addrHex • ${freqKhz}kHz"
 
         holder.itemView.setOnClickListener {
-            onBrandSelected(preset)
+            onProfileSelected(profile)
+        }
+
+        holder.btnTestPreset.setOnClickListener {
+            onTestProfile(profile)
         }
     }
 
-    override fun getItemCount(): Int = brands.size
+    override fun getItemCount(): Int = profiles.size
 }

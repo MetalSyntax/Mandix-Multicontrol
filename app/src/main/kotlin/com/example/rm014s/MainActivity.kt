@@ -7,7 +7,6 @@ import android.os.Build
 import android.os.Bundle
 import android.os.VibrationEffect
 import android.os.Vibrator
-import android.view.View
 import android.view.Window
 import android.widget.*
 import androidx.appcompat.app.AppCompatActivity
@@ -24,14 +23,24 @@ class MainActivity : AppCompatActivity() {
     private lateinit var prefs: SharedPreferences
     private var vibrator: Vibrator? = null
 
-    private var currentAddress: Int = 0x00
-    private var currentBrandName: String = "Genérico / CX-507 (0x00)"
+    // Perfil y configuración activa
+    private var activeAddress: Int = 0x00
+    private var activeAddressHigh: Int? = 0xBF
+    private var activeFrequency: Int = 38000
+    private var activeBrandName: String = "Placa China CX-507 (014)"
+    private var cmdPower: Int = RemoteConstants.CMD_POWER
+    private var cmdVolUp: Int = RemoteConstants.CMD_VOL_UP
+    private var cmdVolDown: Int = RemoteConstants.CMD_VOL_DOWN
+    private var cmdChUp: Int = RemoteConstants.CMD_CH_UP
+    private var cmdChDown: Int = RemoteConstants.CMD_CH_DOWN
+    private var cmdMute: Int = RemoteConstants.CMD_MUTE
 
     // Variables de Auto-Scan
     private var scanJob: Job? = null
     private var isScanning = false
     private var isScanPaused = false
     private var scanCurrentAddress = 0x00
+    private var scanFrequency = 38000
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -39,48 +48,73 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         irHelper = IrManagerHelper(this)
-        prefs = getSharedPreferences("rm014s_prefs", Context.MODE_PRIVATE)
+        prefs = getSharedPreferences("rm014s_prefs_v2", Context.MODE_PRIVATE)
         vibrator = getSystemService(Context.VIBRATOR_SERVICE) as? Vibrator
 
         loadSavedSettings()
-        setupHardwareIndicator()
+        updateDisplayScreen()
         setupButtonListeners()
     }
 
     private fun loadSavedSettings() {
-        currentAddress = prefs.getInt("saved_address", 0x00)
-        currentBrandName = prefs.getString("saved_brand_name", "Genérico / CX-507 (0x00)") ?: "Genérico / CX-507 (0x00)"
-        binding.tvActiveBrand.text = currentBrandName
+        activeAddress = prefs.getInt("active_address", 0x00)
+        val high = prefs.getInt("active_address_high", -1)
+        activeAddressHigh = if (high != -1) high else null
+        activeFrequency = prefs.getInt("active_frequency", 38000)
+        activeBrandName = prefs.getString("active_brand_name", "Placa China CX-507 (014)") ?: "Placa China CX-507 (014)"
+
+        cmdPower = prefs.getInt("cmd_power", RemoteConstants.CMD_POWER)
+        cmdVolUp = prefs.getInt("cmd_vol_up", RemoteConstants.CMD_VOL_UP)
+        cmdVolDown = prefs.getInt("cmd_vol_down", RemoteConstants.CMD_VOL_DOWN)
+        cmdChUp = prefs.getInt("cmd_ch_up", RemoteConstants.CMD_CH_UP)
+        cmdChDown = prefs.getInt("cmd_ch_down", RemoteConstants.CMD_CH_DOWN)
+        cmdMute = prefs.getInt("cmd_mute", RemoteConstants.CMD_MUTE)
     }
 
-    private fun saveSettings(address: Int, brandName: String) {
-        currentAddress = address
-        currentBrandName = brandName
+    private fun saveProfile(profile: RemoteProfile) {
+        activeAddress = profile.address
+        activeAddressHigh = profile.addressHigh
+        activeFrequency = profile.frequency
+        activeBrandName = profile.name
+
+        cmdPower = profile.cmdPower
+        cmdVolUp = profile.cmdVolUp
+        cmdVolDown = profile.cmdVolDown
+        cmdChUp = profile.cmdChUp
+        cmdChDown = profile.cmdChDown
+        cmdMute = profile.cmdMute
+
         prefs.edit()
-            .putInt("saved_address", address)
-            .putString("saved_brand_name", brandName)
+            .putInt("active_address", activeAddress)
+            .putInt("active_address_high", activeAddressHigh ?: -1)
+            .putInt("active_frequency", activeFrequency)
+            .putString("active_brand_name", activeBrandName)
+            .putInt("cmd_power", cmdPower)
+            .putInt("cmd_vol_up", cmdVolUp)
+            .putInt("cmd_vol_down", cmdVolDown)
+            .putInt("cmd_ch_up", cmdChUp)
+            .putInt("cmd_ch_down", cmdChDown)
+            .putInt("cmd_mute", cmdMute)
             .apply()
-        binding.tvActiveBrand.text = brandName
+
+        updateDisplayScreen()
+        flashLedThreeTimes()
     }
 
-    private fun setupHardwareIndicator() {
-        if (irHelper.hasIrEmitter) {
-            binding.tvHardwareStatus.text = "IR Activo (Hardware)"
-            binding.tvHardwareStatus.setTextColor(getColor(android.R.color.holo_green_light))
-        } else {
-            binding.tvHardwareStatus.text = "Simulación (Sin IR)"
-            binding.tvHardwareStatus.setTextColor(getColor(android.R.color.holo_orange_light))
-        }
+    private fun updateDisplayScreen() {
+        val freqKhz = activeFrequency / 1000
+        binding.tvDisplayFrequency.text = "${freqKhz} kHz"
+        binding.tvActiveProfileName.text = "$activeBrandName • ${freqKhz}kHz"
     }
 
     private fun triggerFeedback() {
-        // 1. Destello visual realista en el LED del control
+        // Destello visual en el LED del control
         binding.viewLedIr.setBackgroundResource(R.drawable.led_indicator_active)
         binding.viewLedIr.postDelayed({
             binding.viewLedIr.setBackgroundResource(R.drawable.led_indicator)
         }, 120)
 
-        // 2. Vibración háptica sutil
+        // Vibración háptica
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.O) {
             vibrator?.vibrate(VibrationEffect.createOneShot(25, VibrationEffect.DEFAULT_AMPLITUDE))
         } else {
@@ -89,19 +123,42 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    /**
+     * Parpadea el LED 3 veces al vincular marca, como describe el manual oficial
+     */
+    private fun flashLedThreeTimes() {
+        lifecycleScope.launch {
+            repeat(3) {
+                binding.viewLedIr.setBackgroundResource(R.drawable.led_indicator_active)
+                delay(120)
+                binding.viewLedIr.setBackgroundResource(R.drawable.led_indicator)
+                delay(120)
+            }
+        }
+    }
+
     private fun sendCommand(command: Int) {
         triggerFeedback()
-        irHelper.transmitNec(currentAddress, command)
+        irHelper.transmitNec(
+            address = activeAddress,
+            command = command,
+            frequency = activeFrequency,
+            addressHigh = activeAddressHigh,
+            sendRepeat = true
+        )
     }
 
     private fun setupButtonListeners() {
-        // Barra Superior
-        binding.btnOpenScanner.setOnClickListener { showAutoScanDialog() }
-        binding.btnOpenBrands.setOnClickListener { showBrandSelectorDialog() }
+        // Visor OLED y placa serigrafiada inferior abren opciones de configuración
+        binding.layoutOledScreen.setOnClickListener { showBrandSelectorDialog() }
+        binding.layoutPlateBottom.setOnClickListener { showAutoScanDialog() }
 
-        // 1. Cabecera
-        binding.btnPower.setOnClickListener { sendCommand(RemoteConstants.CMD_POWER) }
-        binding.btnMute.setOnClickListener { sendCommand(RemoteConstants.CMD_MUTE) }
+        // Botón SET Físico: abre las opciones de búsqueda o manual
+        binding.btnSet.setOnClickListener { showAutoScanDialog() }
+
+        // 1. Cabecera (Power & Mute integrados)
+        binding.btnPower.setOnClickListener { sendCommand(cmdPower) }
+        binding.btnMute.setOnClickListener { sendCommand(cmdMute) }
 
         // 2. Teclado Numérico
         binding.btnNum1.setOnClickListener { sendCommand(RemoteConstants.CMD_NUM_1) }
@@ -137,13 +194,11 @@ class MainActivity : AppCompatActivity() {
         binding.btnExit.setOnClickListener { sendCommand(RemoteConstants.CMD_EXIT) }
 
         // 5. Volumen y Canales
-        binding.btnVolUp.setOnClickListener { sendCommand(RemoteConstants.CMD_VOL_UP) }
-        binding.btnVolDown.setOnClickListener { sendCommand(RemoteConstants.CMD_VOL_DOWN) }
-        binding.btnChUp.setOnClickListener { sendCommand(RemoteConstants.CMD_CH_UP) }
-        binding.btnChDown.setOnClickListener { sendCommand(RemoteConstants.CMD_CH_DOWN) }
+        binding.btnVolUp.setOnClickListener { sendCommand(cmdVolUp) }
+        binding.btnVolDown.setOnClickListener { sendCommand(cmdVolDown) }
+        binding.btnChUp.setOnClickListener { sendCommand(cmdChUp) }
+        binding.btnChDown.setOnClickListener { sendCommand(cmdChDown) }
 
-        // Botones centrales
-        binding.btnSet.setOnClickListener { showAutoScanDialog() }
         binding.btnDisplay.setOnClickListener { sendCommand(RemoteConstants.CMD_DISPLAY) }
         binding.btnSleep.setOnClickListener { sendCommand(RemoteConstants.CMD_SLEEP) }
 
@@ -163,13 +218,10 @@ class MainActivity : AppCompatActivity() {
         binding.btnColorGreen.setOnClickListener { sendCommand(RemoteConstants.CMD_COLOR_GREEN) }
         binding.btnColorYellow.setOnClickListener { sendCommand(RemoteConstants.CMD_COLOR_YELLOW) }
         binding.btnColorBlue.setOnClickListener { sendCommand(RemoteConstants.CMD_COLOR_BLUE) }
-
-        // 8. Placa serigrafiada inferior
-        binding.layoutPlateBottom.setOnClickListener { showAutoScanDialog() }
     }
 
     /**
-     * Muestra el Diálogo de Búsqueda Automática
+     * Diálogo de Búsqueda Extendida (con selector de frecuencia y barrido multi-comando)
      */
     private fun showAutoScanDialog() {
         val dialog = Dialog(this)
@@ -178,9 +230,10 @@ class MainActivity : AppCompatActivity() {
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
         dialog.setCancelable(false)
 
+        val rgFreq = dialog.findViewById<RadioGroup>(R.id.rgFrequency)
         val tvScanStatus = dialog.findViewById<TextView>(R.id.tvScanStatus)
         val tvScanHex = dialog.findViewById<TextView>(R.id.tvScanHex)
-        val tvScanProgress = dialog.findViewById<TextView>(R.id.tvScanProgress)
+        val tvScanDetails = dialog.findViewById<TextView>(R.id.tvScanDetails)
         val progressBar = dialog.findViewById<ProgressBar>(R.id.progressBarScan)
         val btnStopAndSave = dialog.findViewById<Button>(R.id.btnStopAndSave)
         val btnStepBack = dialog.findViewById<Button>(R.id.btnStepBack)
@@ -189,29 +242,65 @@ class MainActivity : AppCompatActivity() {
         val btnCancelScan = dialog.findViewById<Button>(R.id.btnCancelScan)
 
         scanCurrentAddress = 0x00
+        scanFrequency = activeFrequency
         isScanning = true
         isScanPaused = false
 
-        fun updateUI() {
+        // Ajustar frecuencia según selección de radio
+        when (scanFrequency) {
+            36000 -> dialog.findViewById<RadioButton>(R.id.rb36k)?.isChecked = true
+            40000 -> dialog.findViewById<RadioButton>(R.id.rb40k)?.isChecked = true
+            56000 -> dialog.findViewById<RadioButton>(R.id.rb56k)?.isChecked = true
+            else -> dialog.findViewById<RadioButton>(R.id.rb38k)?.isChecked = true
+        }
+
+        rgFreq.setOnCheckedChangeListener { _, checkedId ->
+            scanFrequency = when (checkedId) {
+                R.id.rb36k -> 36000
+                R.id.rb40k -> 40000
+                R.id.rb56k -> 56000
+                else -> 38000
+            }
+        }
+
+        fun updateScanUI() {
             val hex = String.format("0x%02X", scanCurrentAddress)
             tvScanHex.text = hex
-            tvScanProgress.text = "Dirección: $scanCurrentAddress / 255 (Chasis NEC)"
+            val freqKhz = scanFrequency / 1000
+            tvScanDetails.text = "Dir: $hex ($scanCurrentAddress/255) • ${freqKhz}kHz • Pulso: VOL+ (x2)"
             progressBar.progress = scanCurrentAddress
         }
 
-        // Bucle en segundo plano con corrutinas
+        // Bucle de búsqueda extendida enviando doble ráfaga
         scanJob = lifecycleScope.launch {
             while (isScanning && scanCurrentAddress <= 0xFF) {
                 if (!isScanPaused) {
-                    updateUI()
+                    updateScanUI()
                     triggerFeedback()
-                    irHelper.transmitNec(scanCurrentAddress, RemoteConstants.CMD_VOL_UP)
 
-                    delay(280) // Intervalo de 280ms
+                    // Envía el comando de VOL+ estándar
+                    irHelper.transmitNec(
+                        address = scanCurrentAddress,
+                        command = RemoteConstants.CMD_VOL_UP,
+                        frequency = scanFrequency,
+                        sendRepeat = true
+                    )
+
+                    // Y envía también el comando de VOL+ alternativo (0x02) en la misma dirección para máxima compatibilidad
+                    delay(150)
+                    irHelper.transmitNec(
+                        address = scanCurrentAddress,
+                        command = 0x02,
+                        frequency = scanFrequency,
+                        sendRepeat = true
+                    )
+
+                    delay(260) // Pausa entre direcciones
+
                     if (scanCurrentAddress < 0xFF) {
                         scanCurrentAddress++
                     } else {
-                        tvScanStatus.text = "Barrido completado (0x00 - 0xFF)"
+                        tvScanStatus.text = "Barrido completado en ${scanFrequency / 1000}kHz"
                         isScanning = false
                     }
                 } else {
@@ -220,44 +309,53 @@ class MainActivity : AppCompatActivity() {
             }
         }
 
-        // Botón ¡DETENER / GUARDAR!
+        // Guardar la dirección calibrada
         btnStopAndSave.setOnClickListener {
             isScanning = false
             scanJob?.cancel()
-            val hexCode = String.format("0x%02X", scanCurrentAddress)
-            saveSettings(scanCurrentAddress, "Calibrado Auto ($hexCode)")
+            val hex = String.format("0x%02X", scanCurrentAddress)
+            activeAddress = scanCurrentAddress
+            activeAddressHigh = null
+            activeFrequency = scanFrequency
+            activeBrandName = "Calibrado Auto ($hex)"
+
+            prefs.edit()
+                .putInt("active_address", activeAddress)
+                .putInt("active_address_high", -1)
+                .putInt("active_frequency", activeFrequency)
+                .putString("active_brand_name", activeBrandName)
+                .apply()
+
+            updateDisplayScreen()
+            flashLedThreeTimes()
             dialog.dismiss()
-            Toast.makeText(this, "¡Calibrado exitoso! Código $hexCode guardado.", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, "¡Calibrado exitoso! Código $hex a ${scanFrequency / 1000}kHz", Toast.LENGTH_LONG).show()
         }
 
-        // Retroceder 1 dirección
         btnStepBack.setOnClickListener {
             if (scanCurrentAddress > 0) {
                 scanCurrentAddress--
-                updateUI()
-                irHelper.transmitNec(scanCurrentAddress, RemoteConstants.CMD_VOL_UP)
+                updateScanUI()
+                irHelper.transmitNec(scanCurrentAddress, RemoteConstants.CMD_VOL_UP, scanFrequency, null, true)
             }
         }
 
-        // Pausar / Continuar
         btnPauseResume.setOnClickListener {
             isScanPaused = !isScanPaused
             if (isScanPaused) {
-                btnPauseResume.text = "Continuar"
-                tvScanStatus.text = "Escaneo pausado"
+                btnPauseResume.text = "Seguir"
+                tvScanStatus.text = "Pausado"
             } else {
                 btnPauseResume.text = "Pausar"
-                tvScanStatus.text = "Transmitiendo comando VOL+..."
+                tvScanStatus.text = "Transmitiendo..."
             }
         }
 
-        // Probar VOL+
         btnTestVol.setOnClickListener {
             triggerFeedback()
-            irHelper.transmitNec(scanCurrentAddress, RemoteConstants.CMD_VOL_UP)
+            irHelper.transmitNec(scanCurrentAddress, RemoteConstants.CMD_VOL_UP, scanFrequency, null, true)
         }
 
-        // Cancelar
         btnCancelScan.setOnClickListener {
             isScanning = false
             scanJob?.cancel()
@@ -268,7 +366,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Muestra el Diálogo de Selector de Marcas y Dirección Manual
+     * Diálogo de Selección de Marcas / Código de 3 dígitos
      */
     private fun showBrandSelectorDialog() {
         val dialog = Dialog(this)
@@ -276,35 +374,44 @@ class MainActivity : AppCompatActivity() {
         dialog.setContentView(R.layout.dialog_brand_selector)
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-        val etHexAddress = dialog.findViewById<EditText>(R.id.etHexAddress)
-        val btnApplyHex = dialog.findViewById<Button>(R.id.btnApplyHex)
+        val etCodeNumber = dialog.findViewById<EditText>(R.id.etCodeNumber)
+        val btnApplyCode = dialog.findViewById<Button>(R.id.btnApplyCode)
         val rvBrands = dialog.findViewById<RecyclerView>(R.id.rvBrands)
         val btnClose = dialog.findViewById<Button>(R.id.btnCloseBrandDialog)
 
-        etHexAddress.setText(String.format("%02X", currentAddress))
-
-        btnApplyHex.setOnClickListener {
-            val text = etHexAddress.text.toString().trim()
-            try {
-                val parsed = text.toInt(16)
-                if (parsed in 0x00..0xFF) {
-                    saveSettings(parsed, "Manual (0x${text.uppercase()})")
-                    dialog.dismiss()
-                    Toast.makeText(this, "Dirección 0x${text.uppercase()} aplicada", Toast.LENGTH_SHORT).show()
-                } else {
-                    Toast.makeText(this, "Debe ser entre 00 y FF", Toast.LENGTH_SHORT).show()
-                }
-            } catch (e: Exception) {
-                Toast.makeText(this, "Valor hexadecimal inválido", Toast.LENGTH_SHORT).show()
+        // Cargar código de 3 dígitos (Método 2)
+        btnApplyCode.setOnClickListener {
+            val codeStr = etCodeNumber.text.toString().trim()
+            val matched = RemoteConstants.PROFILES.firstOrNull { it.codeNumber == codeStr }
+            if (matched != null) {
+                saveProfile(matched)
+                dialog.dismiss()
+                Toast.makeText(this, "Código ${matched.codeNumber} (${matched.name}) cargado", Toast.LENGTH_SHORT).show()
+            } else {
+                // Si no coincide exactamente, calcula la dirección por el número
+                val codeInt = codeStr.toIntOrNull() ?: 0
+                val addr = codeInt and 0xFF
+                val profile = RemoteProfile("custom_$codeInt", "Código $codeStr", "SET + $codeStr", codeStr, addr, null, 38000)
+                saveProfile(profile)
+                dialog.dismiss()
+                Toast.makeText(this, "Código personalizado $codeStr cargado", Toast.LENGTH_SHORT).show()
             }
         }
 
         rvBrands.layoutManager = LinearLayoutManager(this)
-        rvBrands.adapter = BrandAdapter(RemoteConstants.PRESETS) { preset ->
-            saveSettings(preset.defaultAddress, preset.name)
-            dialog.dismiss()
-            Toast.makeText(this, "Perfil '${preset.name}' activado", Toast.LENGTH_SHORT).show()
-        }
+        rvBrands.adapter = BrandAdapter(
+            profiles = RemoteConstants.PROFILES,
+            onProfileSelected = { profile ->
+                saveProfile(profile)
+                dialog.dismiss()
+                Toast.makeText(this, "Perfil '${profile.name}' (${profile.brandButtonLabel}) activado", Toast.LENGTH_SHORT).show()
+            },
+            onTestProfile = { profile ->
+                triggerFeedback()
+                irHelper.transmitNec(profile.address, profile.cmdVolUp, profile.frequency, profile.addressHigh, true)
+                Toast.makeText(this, "Probando VOL+ en ${profile.name}...", Toast.LENGTH_SHORT).show()
+            }
+        )
 
         btnClose.setOnClickListener { dialog.dismiss() }
 

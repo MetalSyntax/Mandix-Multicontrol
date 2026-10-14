@@ -1,13 +1,23 @@
 package com.example.rm014s
 
-data class BrandPreset(
+data class RemoteProfile(
+    val id: String,
     val name: String,
-    val description: String,
-    val defaultAddress: Int
+    val brandButtonLabel: String, // ej. "SET + 1"
+    val codeNumber: String,       // ej. "001"
+    val address: Int,
+    val addressHigh: Int? = null,
+    val frequency: Int = 38000,
+    val cmdPower: Int = RemoteConstants.CMD_POWER,
+    val cmdVolUp: Int = RemoteConstants.CMD_VOL_UP,
+    val cmdVolDown: Int = RemoteConstants.CMD_VOL_DOWN,
+    val cmdChUp: Int = RemoteConstants.CMD_CH_UP,
+    val cmdChDown: Int = RemoteConstants.CMD_CH_DOWN,
+    val cmdMute: Int = RemoteConstants.CMD_MUTE
 )
 
 object RemoteConstants {
-    // Comandos NEC estándar para placas chinas OEM y RM-014S+
+    // Comandos base
     const val CMD_POWER = 0x12
     const val CMD_MUTE = 0x10
 
@@ -66,19 +76,39 @@ object RemoteConstants {
     const val CMD_COLOR_YELLOW = 0x3A
     const val CMD_COLOR_BLUE = 0x3B
 
-    val PRESETS = listOf(
-        BrandPreset("Genérico / CX-507 (0x00)", "Placa china genérica / Premium / Challenger", 0x00),
-        BrandPreset("Genérico / CX-507 (0x04)", "Chasis MStar / Realtek / TP.VST59", 0x04),
-        BrandPreset("Genérico / CX-507 (0x40)", "Chasis CV9203 / TP.MS338", 0x40),
-        BrandPreset("Genérico / CX-507 (0x08)", "Variante chasis universal", 0x08),
-        BrandPreset("Genérico / CX-507 (0x80)", "Variante chasis universal", 0x80),
-        BrandPreset("Samsung TV (0x07)", "Protocolo NEC / Samsung 38kHz", 0x07),
-        BrandPreset("LG TV (0x04)", "Protocolo NEC LG 38kHz", 0x04),
-        BrandPreset("TCL / RCA (0x01)", "Chasis TCL Thomson", 0x01),
-        BrandPreset("Hisense (0x20)", "Chasis Hisense Smart TV", 0x20),
-        BrandPreset("Konka (0x02)", "Chasis Konka LCD/LED", 0x02),
-        BrandPreset("Skyworth (0xBF)", "Chasis Skyworth OEM", 0xBF),
-        BrandPreset("Changhong (0x7F)", "Chasis Changhong / CHiQ", 0x7F),
-        BrandPreset("Haier (0xEF)", "Chasis Haier TV", 0xEF)
+    // Comandos alternativos comunes de placas chinas OEM (CX-507 / CV9203 / TP.VST59)
+    val VOL_UP_CANDIDATES = intArrayOf(0x1A, 0x02, 0x1E, 0x44, 0x0B, 0x15, 0x46, 0x5B, 0x07, 0x10)
+    val POWER_CANDIDATES = intArrayOf(0x12, 0x08, 0x02, 0x48, 0x14, 0x1A, 0x3C, 0x46, 0x01)
+    val FREQUENCIES = intArrayOf(38000, 36000, 40000, 56000)
+
+    // Perfiles oficiales de marcas y placas del manual RM-014S+
+    val PROFILES = listOf(
+        // Placas chinas OEM más comunes (CX-507 / CV9203 / MStar / Realtek)
+        RemoteProfile("oem_cx507_1", "Placa China CX-507 (OEM 1)", "SET + 0", "014", 0x00, 0xBF, 38000, 0x12, 0x1A, 0x1E, 0x1B, 0x1F),
+        RemoteProfile("oem_cx507_2", "Placa China CX-507 (OEM 2)", "SET + VOL+", "005", 0x04, 0xFB, 38000, 0x08, 0x02, 0x03, 0x00, 0x01),
+        RemoteProfile("oem_cx507_3", "Placa China CX-507 (OEM 3 / MStar)", "SET + CH+", "025", 0x40, 0xBF, 38000, 0x48, 0x44, 0x45, 0x42, 0x43),
+        RemoteProfile("oem_cx507_4", "Placa China CV9203 / TP.MS338", "SET + CH-", "036", 0x08, 0xF7, 38000, 0x12, 0x1A, 0x1E, 0x1B, 0x1F),
+        RemoteProfile("oem_cx507_5", "Placa China TP.VST59 / Realtek", "SET + MENU", "038", 0x00, 0xFF, 38000, 0x12, 0x1E, 0x1F, 0x1A, 0x1B),
+        RemoteProfile("oem_cx507_6", "Placa China 36kHz (Frecuencia 36kHz)", "SET + SLEEP", "045", 0x00, 0xBF, 36000, 0x12, 0x1A, 0x1E, 0x1B, 0x1F),
+        RemoteProfile("oem_cx507_7", "Placa China 40kHz (Frecuencia 40kHz)", "SET + FAV", "056", 0x04, 0xFB, 40000, 0x08, 0x02, 0x03, 0x00, 0x01),
+
+        // Perfiles oficiales de marcas del empaque RM-014S+
+        RemoteProfile("lg", "LG", "SET + 1", "001", 0x04, 0xFB, 38000, 0x08, 0x02, 0x03, 0x00, 0x01),
+        RemoteProfile("sony", "SONY", "SET + 2", "002", 0x01, null, 40000, 0x15, 0x12, 0x13, 0x10, 0x11),
+        RemoteProfile("samsung", "SAMSUNG", "SET + 3", "003", 0x07, 0x07, 38000, 0x02, 0x07, 0x0B, 0x12, 0x10),
+        RemoteProfile("sharp", "SHARP", "SET + 4", "004", 0x55, null, 38000, 0x14, 0x0A, 0x0B, 0x08, 0x09),
+        RemoteProfile("panasonic", "PANASONIC", "SET + 5", "005", 0x08, 0xF7, 36700, 0x3C, 0x20, 0x21, 0x22, 0x23),
+        RemoteProfile("toshiba", "TOSHIBA / JVC", "SET + 6", "006", 0x40, 0xBF, 38000, 0x12, 0x1A, 0x1E, 0x1B, 0x1F),
+        RemoteProfile("philips", "PHILIPS", "SET + 7", "007", 0x00, null, 36000, 0x0C, 0x10, 0x11, 0x20, 0x21),
+        RemoteProfile("haier", "HAIER", "SET + 8", "008", 0xEF, 0x10, 38000, 0x12, 0x1A, 0x1E, 0x1B, 0x1F),
+        RemoteProfile("hitachi", "HITACHI & SANYO", "SET + 9", "009", 0x50, 0xAF, 38000, 0x08, 0x02, 0x03, 0x00, 0x01),
+        RemoteProfile("tcl_konka", "TCL & KONKA", "SET + 0", "010", 0x01, 0xFE, 38000, 0x12, 0x1A, 0x1E, 0x1B, 0x1F),
+        RemoteProfile("nobel", "NOBEL", "SET + CH.LIST", "011", 0x00, 0xBF, 38000, 0x12, 0x1A, 0x1E, 0x1B, 0x1F),
+        RemoteProfile("shownic_hisense", "SHOWNIC / HISENSE", "SET + SOURCE", "012", 0x20, 0xDF, 38000, 0x12, 0x1A, 0x1E, 0x1B, 0x1F),
+        RemoteProfile("vestel", "VESTEL", "SET + MENU", "013", 0x00, 0xFF, 38000, 0x0C, 0x10, 0x11, 0x20, 0x21),
+        RemoteProfile("aoc", "AOC", "SET + INFO", "014", 0x1F, 0xE0, 38000, 0x12, 0x1A, 0x1E, 0x1B, 0x1F),
+        RemoteProfile("changhong", "CHANGHONG", "SET + ▲", "015", 0x7F, 0x80, 38000, 0x12, 0x1A, 0x1E, 0x1B, 0x1F),
+        RemoteProfile("skyworth", "SKYWORTH", "SET + ▼", "016", 0xBF, 0x40, 38000, 0x12, 0x1A, 0x1E, 0x1B, 0x1F),
+        RemoteProfile("mystery", "MYSTERY", "SET + EXIT", "017", 0x00, 0xDF, 38000, 0x12, 0x1A, 0x1E, 0x1B, 0x1F)
     )
 }

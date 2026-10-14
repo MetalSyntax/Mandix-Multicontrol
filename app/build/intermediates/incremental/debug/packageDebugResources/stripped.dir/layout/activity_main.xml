@@ -1,0 +1,820 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black_bg">
+
+    <!-- Scroll para adaptarse verticalmente a cualquier celular -->
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:fillViewport="true">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:paddingStart="12dp"
+            android:paddingEnd="12dp"
+            android:paddingTop="12dp"
+            android:paddingBottom="24dp"
+            android:orientation="vertical">
+
+            <!-- CUERPO ERGONÓMICO DEL CONTROL REMOTO RM-014S+ -->
+            <LinearLayout
+                android:layout_width="324dp"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_remote_chassis"
+                android:orientation="vertical"
+                android:paddingStart="16dp"
+                android:paddingEnd="16dp"
+                android:paddingTop="16dp"
+                android:paddingBottom="24dp"
+                android:gravity="center_horizontal">
+
+                <!-- 1. CABECERA: POWER, LED IR, MUTE (100% integrado) -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <!-- POWER (Rojo) -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:layout_alignParentStart="true">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Power"
+                            android:textColor="#A0A3AB"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnPower"
+                            android:layout_width="46dp"
+                            android:layout_height="46dp"
+                            android:layout_marginTop="2dp"
+                            android:background="@drawable/btn_remote_circle_power"
+                            android:text="⏻"
+                            android:textColor="@color/white"
+                            android:textSize="18sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- LED IR central con visor integrado -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_centerInParent="true"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <View
+                            android:id="@+id/viewLedIr"
+                            android:layout_width="16dp"
+                            android:layout_height="16dp"
+                            android:background="@drawable/led_indicator" />
+
+                        <!-- Indicador sutil de frecuencia y perfil activo -->
+                        <TextView
+                            android:id="@+id/tvDisplayFrequency"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="4dp"
+                            android:text="38 kHz"
+                            android:textColor="@color/amber_accent"
+                            android:textSize="9sp"
+                            android:textStyle="bold"
+                            android:fontFamily="monospace" />
+                    </LinearLayout>
+
+                    <!-- MUTE (Verde agua / Turquesa integrado) -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical"
+                        android:gravity="center"
+                        android:layout_alignParentEnd="true">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="Mute"
+                            android:textColor="#A0A3AB"
+                            android:textSize="10sp"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnMute"
+                            android:layout_width="46dp"
+                            android:layout_height="46dp"
+                            android:layout_marginTop="2dp"
+                            android:background="@drawable/btn_remote_circle_mute"
+                            android:text="🔇"
+                            android:textColor="#064E3B"
+                            android:textSize="16sp" />
+                    </LinearLayout>
+                </RelativeLayout>
+
+                <!-- VISOR INTEGRADO DEL CONTROL (Perfil actual y acceso a Ajustes/Buscador) -->
+                <LinearLayout
+                    android:id="@+id/layoutOledScreen"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:paddingTop="5dp"
+                    android:paddingBottom="5dp"
+                    android:paddingStart="10dp"
+                    android:paddingEnd="10dp"
+                    android:background="@drawable/btn_remote_dark_pill"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:id="@+id/tvStatusDot"
+                        android:layout_width="8dp"
+                        android:layout_height="8dp"
+                        android:background="@drawable/led_indicator_active"
+                        android:backgroundTint="#34D399" />
+
+                    <TextView
+                        android:id="@+id/tvActiveProfileName"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:layout_marginStart="8dp"
+                        android:text="Placa China CX-507 (014) • 38kHz"
+                        android:textColor="#E5E7EB"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:fontFamily="monospace" />
+
+                    <ImageView
+                        android:layout_width="14dp"
+                        android:layout_height="14dp"
+                        android:src="@android:drawable/ic_menu_search"
+                        app:tint="@color/amber_accent" />
+                </LinearLayout>
+
+                <!-- 2. TECLADO NUMÉRICO (3x4) -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="12dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnNum1"
+                            android:layout_width="56dp"
+                            android:layout_height="34dp"
+                            android:background="@drawable/btn_remote_gray_num"
+                            android:text="1"
+                            android:textColor="@color/button_gray_text"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnNum2"
+                            android:layout_width="56dp"
+                            android:layout_height="34dp"
+                            android:layout_marginStart="14dp"
+                            android:layout_marginEnd="14dp"
+                            android:background="@drawable/btn_remote_gray_num"
+                            android:text="2"
+                            android:textColor="@color/button_gray_text"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnNum3"
+                            android:layout_width="56dp"
+                            android:layout_height="34dp"
+                            android:background="@drawable/btn_remote_gray_num"
+                            android:text="3"
+                            android:textColor="@color/button_gray_text"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnNum4"
+                            android:layout_width="56dp"
+                            android:layout_height="34dp"
+                            android:background="@drawable/btn_remote_gray_num"
+                            android:text="4"
+                            android:textColor="@color/button_gray_text"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnNum5"
+                            android:layout_width="56dp"
+                            android:layout_height="34dp"
+                            android:layout_marginStart="14dp"
+                            android:layout_marginEnd="14dp"
+                            android:background="@drawable/btn_remote_gray_num"
+                            android:text="5"
+                            android:textColor="@color/button_gray_text"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnNum6"
+                            android:layout_width="56dp"
+                            android:layout_height="34dp"
+                            android:background="@drawable/btn_remote_gray_num"
+                            android:text="6"
+                            android:textColor="@color/button_gray_text"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnNum7"
+                            android:layout_width="56dp"
+                            android:layout_height="34dp"
+                            android:background="@drawable/btn_remote_gray_num"
+                            android:text="7"
+                            android:textColor="@color/button_gray_text"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnNum8"
+                            android:layout_width="56dp"
+                            android:layout_height="34dp"
+                            android:layout_marginStart="14dp"
+                            android:layout_marginEnd="14dp"
+                            android:background="@drawable/btn_remote_gray_num"
+                            android:text="8"
+                            android:textColor="@color/button_gray_text"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnNum9"
+                            android:layout_width="56dp"
+                            android:layout_height="34dp"
+                            android:background="@drawable/btn_remote_gray_num"
+                            android:text="9"
+                            android:textColor="@color/button_gray_text"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnChList"
+                            android:layout_width="56dp"
+                            android:layout_height="34dp"
+                            android:background="@drawable/btn_remote_gray_num"
+                            android:text="CH.LIST"
+                            android:textColor="@color/button_gray_text"
+                            android:textSize="9sp"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnNum0"
+                            android:layout_width="56dp"
+                            android:layout_height="34dp"
+                            android:layout_marginStart="14dp"
+                            android:layout_marginEnd="14dp"
+                            android:background="@drawable/btn_remote_gray_num"
+                            android:text="0"
+                            android:textColor="@color/button_gray_text"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnReturn"
+                            android:layout_width="56dp"
+                            android:layout_height="34dp"
+                            android:background="@drawable/btn_remote_gray_num"
+                            android:text="⟲"
+                            android:textColor="@color/button_gray_text"
+                            android:textSize="16sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- 3. FILA P.MODE / GUIDE / S.MODE -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="14dp"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnPMode"
+                        android:layout_width="56dp"
+                        android:layout_height="28dp"
+                        android:background="@drawable/btn_remote_dark_pill"
+                        android:text="P.MODE"
+                        android:textColor="@color/white"
+                        android:textSize="9sp" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnGuide"
+                        android:layout_width="56dp"
+                        android:layout_height="28dp"
+                        android:layout_marginStart="14dp"
+                        android:layout_marginEnd="14dp"
+                        android:background="@drawable/btn_remote_dark_pill"
+                        android:text="GUIDE"
+                        android:textColor="@color/white"
+                        android:textSize="9sp" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnSMode"
+                        android:layout_width="56dp"
+                        android:layout_height="28dp"
+                        android:background="@drawable/btn_remote_dark_pill"
+                        android:text="S.MODE"
+                        android:textColor="@color/white"
+                        android:textSize="9sp" />
+                </LinearLayout>
+
+                <!-- 4. FILA MENU / SOURCE -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnMenu"
+                        android:layout_width="54dp"
+                        android:layout_height="28dp"
+                        android:layout_alignParentStart="true"
+                        android:background="@drawable/btn_remote_dark_pill"
+                        android:text="MENU"
+                        android:textColor="@color/white"
+                        android:textSize="9sp" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnSource"
+                        android:layout_width="54dp"
+                        android:layout_height="28dp"
+                        android:layout_alignParentEnd="true"
+                        android:background="@drawable/btn_remote_dark_pill"
+                        android:text="SOURCE"
+                        android:textColor="@color/white"
+                        android:textSize="9sp" />
+                </RelativeLayout>
+
+                <!-- CRUCETA D-PAD CIRCULAR -->
+                <RelativeLayout
+                    android:layout_width="154dp"
+                    android:layout_height="154dp"
+                    android:layout_marginTop="6dp">
+
+                    <!-- Arriba ▲ -->
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnUp"
+                        android:layout_width="56dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentTop="true"
+                        android:layout_centerHorizontal="true"
+                        android:background="@drawable/btn_remote_gray_num"
+                        android:text="▲"
+                        android:textColor="@color/button_gray_text"
+                        android:textSize="14sp" />
+
+                    <!-- Izquierda ◀ -->
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnLeft"
+                        android:layout_width="40dp"
+                        android:layout_height="56dp"
+                        android:layout_alignParentStart="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/btn_remote_gray_num"
+                        android:text="◀"
+                        android:textColor="@color/button_gray_text"
+                        android:textSize="14sp" />
+
+                    <!-- OK Central -->
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnOk"
+                        android:layout_width="46dp"
+                        android:layout_height="46dp"
+                        android:layout_centerInParent="true"
+                        android:background="@drawable/btn_remote_gray_num"
+                        android:text="OK"
+                        android:textColor="@color/button_gray_text"
+                        android:textSize="13sp"
+                        android:textStyle="bold" />
+
+                    <!-- Derecha ▶ -->
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnRight"
+                        android:layout_width="40dp"
+                        android:layout_height="56dp"
+                        android:layout_alignParentEnd="true"
+                        android:layout_centerVertical="true"
+                        android:background="@drawable/btn_remote_gray_num"
+                        android:text="▶"
+                        android:textColor="@color/button_gray_text"
+                        android:textSize="14sp" />
+
+                    <!-- Abajo ▼ -->
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnDown"
+                        android:layout_width="56dp"
+                        android:layout_height="40dp"
+                        android:layout_alignParentBottom="true"
+                        android:layout_centerHorizontal="true"
+                        android:background="@drawable/btn_remote_gray_num"
+                        android:text="▼"
+                        android:textColor="@color/button_gray_text"
+                        android:textSize="14sp" />
+                </RelativeLayout>
+
+                <!-- Bases D-PAD: RETURN y EXIT -->
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="6dp">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnBack"
+                        android:layout_width="54dp"
+                        android:layout_height="28dp"
+                        android:layout_alignParentStart="true"
+                        android:background="@drawable/btn_remote_dark_pill"
+                        android:text="RETURN"
+                        android:textColor="@color/white"
+                        android:textSize="9sp" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnExit"
+                        android:layout_width="54dp"
+                        android:layout_height="28dp"
+                        android:layout_alignParentEnd="true"
+                        android:background="@drawable/btn_remote_dark_pill"
+                        android:text="EXIT"
+                        android:textColor="@color/white"
+                        android:textSize="9sp" />
+                </RelativeLayout>
+
+                <!-- 5. BLOQUE CENTRAL: VOLUMEN (VERDE) / AJUSTES / CANALES (AZUL) -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <!-- Píldora Verde VOLUMEN -->
+                    <LinearLayout
+                        android:layout_width="52dp"
+                        android:layout_height="124dp"
+                        android:background="@drawable/btn_remote_pill_green"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp">
+
+                        <TextView
+                            android:id="@+id/btnVolUp"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="+"
+                            android:textColor="@color/white"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="VOL"
+                            android:textColor="@color/white"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/btnVolDown"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="−"
+                            android:textColor="@color/white"
+                            android:textSize="22sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <!-- Columna Central: SET, DISPLAY, SLEEP -->
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="124dp"
+                        android:layout_marginStart="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:orientation="vertical"
+                        android:gravity="center">
+
+                        <!-- Botón SET FÍSICO con borde ámbar elegante -->
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnSet"
+                            android:layout_width="54dp"
+                            android:layout_height="32dp"
+                            android:background="@drawable/btn_remote_dark_pill"
+                            android:text="SET"
+                            android:textColor="@color/amber_accent"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnDisplay"
+                            android:layout_width="54dp"
+                            android:layout_height="28dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginBottom="8dp"
+                            android:background="@drawable/btn_remote_dark_pill"
+                            android:text="DISPLAY"
+                            android:textColor="@color/white"
+                            android:textSize="9sp" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnSleep"
+                            android:layout_width="54dp"
+                            android:layout_height="28dp"
+                            android:background="@drawable/btn_remote_dark_pill"
+                            android:text="SLEEP"
+                            android:textColor="@color/white"
+                            android:textSize="9sp" />
+                    </LinearLayout>
+
+                    <!-- Píldora Azul CANALES -->
+                    <LinearLayout
+                        android:layout_width="52dp"
+                        android:layout_height="124dp"
+                        android:background="@drawable/btn_remote_pill_blue"
+                        android:orientation="vertical"
+                        android:gravity="center_horizontal"
+                        android:paddingTop="4dp"
+                        android:paddingBottom="4dp">
+
+                        <TextView
+                            android:id="@+id/btnChUp"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="∧"
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="CH"
+                            android:textColor="@color/white"
+                            android:textSize="11sp"
+                            android:textStyle="bold" />
+
+                        <TextView
+                            android:id="@+id/btnChDown"
+                            android:layout_width="match_parent"
+                            android:layout_height="0dp"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="∨"
+                            android:textColor="@color/white"
+                            android:textSize="20sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- 6. BLOQUE MULTIMEDIA -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnFav"
+                            android:layout_width="48dp"
+                            android:layout_height="26dp"
+                            android:background="@drawable/btn_remote_dark_pill"
+                            android:text="FAV"
+                            android:textColor="@color/white"
+                            android:textSize="9sp" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnInfo"
+                            android:layout_width="48dp"
+                            android:layout_height="26dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/btn_remote_dark_pill"
+                            android:text="INFO"
+                            android:textColor="@color/white"
+                            android:textSize="9sp" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnAudio"
+                            android:layout_width="48dp"
+                            android:layout_height="26dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/btn_remote_dark_pill"
+                            android:text="AUDIO"
+                            android:textColor="@color/white"
+                            android:textSize="9sp" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnHome"
+                            android:layout_width="48dp"
+                            android:layout_height="26dp"
+                            android:background="@drawable/btn_remote_dark_pill"
+                            android:text="HOME"
+                            android:textColor="@color/white"
+                            android:textSize="9sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="8dp"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnRewind"
+                            android:layout_width="48dp"
+                            android:layout_height="26dp"
+                            android:background="@drawable/btn_remote_dark_pill"
+                            android:text="⏪"
+                            android:textColor="@color/white"
+                            android:textSize="11sp" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnPlayPause"
+                            android:layout_width="48dp"
+                            android:layout_height="26dp"
+                            android:layout_marginStart="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/btn_remote_dark_pill"
+                            android:text="⏯"
+                            android:textColor="@color/white"
+                            android:textSize="11sp" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnStop"
+                            android:layout_width="48dp"
+                            android:layout_height="26dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="@drawable/btn_remote_dark_pill"
+                            android:text="⏹"
+                            android:textColor="@color/white"
+                            android:textSize="11sp" />
+
+                        <androidx.appcompat.widget.AppCompatButton
+                            android:id="@+id/btnFastFwd"
+                            android:layout_width="48dp"
+                            android:layout_height="26dp"
+                            android:background="@drawable/btn_remote_dark_pill"
+                            android:text="⏩"
+                            android:textColor="@color/white"
+                            android:textSize="11sp" />
+                    </LinearLayout>
+                </LinearLayout>
+
+                <!-- 7. BOTONES DE COLORES (R, G, Y, B) -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:orientation="horizontal"
+                    android:gravity="center">
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnColorRed"
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
+                        android:background="@drawable/btn_remote_circle_power"
+                        android:text="R"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnColorGreen"
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
+                        android:layout_marginStart="14dp"
+                        android:layout_marginEnd="14dp"
+                        android:background="@drawable/btn_remote_pill_green"
+                        android:text="G"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnColorYellow"
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
+                        android:layout_marginEnd="14dp"
+                        android:background="@drawable/btn_remote_dark_pill"
+                        android:backgroundTint="@color/color_yellow"
+                        android:text="Y"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnColorBlue"
+                        android:layout_width="38dp"
+                        android:layout_height="38dp"
+                        android:background="@drawable/btn_remote_pill_blue"
+                        android:text="B"
+                        android:textColor="@color/white"
+                        android:textSize="12sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+                <!-- 8. PIE SERIGRAFIADO: RM-014S+ -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="16dp"
+                    android:text="RM-014S+"
+                    android:textColor="#888B94"
+                    android:textSize="13sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.2" />
+
+                <!-- PLACA SERIGRAFIADA (Acceso integrado a la búsqueda del manual) -->
+                <LinearLayout
+                    android:id="@+id/layoutPlateBottom"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="8dp"
+                    android:padding="10dp"
+                    android:background="@drawable/btn_remote_dark_pill"
+                    android:gravity="center"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="UNIVERSAL LCD/LED REMOTE"
+                        android:textColor="#D1D5DB"
+                        android:textSize="10sp"
+                        android:textStyle="bold"
+                        android:letterSpacing="0.12" />
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="[AJUSTES]"
+                        android:textColor="@color/amber_accent"
+                        android:textSize="9sp"
+                        android:textStyle="bold" />
+                </LinearLayout>
+
+            </LinearLayout>
+        </LinearLayout>
+    </ScrollView>
+</FrameLayout>

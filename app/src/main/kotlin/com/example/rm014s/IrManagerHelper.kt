@@ -13,66 +13,113 @@ class IrManagerHelper(context: Context) {
         get() = irManager?.hasIrEmitter() ?: false
 
     /**
-     * Transmite una trama de protocolo NEC estándar a 38.000 Hz
-     * @param address Dirección del chasis / placa (8 bits: 0..255)
-     * @param command Código del botón / función (8 bits: 0..255)
+     * Devuelve los rangos de frecuencias soportados por el hardware del teléfono
      */
-    fun transmitNec(address: Int, command: Int): Boolean {
+    fun getSupportedFrequencyRanges(): String {
+        val ranges = irManager?.carrierFrequencies ?: return "No disponible"
+        return ranges.joinToString(", ") { "${it.minFrequency / 1000}kHz-${it.maxFrequency / 1000}kHz" }
+    }
+
+    /**
+     * Transmite una trama de protocolo NEC con DOBLE RÁFAGA / REPETICIÓN
+     * @param address Dirección (8 bits: 0..255)
+     * @param command Código del comando (8 bits: 0..255)
+     * @param frequency Frecuencia en Hz (por defecto 38000 Hz, o 36000, 40000, 56000)
+     * @param addressHigh Segundo byte de dirección para NEC extendido (opcional)
+     * @param sendRepeat Si es true, envía pulso de repetición/segunda trama para asegurar recepción
+     */
+    fun transmitNec(
+        address: Int,
+        command: Int,
+        frequency: Int = 38000,
+        addressHigh: Int? = null,
+        sendRepeat: Boolean = true
+    ): Boolean {
         if (!hasIrEmitter) {
-            Log.w(TAG, "Dispositivo sin emisor IR o no soportado.")
+            Log.w(TAG, "Dispositivo sin emisor IR.")
             return false
         }
 
         try {
-            val pattern = buildNecPattern(address, command)
-            irManager?.transmit(38000, pattern)
+            val pattern = buildNecPattern(
+                address = address,
+                command = command,
+                addressHigh = addressHigh,
+                includeRepeat = sendRepeat
+            )
+            irManager?.transmit(frequency, pattern)
             return true
         } catch (e: Exception) {
-            Log.e(TAG, "Error transmitiendo señal IR: ${e.message}", e)
+            Log.e(TAG, "Error transmitiendo señal IR ($frequency Hz): ${e.message}", e)
             return false
         }
     }
 
     /**
-     * Construye la secuencia exacta de microsegundos alternando ON y OFF:
-     * - Pulso líder: 9000µs ON, 4500µs OFF
-     * - 32 bits de datos:
-     *   - Bit 0: 560µs ON, 560µs OFF
-     *   - Bit 1: 560µs ON, 1690µs OFF
-     * - Bit de parada (Stop bit): 560µs ON
+     * Construye la secuencia exacta de microsegundos con doble ráfaga:
+     * 1. Pulso Líder: 9000µs ON, 4500µs OFF
+     * 2. 32 bits de datos (LSB first):
+     *    - Byte 0: Address Low
+     *    - Byte 1: Address High (o ~Address Low en NEC estándar)
+     *    - Byte 2: Command
+     *    - Byte 3: ~Command
+     * 3. Bit de parada: 560µs ON
+     * 4. Pausa de repetición: 38000µs OFF
+     * 5. Pulso de repetición NEC oficial: 9000µs ON, 2250µs OFF, 560µs ON
+     *    (o segunda trama completa, lo que garantiza que los receptores con filtro AGC la capten)
      */
-    private fun buildNecPattern(address: Int, command: Int): IntArray {
-        val pattern = ArrayList<Int>(67)
+    private fun buildNecPattern(
+        address: Int,
+        command: Int,
+        addressHigh: Int?,
+        includeRepeat: Boolean
+    ): IntArray {
+        val pattern = ArrayList<Int>(140)
 
-        // 1. Pulso Líder (Leader code)
-        pattern.add(9000)
-        pattern.add(4500)
+        fun appendSingleFrame() {
+            // Líder
+            pattern.add(9000)
+            pattern.add(4500)
 
-        // 2. Trama de 4 bytes: [Dir, ~Dir, Cmd, ~Cmd]
-        val invAddress = address.inv() and 0xFF
-        val invCommand = command.inv() and 0xFF
+            val addrLow = address and 0xFF
+            val addrHigh = (addressHigh ?: address.inv()) and 0xFF
+            val cmd = command and 0xFF
+            val invCmd = cmd.inv() and 0xFF
 
-        val bytes = intArrayOf(
-            address and 0xFF,
-            invAddress,
-            command and 0xFF,
-            invCommand
-        )
+            val bytes = intArrayOf(addrLow, addrHigh, cmd, invCmd)
 
-        for (byteVal in bytes) {
-            for (bitIdx in 0 until 8) {
-                val bit = (byteVal shr bitIdx) and 1
-                pattern.add(560) // Pulso ON constante
-                if (bit == 1) {
-                    pattern.add(1690) // Espacio OFF bit 1
-                } else {
-                    pattern.add(560)  // Espacio OFF bit 0
+            for (byteVal in bytes) {
+                for (bitIdx in 0 until 8) {
+                    val bit = (byteVal shr bitIdx) and 1
+                    pattern.add(560) // Pulso portadora ON
+                    if (bit == 1) {
+                        pattern.add(1690) // Espacio OFF bit 1
+                    } else {
+                        pattern.add(560)  // Espacio OFF bit 0
+                    }
                 }
             }
+
+            // Stop bit
+            pattern.add(560)
         }
 
-        // 3. Pulso de parada final
-        pattern.add(560)
+        // Trama 1
+        appendSingleFrame()
+
+        if (includeRepeat) {
+            // Pausa entre ráfagas (40 ms estándar)
+            pattern.add(40000)
+
+            // Ráfaga 2 completa (Doble transmisión para asegurar recepción en placas chinas)
+            appendSingleFrame()
+
+            // Pausa y código de repetición estándar NEC
+            pattern.add(35000)
+            pattern.add(9000)
+            pattern.add(2250)
+            pattern.add(560)
+        }
 
         return pattern.toIntArray()
     }

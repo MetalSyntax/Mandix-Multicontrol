@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_remote_chassis"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Configurar Marca / Código RM-014S+"
+        android:textColor="@color/white"
+        android:textSize="17sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="2dp"
+        android:text="Selecciona tu marca o introduce el código de 3 dígitos"
+        android:textColor="#9CA3AF"
+        android:textSize="11sp" />
+
+    <!-- Entrada de Código de 3 Dígitos (Método 2 del Manual) -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:background="#131416"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="8dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Código (3 dígitos): "
+            android:textColor="#D1D5DB"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etCodeNumber"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:maxLength="3"
+            android:inputType="number"
+            android:fontFamily="monospace"
+            android:textColor="@color/amber_accent"
+            android:textSize="16sp"
+            android:textStyle="bold"
+            android:hint="014"
+            android:textColorHint="#555"
+            android:background="@null" />
+
+        <Button
+            android:id="@+id/btnApplyCode"
+            android:layout_width="wrap_content"
+            android:layout_height="36dp"
+            android:text="Cargar"
+            android:textSize="11sp"
+            android:textColor="@color/black_bg"
+            android:backgroundTint="@color/amber_accent" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="12dp"
+        android:text="Combinaciones Oficiales (SET + Tecla):"
+        android:textColor="#9CA3AF"
+        android:textSize="11sp"
+        android:textStyle="bold" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvBrands"
+        android:layout_width="match_parent"
+        android:layout_height="220dp"
+        android:layout_marginTop="6dp" />
+
+    <Button
+        android:id="@+id/btnCloseBrandDialog"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Cerrar"
+        android:textColor="#9CA3AF" />
+
+</LinearLayout>
