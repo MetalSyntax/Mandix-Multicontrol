@@ -790,7 +790,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:padding="10dp"
+                    android:padding="8dp"
                     android:background="@drawable/btn_remote_dark_pill"
                     android:gravity="center"
                     android:orientation="horizontal">
@@ -800,16 +800,27 @@
                         android:layout_height="wrap_content"
                         android:text="UNIVERSAL LCD/LED REMOTE"
                         android:textColor="#D1D5DB"
-                        android:textSize="10sp"
+                        android:textSize="9.5sp"
                         android:textStyle="bold"
-                        android:letterSpacing="0.12" />
+                        android:letterSpacing="0.08" />
 
                     <TextView
+                        android:id="@+id/btnPlateSettings"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:text="[AJUSTES]"
+                        android:layout_marginStart="6dp"
+                        android:text="[BUSCAR]"
                         android:textColor="@color/amber_accent"
+                        android:textSize="9sp"
+                        android:textStyle="bold" />
+
+                    <TextView
+                        android:id="@+id/btnPlateManual"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:text="[MANUAL]"
+                        android:textColor="#38BDF8"
                         android:textSize="9sp"
                         android:textStyle="bold" />
                 </LinearLayout>

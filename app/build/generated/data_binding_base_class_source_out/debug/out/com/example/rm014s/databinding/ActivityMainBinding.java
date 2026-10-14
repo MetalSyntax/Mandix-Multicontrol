@@ -118,6 +118,12 @@ public final class ActivityMainBinding implements ViewBinding {
   public final AppCompatButton btnPMode;
 
   @NonNull
+  public final TextView btnPlateManual;
+
+  @NonNull
+  public final TextView btnPlateSettings;
+
+  @NonNull
   public final AppCompatButton btnPlayPause;
 
   @NonNull
@@ -190,7 +196,8 @@ public final class ActivityMainBinding implements ViewBinding {
       @NonNull AppCompatButton btnNum5, @NonNull AppCompatButton btnNum6,
       @NonNull AppCompatButton btnNum7, @NonNull AppCompatButton btnNum8,
       @NonNull AppCompatButton btnNum9, @NonNull AppCompatButton btnOk,
-      @NonNull AppCompatButton btnPMode, @NonNull AppCompatButton btnPlayPause,
+      @NonNull AppCompatButton btnPMode, @NonNull TextView btnPlateManual,
+      @NonNull TextView btnPlateSettings, @NonNull AppCompatButton btnPlayPause,
       @NonNull AppCompatButton btnPower, @NonNull AppCompatButton btnReturn,
       @NonNull AppCompatButton btnRewind, @NonNull AppCompatButton btnRight,
       @NonNull AppCompatButton btnSMode, @NonNull AppCompatButton btnSet,
@@ -233,6 +240,8 @@ public final class ActivityMainBinding implements ViewBinding {
     this.btnNum9 = btnNum9;
     this.btnOk = btnOk;
     this.btnPMode = btnPMode;
+    this.btnPlateManual = btnPlateManual;
+    this.btnPlateSettings = btnPlateSettings;
     this.btnPlayPause = btnPlayPause;
     this.btnPower = btnPower;
     this.btnReturn = btnReturn;
@@ -473,6 +482,18 @@ public final class ActivityMainBinding implements ViewBinding {
         break missingId;
       }
 
+      id = R.id.btnPlateManual;
+      TextView btnPlateManual = ViewBindings.findChildViewById(rootView, id);
+      if (btnPlateManual == null) {
+        break missingId;
+      }
+
+      id = R.id.btnPlateSettings;
+      TextView btnPlateSettings = ViewBindings.findChildViewById(rootView, id);
+      if (btnPlateSettings == null) {
+        break missingId;
+      }
+
       id = R.id.btnPlayPause;
       AppCompatButton btnPlayPause = ViewBindings.findChildViewById(rootView, id);
       if (btnPlayPause == null) {
@@ -591,10 +612,10 @@ public final class ActivityMainBinding implements ViewBinding {
           btnChList, btnChUp, btnColorBlue, btnColorGreen, btnColorRed, btnColorYellow, btnDisplay,
           btnDown, btnExit, btnFastFwd, btnFav, btnGuide, btnHome, btnInfo, btnLeft, btnMenu,
           btnMute, btnNum0, btnNum1, btnNum2, btnNum3, btnNum4, btnNum5, btnNum6, btnNum7, btnNum8,
-          btnNum9, btnOk, btnPMode, btnPlayPause, btnPower, btnReturn, btnRewind, btnRight,
-          btnSMode, btnSet, btnSleep, btnSource, btnStop, btnUp, btnVolDown, btnVolUp,
-          layoutOledScreen, layoutPlateBottom, tvActiveProfileName, tvDisplayFrequency, tvStatusDot,
-          viewLedIr);
+          btnNum9, btnOk, btnPMode, btnPlateManual, btnPlateSettings, btnPlayPause, btnPower,
+          btnReturn, btnRewind, btnRight, btnSMode, btnSet, btnSleep, btnSource, btnStop, btnUp,
+          btnVolDown, btnVolUp, layoutOledScreen, layoutPlateBottom, tvActiveProfileName,
+          tvDisplayFrequency, tvStatusDot, viewLedIr);
     }
     String missingId = rootView.getResources().getResourceName(id);
     throw new NullPointerException("Missing required view with ID: ".concat(missingId));

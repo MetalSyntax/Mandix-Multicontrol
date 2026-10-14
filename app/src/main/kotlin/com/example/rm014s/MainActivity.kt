@@ -148,13 +148,22 @@ class MainActivity : AppCompatActivity() {
         )
     }
 
+    private var isSystemLocked = false
+    private var lastSetPressTime: Long = 0
+
     private fun setupButtonListeners() {
         // Visor OLED y placa serigrafiada inferior abren opciones de configuración
         binding.layoutOledScreen.setOnClickListener { showBrandSelectorDialog() }
         binding.layoutPlateBottom.setOnClickListener { showAutoScanDialog() }
+        binding.btnPlateSettings.setOnClickListener { showAutoScanDialog() }
+        binding.btnPlateManual.setOnClickListener { showManualDialog() }
 
-        // Botón SET Físico: abre las opciones de búsqueda o manual
-        binding.btnSet.setOnClickListener { showAutoScanDialog() }
+        // Botón SET Físico: registra tiempo para combinación con OK o abre el diálogo de escaneo
+        binding.btnSet.setOnClickListener {
+            val now = System.currentTimeMillis()
+            lastSetPressTime = now
+            showAutoScanDialog()
+        }
 
         // 1. Cabecera (Power & Mute integrados)
         binding.btnPower.setOnClickListener { sendCommand(cmdPower) }
@@ -414,6 +423,24 @@ class MainActivity : AppCompatActivity() {
         )
 
         btnClose.setOnClickListener { dialog.dismiss() }
+
+        dialog.show()
+    }
+
+    /**
+     * Muestra la Guía Oficial, Especificaciones 1:1 del fabricante XingZhiHua y Consejos de Uso
+     */
+    private fun showManualDialog() {
+        val dialog = Dialog(this)
+        dialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
+        dialog.setContentView(R.layout.dialog_manual_specs)
+        dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
+
+        val btnClose = dialog.findViewById<Button>(R.id.btnCloseManual)
+        val btnAccept = dialog.findViewById<Button>(R.id.btnAcceptManual)
+
+        btnClose.setOnClickListener { dialog.dismiss() }
+        btnAccept.setOnClickListener { dialog.dismiss() }
 
         dialog.show()
     }

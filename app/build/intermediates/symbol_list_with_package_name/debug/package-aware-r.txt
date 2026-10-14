@@ -3199,6 +3199,7 @@ id bounce
 id bounceBoth
 id bounceEnd
 id bounceStart
+id btnAcceptManual
 id btnApplyCode
 id btnAudio
 id btnBack
@@ -3207,6 +3208,7 @@ id btnChDown
 id btnChList
 id btnChUp
 id btnCloseBrandDialog
+id btnCloseManual
 id btnColorBlue
 id btnColorGreen
 id btnColorRed
@@ -3235,6 +3237,8 @@ id btnNum9
 id btnOk
 id btnPMode
 id btnPauseResume
+id btnPlateManual
+id btnPlateSettings
 id btnPlayPause
 id btnPower
 id btnReturn
@@ -3803,6 +3807,7 @@ layout design_text_input_end_icon
 layout design_text_input_start_icon
 layout dialog_auto_scan
 layout dialog_brand_selector
+layout dialog_manual_specs
 layout ime_base_split_test_activity
 layout ime_secondary_split_test_activity
 layout item_brand_preset

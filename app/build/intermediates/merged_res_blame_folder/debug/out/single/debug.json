@@ -16,10 +16,6 @@
         "source": "/Users/metalsyntax/.gradle/daemon/8.2/com.example.rm014s.app-main-35:/drawable/btn_remote_dark_pill.xml"
     },
     {
-        "merged": "com.example.rm014s.app-merged_res-33:/layout_dialog_brand_selector.xml.flat",
-        "source": "com.example.rm014s.app-main-35:/layout/dialog_brand_selector.xml"
-    },
-    {
         "merged": "/Users/metalsyntax/.gradle/daemon/8.2/com.example.rm014s.app-merged_res-33:/layout_dialog_brand_selector.xml.flat",
         "source": "/Users/metalsyntax/.gradle/daemon/8.2/com.example.rm014s.app-main-35:/layout/dialog_brand_selector.xml"
     },
@@ -32,16 +28,12 @@
         "source": "/Users/metalsyntax/.gradle/daemon/8.2/com.example.rm014s.app-main-35:/drawable/btn_remote_pill_blue.xml"
     },
     {
-        "merged": "com.example.rm014s.app-merged_res-33:/layout_dialog_auto_scan.xml.flat",
-        "source": "com.example.rm014s.app-main-35:/layout/dialog_auto_scan.xml"
+        "merged": "com.example.rm014s.app-merged_res-33:/layout_dialog_manual_specs.xml.flat",
+        "source": "com.example.rm014s.app-main-35:/layout/dialog_manual_specs.xml"
     },
     {
         "merged": "/Users/metalsyntax/.gradle/daemon/8.2/com.example.rm014s.app-merged_res-33:/drawable_btn_remote_circle_power.xml.flat",
         "source": "/Users/metalsyntax/.gradle/daemon/8.2/com.example.rm014s.app-main-35:/drawable/btn_remote_circle_power.xml"
-    },
-    {
-        "merged": "com.example.rm014s.app-merged_res-33:/layout_item_brand_preset.xml.flat",
-        "source": "com.example.rm014s.app-main-35:/layout/item_brand_preset.xml"
     },
     {
         "merged": "com.example.rm014s.app-merged_res-33:/layout_activity_main.xml.flat",
