@@ -55,14 +55,17 @@
             android:textColorHint="#555"
             android:background="@null" />
 
-        <Button
+        <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/btnApplyCode"
             android:layout_width="wrap_content"
             android:layout_height="36dp"
-            android:text="Cargar"
+            android:background="@drawable/btn_remote_pill_amber"
+            android:text="CARGAR"
             android:textSize="11sp"
-            android:textColor="@color/black_bg"
-            android:backgroundTint="@color/amber_accent" />
+            android:textStyle="bold"
+            android:textColor="#111215"
+            android:paddingStart="14dp"
+            android:paddingEnd="14dp" />
     </LinearLayout>
 
     <TextView
@@ -80,12 +83,15 @@
         android:layout_height="220dp"
         android:layout_marginTop="6dp" />
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btnCloseBrandDialog"
-        style="@style/Widget.MaterialComponents.Button.TextButton"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Cerrar"
-        android:textColor="#9CA3AF" />
+        android:layout_height="44dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/btn_remote_dark_pill"
+        android:text="CERRAR"
+        android:textColor="#9CA3AF"
+        android:textSize="12sp"
+        android:textStyle="bold" />
 
 </LinearLayout>
