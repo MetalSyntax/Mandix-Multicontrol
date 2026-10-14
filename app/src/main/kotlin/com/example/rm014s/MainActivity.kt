@@ -173,10 +173,18 @@ class MainActivity : AppCompatActivity() {
 
     private fun setupButtonListeners() {
         // Visor OLED y placa serigrafiada inferior
-        binding.layoutOledScreen.setOnClickListener { showBrandSelectorDialog() }
-        binding.layoutPlateBottom.setOnClickListener { showAutoScanDialog() }
-        binding.btnPlateSettings.setOnClickListener { showAutoScanDialog() }
-        binding.btnPlateManual.setOnClickListener { showManualDialog() }
+        binding.layoutOledScreen.setOnClickListener { v ->
+            triggerMechanicalFeedback(v)
+            showBrandSelectorDialog()
+        }
+        binding.btnPlateSettings.setOnClickListener { v ->
+            triggerMechanicalFeedback(v)
+            showAutoScanDialog()
+        }
+        binding.btnPlateManual.setOnClickListener { v ->
+            triggerMechanicalFeedback(v)
+            showManualDialog()
+        }
 
         // Botón SET Físico
         binding.btnSet.setOnClickListener { v ->
@@ -444,10 +452,10 @@ class MainActivity : AppCompatActivity() {
             triggerMechanicalFeedback(it)
             isScanPaused = !isScanPaused
             if (isScanPaused) {
-                btnPauseResume.text = "Seguir"
+                btnPauseResume.text = "▶ SEGUIR"
                 tvScanStatus.text = "Pausado"
             } else {
-                btnPauseResume.text = "Pausar"
+                btnPauseResume.text = "⏸ PAUSAR"
                 tvScanStatus.text = "Buscando... Apunta al televisor"
             }
         }

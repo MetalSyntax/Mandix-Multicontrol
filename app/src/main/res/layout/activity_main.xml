@@ -781,48 +781,54 @@
                     android:layout_marginTop="16dp"
                     android:text="RM-014S+"
                     android:textColor="#888B94"
-                    android:textSize="13sp"
+                    android:textSize="14sp"
                     android:textStyle="bold"
-                    android:letterSpacing="0.2" />
+                    android:letterSpacing="0.25" />
 
-                <!-- PLACA SERIGRAFIADA (Acceso integrado a la búsqueda del manual) -->
+                <!-- SERIGRAFÍA DEL MODELO -->
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="2dp"
+                    android:text="UNIVERSAL LCD/LED REMOTE"
+                    android:textColor="#6B7280"
+                    android:textSize="10sp"
+                    android:textStyle="bold"
+                    android:letterSpacing="0.12" />
+
+                <!-- BOTONES SEPARADOS: BUSCADOR Y MANUAL -->
                 <LinearLayout
                     android:id="@+id/layoutPlateBottom"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="8dp"
-                    android:padding="8dp"
-                    android:background="@drawable/btn_remote_dark_pill"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="12dp"
                     android:gravity="center"
-                    android:orientation="horizontal">
+                    android:orientation="horizontal"
+                    android:weightSum="2">
 
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="UNIVERSAL LCD/LED REMOTE"
-                        android:textColor="#D1D5DB"
-                        android:textSize="9.5sp"
-                        android:textStyle="bold"
-                        android:letterSpacing="0.08" />
-
-                    <TextView
+                    <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btnPlateSettings"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="6dp"
-                        android:text="[BUSCAR]"
+                        android:layout_width="0dp"
+                        android:layout_height="38dp"
+                        android:layout_weight="1"
+                        android:layout_marginEnd="6dp"
+                        android:background="@drawable/btn_remote_dark_pill"
+                        android:text="📡 BUSCAR"
                         android:textColor="@color/amber_accent"
-                        android:textSize="9sp"
+                        android:textSize="11sp"
                         android:textStyle="bold" />
 
-                    <TextView
+                    <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btnPlateManual"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:text="[MANUAL]"
+                        android:layout_width="0dp"
+                        android:layout_height="38dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="6dp"
+                        android:background="@drawable/btn_remote_dark_pill"
+                        android:text="📖 MANUAL"
                         android:textColor="#38BDF8"
-                        android:textSize="9sp"
+                        android:textSize="11sp"
                         android:textStyle="bold" />
                 </LinearLayout>
 
