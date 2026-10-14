@@ -17,7 +17,7 @@
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_weight="1"
-            android:text="📖 Manual Oficial y Especificaciones"
+            android:text="@string/manual_title"
             android:textColor="@color/white"
             android:textSize="16sp"
             android:textStyle="bold" />
@@ -50,7 +50,7 @@
                 android:layout_height="wrap_content"
                 android:background="#121316"
                 android:padding="8dp"
-                android:text="Emitiendo desde: —"
+                android:text=""
                 android:textColor="@color/amber_accent"
                 android:textSize="10sp"
                 android:fontFamily="monospace" />
@@ -59,7 +59,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="8dp"
-                android:text="📋 FICHA TÉCNICA (SPECIFICATIONS)"
+                android:text="@string/manual_specs"
                 android:textColor="@color/amber_accent"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -73,40 +73,40 @@
                 android:stretchColumns="1">
 
                 <TableRow android:padding="3dp">
-                    <TextView android:text="Model Number:" android:textColor="#9CA3AF" android:textSize="11sp" android:textStyle="bold" />
+                    <TextView android:text="@string/spec_model" android:textColor="#9CA3AF" android:textSize="11sp" android:textStyle="bold" />
                     <TextView android:text="RM-014S+ / RM-014S+PLUS" android:textColor="@color/white" android:textSize="11sp" android:fontFamily="monospace" />
                 </TableRow>
                 <TableRow android:padding="3dp">
-                    <TextView android:text="Brand Name:" android:textColor="#9CA3AF" android:textSize="11sp" android:textStyle="bold" />
+                    <TextView android:text="@string/spec_brand" android:textColor="#9CA3AF" android:textSize="11sp" android:textStyle="bold" />
                     <TextView android:text="XingZhiHua / i-MARSTAR (AMELY)" android:textColor="@color/white" android:textSize="11sp" />
                 </TableRow>
                 <TableRow android:padding="3dp">
-                    <TextView android:text="Communication:" android:textColor="#9CA3AF" android:textSize="11sp" android:textStyle="bold" />
+                    <TextView android:text="@string/spec_comm" android:textColor="#9CA3AF" android:textSize="11sp" android:textStyle="bold" />
                     <TextView android:text="IR (Infrared) ConsumerIrManager" android:textColor="@color/white" android:textSize="11sp" />
                 </TableRow>
                 <TableRow android:padding="3dp">
-                    <TextView android:text="IR Carrier:" android:textColor="#9CA3AF" android:textSize="11sp" android:textStyle="bold" />
-                    <TextView android:text="38 kHz fija (NEC). 36/40/56 kHz solo diagnóstico" android:textColor="@color/white" android:textSize="11sp" />
+                    <TextView android:text="@string/spec_carrier" android:textColor="#9CA3AF" android:textSize="11sp" android:textStyle="bold" />
+                    <TextView android:text="@string/spec_carrier_value" android:textColor="@color/white" android:textSize="11sp" />
                 </TableRow>
                 <TableRow android:padding="3dp">
-                    <TextView android:text="Channel / Use:" android:textColor="#9CA3AF" android:textSize="11sp" android:textStyle="bold" />
-                    <TextView android:text="Channel 3 • TV LCD / LED / Smart" android:textColor="@color/white" android:textSize="11sp" />
+                    <TextView android:text="@string/spec_use" android:textColor="#9CA3AF" android:textSize="11sp" android:textStyle="bold" />
+                    <TextView android:text="@string/spec_use_value" android:textColor="@color/white" android:textSize="11sp" />
                 </TableRow>
                 <TableRow android:padding="3dp">
-                    <TextView android:text="Material:" android:textColor="#9CA3AF" android:textSize="11sp" android:textStyle="bold" />
-                    <TextView android:text="New ABS &amp; Memory IC" android:textColor="@color/white" android:textSize="11sp" />
+                    <TextView android:text="@string/spec_material" android:textColor="#9CA3AF" android:textSize="11sp" android:textStyle="bold" />
+                    <TextView android:text="@string/spec_material_value" android:textColor="@color/white" android:textSize="11sp" />
                 </TableRow>
                 <TableRow android:padding="3dp">
-                    <TextView android:text="Certification:" android:textColor="#9CA3AF" android:textSize="11sp" android:textStyle="bold" />
+                    <TextView android:text="@string/spec_cert" android:textColor="#9CA3AF" android:textSize="11sp" android:textStyle="bold" />
                     <TextView android:text="CE, RoHS" android:textColor="@color/white" android:textSize="11sp" />
                 </TableRow>
                 <TableRow android:padding="3dp">
-                    <TextView android:text="Origin:" android:textColor="#9CA3AF" android:textSize="11sp" android:textStyle="bold" />
-                    <TextView android:text="Mainland China" android:textColor="@color/white" android:textSize="11sp" />
+                    <TextView android:text="@string/spec_origin" android:textColor="#9CA3AF" android:textSize="11sp" android:textStyle="bold" />
+                    <TextView android:text="@string/spec_origin_value" android:textColor="@color/white" android:textSize="11sp" />
                 </TableRow>
                 <TableRow android:padding="3dp">
-                    <TextView android:text="Dimensions &amp; W:" android:textColor="#9CA3AF" android:textSize="11sp" android:textStyle="bold" />
-                    <TextView android:text="Approx. 10x10x10cm • 0.1 kg" android:textColor="@color/white" android:textSize="11sp" />
+                    <TextView android:text="@string/spec_dims" android:textColor="#9CA3AF" android:textSize="11sp" android:textStyle="bold" />
+                    <TextView android:text="@string/spec_dims_value" android:textColor="@color/white" android:textSize="11sp" />
                 </TableRow>
             </TableLayout>
 
@@ -115,7 +115,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
-                android:text="💡 CONSEJOS CLAVE (USER TIPS)"
+                android:text="@string/manual_tips"
                 android:textColor="@color/amber_accent"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -131,7 +131,7 @@
                 <TextView
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="• La paciencia es clave: La configuración universal puede requerir probar varios métodos o códigos. Si el primero no responde, prueba el siguiente método."
+                    android:text="@string/manual_tip_patience"
                     android:textColor="#E5E7EB"
                     android:textSize="11sp" />
 
@@ -140,7 +140,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="• Línea de visión directa: Asegura siempre una línea directa sin obstáculos entre el emisor IR superior de tu equipo y el receptor de la TV."
+                    android:text=""
                     android:textColor="#E5E7EB"
                     android:textSize="11sp" />
 
@@ -148,7 +148,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="4dp"
-                    android:text="• Probar todas las funciones: Al finalizar el emparejamiento, prueba Power, VOL+, VOL-, CH y Menú para confirmar compatibilidad total."
+                    android:text="@string/manual_tip_all"
                     android:textColor="#E5E7EB"
                     android:textSize="11sp" />
             </LinearLayout>
@@ -158,7 +158,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="14dp"
-                android:text="⚙️ LOS 5 MÉTODOS DE CONFIGURACIÓN"
+                android:text="@string/manual_methods"
                 android:textColor="@color/amber_accent"
                 android:textSize="12sp"
                 android:textStyle="bold" />
@@ -174,14 +174,14 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Método 1: Setting with Brand Code (SET + Tecla)"
+                    android:text="@string/m1_title"
                     android:textColor="@color/white"
                     android:textSize="12sp"
                     android:textStyle="bold" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Sostén SET y presiona el número de tu marca (1: LG, 2: SONY, 3: SAMSUNG, 4: SHARP, 5: PANASONIC, 6: TOSHIBA, 7: PHILIPS, 8: HAIER, 9: HITACHI, 0: TCL/KONKA). El LED parpadeará 3 veces."
+                    android:text="@string/m1_body"
                     android:textColor="#9CA3AF"
                     android:textSize="11sp" />
 
@@ -189,14 +189,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Método 2: Setting with Code (Código de 3 Dígitos)"
+                    android:text="@string/m2_title"
                     android:textColor="@color/white"
                     android:textSize="12sp"
                     android:textStyle="bold" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Presiona SET + POWER (el LED se encenderá fijo). Ingresa los 3 números de la lista (ej: 014, 005, 025, 038 para placas chinas CX-507). El LED se apagará."
+                    android:text="@string/m2_body"
                     android:textColor="#9CA3AF"
                     android:textSize="11sp" />
 
@@ -204,14 +204,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Método 3: One Key Search (Búsqueda por Volumen)"
+                    android:text="@string/m3_title"
                     android:textColor="@color/white"
                     android:textSize="12sp"
                     android:textStyle="bold" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Mantén presionado SET apuntando a la TV. El control emitirá ráfagas de volumen consecutivas. En cuanto veas la barra de volumen en pantalla, suelta SET inmediatamente."
+                    android:text="@string/m3_body"
                     android:textColor="#9CA3AF"
                     android:textSize="11sp" />
 
@@ -219,14 +219,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Método 4: One By One Search (Canal / Volumen Paso a Paso)"
+                    android:text="@string/m4_title"
                     android:textColor="@color/white"
                     android:textSize="12sp"
                     android:textStyle="bold" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Presiona CH+ o CH- uno por uno observando tu televisor. Cuando cambie, presiona SET para fijar."
+                    android:text="@string/m4_body"
                     android:textColor="#9CA3AF"
                     android:textSize="11sp" />
 
@@ -234,14 +234,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Método 5: Automatic Search (Búsqueda Automática)"
+                    android:text="@string/m5_title"
                     android:textColor="@color/white"
                     android:textSize="12sp"
                     android:textStyle="bold" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Presiona SET o la placa inferior. El escáner recorrerá todos los códigos en la frecuencia seleccionada. Presiona DETENER / GUARDAR al ver el volumen."
+                    android:text="@string/m5_body"
                     android:textColor="#9CA3AF"
                     android:textSize="11sp" />
 
@@ -249,14 +249,14 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="8dp"
-                    android:text="Bloqueo / Desbloqueo (Lock / Unlock):"
+                    android:text="@string/lock_title"
                     android:textColor="@color/white"
                     android:textSize="12sp"
                     android:textStyle="bold" />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Presiona SET + OK para bloquear el sistema contra cambios accidentales. Presiona SET + OK otra vez para desbloquear."
+                    android:text="@string/lock_body"
                     android:textColor="#9CA3AF"
                     android:textSize="11sp" />
             </LinearLayout>
@@ -270,7 +270,7 @@
         android:layout_height="48dp"
         android:layout_marginTop="14dp"
         android:background="@drawable/btn_remote_pill_amber"
-        android:text="✔ ENTENDIDO / VOLVER AL CONTROL"
+        android:text="@string/btn_manual_ok"
         android:textColor="#111215"
         android:textSize="12sp"
         android:textStyle="bold"

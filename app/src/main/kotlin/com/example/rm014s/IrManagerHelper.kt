@@ -3,7 +3,9 @@ package com.example.rm014s
 import android.content.Context
 import android.hardware.ConsumerIrManager
 import android.util.Log
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
+import kotlinx.coroutines.withContext
 
 class IrManagerHelper(context: Context) {
     private val TAG = "IrManagerHelper"
@@ -14,142 +16,56 @@ class IrManagerHelper(context: Context) {
         get() = irManager?.hasIrEmitter() ?: false
 
     /**
-     * Devuelve información de depuración de frecuencias del hardware
+     * Indica si el hardware declara soporte para [frequency].
+     * Si el HAL no reporta rangos, se asume que sí.
      */
-    fun getHardwareInfo(): String {
-        if (!hasIrEmitter) return "Sin sensor IR de hardware"
-        val ranges = irManager?.carrierFrequencies ?: return "Frecuencias: Desconocidas"
+    fun isFrequencySupported(frequency: Int): Boolean {
+        val ranges = irManager?.carrierFrequencies ?: return true
+        return ranges.any { frequency in it.minFrequency..it.maxFrequency }
+    }
+
+    /** Rangos de portadora del hardware, para mostrar en pantalla. */
+    fun getHardwareInfo(context: Context): String {
+        if (!hasIrEmitter) return context.getString(R.string.hw_no_ir)
+        val ranges = irManager?.carrierFrequencies ?: return context.getString(R.string.hw_freq_unknown)
         return ranges.joinToString(", ") { "${it.minFrequency / 1000}-${it.maxFrequency / 1000}kHz" }
     }
 
     /**
-     * Transmite una trama de protocolo NEC a la frecuencia seleccionada.
-     * Para evitar el error de desbordamiento de buffer del kernel (MAX_BUFFER en MediaTek),
-     * la trama tiene exactamente 68 enteros (longitud par con cierre en OFF).
-     *
-     * @param address Dirección (8 bits: 0..255)
-     * @param command Comando (8 bits: 0..255)
-     * @param frequency Frecuencia en Hz (ej. 38000, 36000, 40000, 56000)
-     * @param addressHigh Segundo byte de dirección (opcional para NEC extendido)
-     * @param doubleBurst Si es true, envía una segunda ráfaga tras 45ms (como los mandos físicos)
-     * @param useCyclesMode Si es true, traduce microsegundos a ciclos de portadora (bug MediaTek HAL)
+     * Emite [signal] con su protocolo real (NEC, Samsung32, SIRC, RC5, RC6, Kaseikyo...).
+     * [frequencyOverride] = 0 usa la portadora propia del protocolo.
+     * [firstFrameOnly]: solo la trama principal (búsqueda profunda, para ir más rápido).
      */
-    suspend fun transmitNec(
-        address: Int,
-        command: Int,
-        frequency: Int = 38000,
-        addressHigh: Int? = null,
-        doubleBurst: Boolean = true,
-        useCyclesMode: Boolean = false
-    ): Boolean {
+    suspend fun transmit(signal: IrSignal, frequencyOverride: Int = 0, firstFrameOnly: Boolean = false): Boolean {
         if (!hasIrEmitter) {
             Log.w(TAG, "Hardware IR no disponible.")
             return false
         }
-
-        try {
-            // Construye una trama compacta de 68 elementos exactamente
-            val pattern = buildSafeNecFrame(
-                address = address,
-                command = command,
-                addressHigh = addressHigh,
-                frequency = frequency,
-                useCyclesMode = useCyclesMode
-            )
-
-            // Primera transmisión
-            irManager?.transmit(frequency, pattern)
-
-            // Si se solicita doble ráfaga, espera 45ms y transmite la segunda trama
-            if (doubleBurst) {
-                delay(45)
-                irManager?.transmit(frequency, pattern)
+        return try {
+            val p = IrCodec.encode(signal)
+            val freq = if (frequencyOverride > 0) frequencyOverride else p.frequency
+            // transmit() bloquea mientras emite: fuera del hilo de UI. Una trama por llamada.
+            for (frame in if (firstFrameOnly) p.frames.take(1) else p.frames) {
+                withContext(Dispatchers.IO) { irManager?.transmit(freq, frame.pattern) }
+                if (frame.gapUs > 0) delay((frame.gapUs + 999) / 1000L)
             }
-
-            return true
+            true
         } catch (e: Exception) {
-            Log.e(TAG, "Error transmitiendo IR ($frequency Hz): ${e.message}", e)
-            return false
+            Log.e(TAG, "Error transmitiendo ${signal.describe()}: ${e.message}", e)
+            false
         }
     }
 
     /**
-     * Construye una trama NEC oficial de 68 elementos exactos:
-     * - Índice 0: Pulso Líder ON (9000 µs)
-     * - Índice 1: Espacio Líder OFF (4500 µs)
-     * - Índices 2 a 65: 32 bits de datos (32 pares de [560 ON, espacio OFF])
-     * - Índice 66: Pulso Stop ON (560 µs)
-     * - Índice 67: Cierre OFF obligatorio (10000 µs)
-     *
-     * Longitud = 68 enteros. Siempre par, siempre cerrado en OFF.
-     * Cabe en cualquier buffer DMA de Linux/MediaTek/Qualcomm.
-     */
-    private fun buildSafeNecFrame(
-        address: Int,
-        command: Int,
-        addressHigh: Int?,
-        frequency: Int,
-        useCyclesMode: Boolean
-    ): IntArray {
-        val pattern = IntArray(68)
-        var idx = 0
-
-        fun toVal(microsec: Int): Int {
-            return if (useCyclesMode) {
-                // Conversión de microsegundos a ciclos de reloj
-                ((microsec.toLong() * frequency) / 1000000L).toInt().coerceAtLeast(1)
-            } else {
-                microsec
-            }
-        }
-
-        // 1. Líder
-        pattern[idx++] = toVal(9000) // ON
-        pattern[idx++] = toVal(4500) // OFF
-
-        // 2. Datos: [Dir, ~Dir / DirHigh, Cmd, ~Cmd]
-        val addrLow = address and 0xFF
-        val addrHigh = (addressHigh ?: address.inv()) and 0xFF
-        val cmd = command and 0xFF
-        val invCmd = cmd.inv() and 0xFF
-
-        val bytes = intArrayOf(addrLow, addrHigh, cmd, invCmd)
-
-        for (byteVal in bytes) {
-            for (bitIdx in 0 until 8) {
-                val bit = (byteVal shr bitIdx) and 1
-                pattern[idx++] = toVal(560) // Portadora ON siempre 560µs
-                if (bit == 1) {
-                    pattern[idx++] = toVal(1690) // Espacio bit 1
-                } else {
-                    pattern[idx++] = toVal(560)  // Espacio bit 0
-                }
-            }
-        }
-
-        // 3. Stop bit y Cierre OFF
-        pattern[idx++] = toVal(560)   // ON stop bit
-        pattern[idx++] = toVal(10000) // OFF cierre (crucial para evitar cuelgues del HAL)
-
-        return pattern
-    }
-
-    /**
-     * Tren de pulsos rápido para que el usuario pueda verificar con la cámara de otro celular
-     * que el LED infrarrojo del Tecno Camon 30 realmente emite luz física.
+     * Tren de pulsos lento para verificar con la cámara de otro celular
+     * que el LED infrarrojo de este equipo realmente emite luz.
      */
     suspend fun transmitCameraTestSignal(frequency: Int = 38000) {
         if (!hasIrEmitter) return
-        val testPattern = intArrayOf(
-            15000, 15000,
-            15000, 15000,
-            15000, 15000,
-            15000, 15000,
-            15000, 15000
-        )
+        val testPattern = IntArray(9) { 15000 } // impar: termina en pulso (LIRC)
         try {
             repeat(4) {
-                irManager?.transmit(frequency, testPattern)
+                withContext(Dispatchers.IO) { irManager?.transmit(frequency, testPattern) }
                 delay(120)
             }
         } catch (e: Exception) {

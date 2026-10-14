@@ -1,3 +1,98 @@
 <resources>
     <string name="app_name">RM-014S+ IR Remote</string>
+
+    <!-- Pantalla principal -->
+    <string name="freq_auto">FREC: AUTO</string>
+    <string name="unknown_device">Equipo desconocido</string>
+    <string name="btn_search">📡 BUSCAR</string>
+    <string name="btn_manual">📖 MANUAL</string>
+    <string name="toast_no_ir">Este equipo (%1$s) no tiene emisor infrarrojo: no podrá emitir. Verifica con la cámara de otro celular.</string>
+    <string name="toast_freq_unsupported">Ojo: %1$s declara %2$s; %3$d kHz puede no emitirse. Usa AUTO.</string>
+    <string name="toast_key_missing">El código %1$s no tiene esta tecla. Prueba otro código.</string>
+    <string name="toast_tx_failed">No se pudo emitir IR en %1$s. Revisa emisor y línea de vista.</string>
+    <string name="hw_no_ir">Sin emisor IR de hardware</string>
+    <string name="hw_freq_unknown">Frecuencias: desconocidas</string>
+
+    <!-- Búsqueda automática -->
+    <string name="scan_title">📡 BÚSQUEDA AUTOMÁTICA RM-014S+</string>
+    <string name="scan_subtitle">Apunta a la TV. Cuando reaccione (se apaga o baja el volumen), pulsa DETENER / GUARDAR. Si el código ya avanzó, usa 1 ATRÁS y PROBAR.</string>
+    <string name="scan_hw_info">Equipo: %1$s • IR: %2$s • Portadora: AUTO por protocolo</string>
+    <string name="scan_freq_label">Frecuencia Portadora IR:</string>
+    <string name="scan_mode_label">Modo de Búsqueda:</string>
+    <string name="scan_mode_lib_power">1. Biblioteca universal – POWER (%1$d códigos, recomendado)</string>
+    <string name="scan_mode_lib_vol">2. Biblioteca universal – VOL− (%1$d códigos, no apaga la TV)</string>
+    <string name="scan_mode_brands">3. Marcas del manual RM-014S+ – POWER (%1$d)</string>
+    <string name="scan_mode_deep">4. Búsqueda profunda NEC – TVs chinas sin marca (%1$d lotes, ~15–40 min, se reanuda)</string>
+    <string name="scan_deep_batch">%1$s 0x%2$s • %3$d comandos POWER (fase %4$d)</string>
+    <string name="scan_refining">Refinando: uno por uno. Cuando la TV se ENCIENDA de nuevo, pulsa DETENER / GUARDAR</string>
+    <string name="toast_deep_resume">Reanudando la búsqueda profunda en el lote %1$d de %2$d</string>
+    <string name="toast_refine">¡La TV reaccionó! Ahora se prueban uno a uno los códigos de ese lote (cada 2.5 s). Cuando la TV vuelva a encender, pulsa DETENER / GUARDAR otra vez.</string>
+    <string name="scan_mode_nec">5. Barrido NEC 0x00–0xFF – VOL+ (placas chinas)</string>
+    <string name="btn_start_scan">▶ INICIAR BÚSQUEDA AUTOMÁTICA</string>
+    <string name="btn_test_camera">📷 PROBAR EMISOR IR (VER EN CÁMARA)</string>
+    <string name="scan_ready">Listo para iniciar</string>
+    <string name="scan_hint">Selecciona el modo y presiona Iniciar</string>
+    <string name="btn_stop_save">⏹ ¡DETENER / GUARDAR CÓDIGO!</string>
+    <string name="btn_step_back">⏮ 1 ATRÁS</string>
+    <string name="btn_pause">⏸ PAUSAR</string>
+    <string name="btn_resume">▶ SEGUIR</string>
+    <string name="btn_test">🔊 PROBAR</string>
+    <string name="scan_details">%1$d/%2$d • %3$s\n%4$s • %5$d kHz</string>
+    <string name="scan_no_ir">Este equipo (%1$s) no tiene emisor IR</string>
+    <string name="scan_searching">Buscando... Apunta al televisor</string>
+    <string name="scan_paused">Pausado</string>
+    <string name="scan_done">Barrido completado</string>
+    <string name="toast_camera_test">Emitiendo ráfaga... Mira el LED superior con la cámara de otro celular</string>
+    <string name="toast_saved">¡Código %1$s guardado! (%2$s)</string>
+
+    <!-- Selector de marca -->
+    <string name="brand_title">Configurar Marca / Código RM-014S+</string>
+    <string name="brand_subtitle">Selecciona tu marca o escribe un código: 001–038 marcas, %1$s–%2$s biblioteca universal</string>
+    <string name="brand_code_label">Código: </string>
+    <string name="btn_load">CARGAR</string>
+    <string name="brand_list_label">Combinaciones Oficiales (SET + Tecla):</string>
+    <string name="btn_close">CERRAR</string>
+    <string name="btn_try">Probar</string>
+    <string name="brand_code_info">Cód: %1$s • %2$s • %3$s kHz</string>
+    <string name="toast_code_loaded">Código %1$s (%2$s) cargado</string>
+    <string name="toast_code_unknown">El código %1$s no existe</string>
+    <string name="toast_profile_on">Perfil \'%1$s\' (%2$s) activado</string>
+    <string name="toast_testing">Probando VOL+ en %1$s...</string>
+
+    <!-- Manual -->
+    <string name="manual_title">📖 Manual Oficial y Especificaciones</string>
+    <string name="manual_device">Emitiendo desde: %1$s • IR: %2$s</string>
+    <string name="manual_specs">📋 FICHA TÉCNICA</string>
+    <string name="spec_model">Modelo:</string>
+    <string name="spec_brand">Marca:</string>
+    <string name="spec_comm">Comunicación:</string>
+    <string name="spec_carrier">Portadora IR:</string>
+    <string name="spec_carrier_value">AUTO por protocolo: NEC 38k, Sony 40k, Philips 36k, Panasonic 37k</string>
+    <string name="spec_use">Canal / Uso:</string>
+    <string name="spec_use_value">Canal 3 • TV LCD / LED / Smart</string>
+    <string name="spec_material">Material:</string>
+    <string name="spec_material_value">ABS nuevo y memoria IC</string>
+    <string name="spec_cert">Certificación:</string>
+    <string name="spec_origin">Origen:</string>
+    <string name="spec_origin_value">China continental</string>
+    <string name="spec_dims">Medidas y peso:</string>
+    <string name="spec_dims_value">Aprox. 10x10x10cm • 0.1 kg</string>
+    <string name="manual_tips">💡 CONSEJOS CLAVE</string>
+    <string name="manual_tip_patience">• La paciencia es clave: la configuración universal puede requerir probar varios métodos o códigos. Si el primero no responde, prueba el siguiente método.</string>
+    <string name="manual_tip_sight">• Línea de visión directa: asegura siempre una línea directa sin obstáculos entre el emisor IR superior de tu %1$s y el receptor de la TV.</string>
+    <string name="manual_tip_all">• Probar todas las funciones: al finalizar el emparejamiento, prueba Power, VOL+, VOL-, CH y Menú para confirmar compatibilidad total.</string>
+    <string name="manual_methods">⚙️ LOS 5 MÉTODOS DE CONFIGURACIÓN</string>
+    <string name="m1_title">Método 1: Código de marca (SET + Tecla)</string>
+    <string name="m1_body">Toca la pantalla del control y elige tu marca (1: LG, 2: TOSHIBA/JVC, 3: TCL/KONKA, 4: SHOWNIC, 5: HAIER, 6: SAMSUNG, 7: PHILIPS, 8: SONY, 9: PANASONIC, 0: SHARP). El LED parpadeará 3 veces.</string>
+    <string name="m2_title">Método 2: Código de 3 dígitos</string>
+    <string name="m2_body">Toca la pantalla del control y escribe el código: 001–038 marcas y placas chinas, 101 en adelante la biblioteca universal.</string>
+    <string name="m3_title">Método 3: Búsqueda por volumen</string>
+    <string name="m3_body">En BUSCAR elige el modo VOL−: se emiten ráfagas de volumen de cada código. En cuanto veas la barra de volumen en pantalla, pulsa DETENER / GUARDAR.</string>
+    <string name="m4_title">Método 4: Paso a paso</string>
+    <string name="m4_body">Pausa la búsqueda y usa 1 ATRÁS y PROBAR para avanzar código por código observando el televisor. Cuando responda, guarda.</string>
+    <string name="m5_title">Método 5: Búsqueda automática</string>
+    <string name="m5_body">Presiona SET o BUSCAR. El escáner recorre todos los códigos de la biblioteca, cada uno con su protocolo y portadora real. Presiona DETENER / GUARDAR cuando la TV se apague.</string>
+    <string name="lock_title">Bloqueo / Desbloqueo:</string>
+    <string name="lock_body">El código elegido se guarda automáticamente y se mantiene al cerrar la app.</string>
+    <string name="btn_manual_ok">✔ ENTENDIDO / VOLVER AL CONTROL</string>
 </resources>

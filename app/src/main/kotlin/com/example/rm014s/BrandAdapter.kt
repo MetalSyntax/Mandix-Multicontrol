@@ -31,9 +31,11 @@ class BrandAdapter(
         holder.tvBrandCombination.text = profile.brandButtonLabel
         holder.tvBrandName.text = profile.name
 
-        val addrHex = String.format("0x%02X", profile.address)
-        val freqKhz = profile.frequency / 1000
-        holder.tvBrandCodeInfo.text = "Cód: ${profile.codeNumber} • Dir: $addrHex • ${freqKhz}kHz"
+        val khz = (profile.frequency / 100) / 10.0
+        holder.tvBrandCodeInfo.text = holder.itemView.context.getString(
+            R.string.brand_code_info, profile.codeNumber, profile.base.describe(),
+            if (khz % 1.0 == 0.0) khz.toInt().toString() else khz.toString()
+        )
 
         holder.itemView.setOnClickListener {
             onProfileSelected(profile)

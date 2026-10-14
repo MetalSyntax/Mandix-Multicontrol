@@ -1,0 +1,5673 @@
+Filetype: IR library file
+Version: 1
+# Generado por tools/build_tv_extra.py (IRDB + Flipper-IRDB)
+#
+name: Power
+brand: Hitachi
+type: parsed
+protocol: NECext
+address: 0C FB 00 00
+command: 95 6A 00 00
+#
+name: Source
+brand: Hitachi
+type: parsed
+protocol: NECext
+address: 0C FB 00 00
+command: 81 7E 00 00
+#
+name: 0
+brand: Hitachi
+type: parsed
+protocol: NECext
+address: 0C FB 00 00
+command: 84 7B 00 00
+#
+name: 1
+brand: Hitachi
+type: parsed
+protocol: NECext
+address: 0C FB 00 00
+command: 85 7A 00 00
+#
+name: 2
+brand: Hitachi
+type: parsed
+protocol: NECext
+address: 0C FB 00 00
+command: 86 79 00 00
+#
+name: 3
+brand: Hitachi
+type: parsed
+protocol: NECext
+address: 0C FB 00 00
+command: 87 78 00 00
+#
+name: 4
+brand: Hitachi
+type: parsed
+protocol: NECext
+address: 0C FB 00 00
+command: 88 77 00 00
+#
+name: 5
+brand: Hitachi
+type: parsed
+protocol: NECext
+address: 0C FB 00 00
+command: 89 76 00 00
+#
+name: 6
+brand: Hitachi
+type: parsed
+protocol: NECext
+address: 0C FB 00 00
+command: 8A 75 00 00
+#
+name: 7
+brand: Hitachi
+type: parsed
+protocol: NECext
+address: 0C FB 00 00
+command: 8B 74 00 00
+#
+name: 8
+brand: Hitachi
+type: parsed
+protocol: NECext
+address: 0C FB 00 00
+command: 8C 73 00 00
+#
+name: 9
+brand: Hitachi
+type: parsed
+protocol: NECext
+address: 0C FB 00 00
+command: 8D 72 00 00
+#
+name: Exit
+brand: Hitachi
+type: parsed
+protocol: NECext
+address: 0C FB 00 00
+command: 8F 70 00 00
+#
+name: Down
+brand: Hitachi
+type: parsed
+protocol: NECext
+address: 0C FB 00 00
+command: 90 6F 00 00
+#
+name: Guide
+brand: Hitachi
+type: parsed
+protocol: NECext
+address: 0C FB 00 00
+command: 92 6D 00 00
+#
+name: Info
+brand: Hitachi
+type: parsed
+protocol: NECext
+address: 0C FB 00 00
+command: 93 6C 00 00
+#
+name: Left
+brand: Hitachi
+type: parsed
+protocol: NECext
+address: 0C FB 00 00
+command: 94 6B 00 00
+#
+name: Right
+brand: Hitachi
+type: parsed
+protocol: NECext
+address: 0C FB 00 00
+command: 97 68 00 00
+#
+name: Up
+brand: Hitachi
+type: parsed
+protocol: NECext
+address: 0C FB 00 00
+command: 99 66 00 00
+#
+name: Menu
+brand: Hitachi
+type: parsed
+protocol: NECext
+address: 0C FB 00 00
+command: F0 0F 00 00
+#
+name: Power
+brand: Hitachi
+type: parsed
+protocol: NEC
+address: 50 00 00 00
+command: 12 00 00 00
+#
+name: Vol_up
+brand: Hitachi
+type: parsed
+protocol: NEC
+address: 50 00 00 00
+command: 1A 00 00 00
+#
+name: Vol_dn
+brand: Hitachi
+type: parsed
+protocol: NEC
+address: 50 00 00 00
+command: 1E 00 00 00
+#
+name: Mute
+brand: Hitachi
+type: parsed
+protocol: NEC
+address: 50 00 00 00
+command: 10 00 00 00
+#
+name: Ch_next
+brand: Hitachi
+type: parsed
+protocol: NEC
+address: 50 00 00 00
+command: 1B 00 00 00
+#
+name: Ch_prev
+brand: Hitachi
+type: parsed
+protocol: NEC
+address: 50 00 00 00
+command: 1F 00 00 00
+#
+name: Ok
+brand: Hitachi
+type: parsed
+protocol: NEC
+address: 50 00 00 00
+command: 0A 00 00 00
+#
+name: Up
+brand: Hitachi
+type: parsed
+protocol: NEC
+address: 50 00 00 00
+command: 19 00 00 00
+#
+name: Down
+brand: Hitachi
+type: parsed
+protocol: NEC
+address: 50 00 00 00
+command: 1D 00 00 00
+#
+name: Left
+brand: Hitachi
+type: parsed
+protocol: NEC
+address: 50 00 00 00
+command: 46 00 00 00
+#
+name: Right
+brand: Hitachi
+type: parsed
+protocol: NEC
+address: 50 00 00 00
+command: 47 00 00 00
+#
+name: Menu
+brand: Hitachi
+type: parsed
+protocol: NEC
+address: 50 00 00 00
+command: 49 00 00 00
+#
+name: Back
+brand: Hitachi
+type: parsed
+protocol: NEC
+address: 50 00 00 00
+command: 40 00 00 00
+#
+name: Play
+brand: Hitachi
+type: parsed
+protocol: NEC
+address: 50 00 00 00
+command: 57 00 00 00
+#
+name: Stop
+brand: Hitachi
+type: parsed
+protocol: NEC
+address: 50 00 00 00
+command: 54 00 00 00
+#
+name: Source
+brand: Hitachi
+type: parsed
+protocol: NEC
+address: 50 00 00 00
+command: 14 00 00 00
+#
+name: Exit
+brand: Hitachi
+type: parsed
+protocol: NEC
+address: 50 00 00 00
+command: 44 00 00 00
+#
+name: Info
+brand: Hitachi
+type: parsed
+protocol: NEC
+address: 50 00 00 00
+command: 16 00 00 00
+#
+name: 1
+brand: Hitachi
+type: parsed
+protocol: NEC
+address: 50 00 00 00
+command: 01 00 00 00
+#
+name: 2
+brand: Hitachi
+type: parsed
+protocol: NEC
+address: 50 00 00 00
+command: 02 00 00 00
+#
+name: 3
+brand: Hitachi
+type: parsed
+protocol: NEC
+address: 50 00 00 00
+command: 03 00 00 00
+#
+name: 4
+brand: Hitachi
+type: parsed
+protocol: NEC
+address: 50 00 00 00
+command: 04 00 00 00
+#
+name: 5
+brand: Hitachi
+type: parsed
+protocol: NEC
+address: 50 00 00 00
+command: 05 00 00 00
+#
+name: 6
+brand: Hitachi
+type: parsed
+protocol: NEC
+address: 50 00 00 00
+command: 06 00 00 00
+#
+name: 7
+brand: Hitachi
+type: parsed
+protocol: NEC
+address: 50 00 00 00
+command: 07 00 00 00
+#
+name: 8
+brand: Hitachi
+type: parsed
+protocol: NEC
+address: 50 00 00 00
+command: 08 00 00 00
+#
+name: 9
+brand: Hitachi
+type: parsed
+protocol: NEC
+address: 50 00 00 00
+command: 09 00 00 00
+#
+name: 0
+brand: Hitachi
+type: parsed
+protocol: NEC
+address: 50 00 00 00
+command: 00 00 00 00
+#
+name: Red
+brand: Hitachi
+type: parsed
+protocol: NEC
+address: 50 00 00 00
+command: 4A 00 00 00
+#
+name: Green
+brand: Hitachi
+type: parsed
+protocol: NEC
+address: 50 00 00 00
+command: 4B 00 00 00
+#
+name: Yellow
+brand: Hitachi
+type: parsed
+protocol: NEC
+address: 50 00 00 00
+command: 4C 00 00 00
+#
+name: Blue
+brand: Hitachi
+type: parsed
+protocol: NEC
+address: 50 00 00 00
+command: 4D 00 00 00
+#
+name: Guide
+brand: Hitachi
+type: parsed
+protocol: NEC
+address: 50 00 00 00
+command: 0B 00 00 00
+#
+name: Ch_list
+brand: Hitachi
+type: parsed
+protocol: NEC
+address: 50 00 00 00
+command: 18 00 00 00
+#
+name: Power
+brand: ADLER
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 0A 00 00 00
+#
+name: Up
+brand: ADLER
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 00 00 00 00
+#
+name: Down
+brand: ADLER
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 01 00 00 00
+#
+name: Right
+brand: ADLER
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 02 00 00 00
+#
+name: Left
+brand: ADLER
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 03 00 00 00
+#
+name: Menu
+brand: ADLER
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 04 00 00 00
+#
+name: 8
+brand: ADLER
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 06 00 00 00
+#
+name: Mute
+brand: ADLER
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 07 00 00 00
+#
+name: Audio
+brand: ADLER
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 08 00 00 00
+#
+name: Source
+brand: ADLER
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 0C 00 00 00
+#
+name: 1
+brand: ADLER
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 11 00 00 00
+#
+name: 2
+brand: ADLER
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 12 00 00 00
+#
+name: 3
+brand: ADLER
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 13 00 00 00
+#
+name: 5
+brand: ADLER
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 14 00 00 00
+#
+name: 6
+brand: ADLER
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 15 00 00 00
+#
+name: 7
+brand: ADLER
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 16 00 00 00
+#
+name: 9
+brand: ADLER
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 17 00 00 00
+#
+name: 0
+brand: ADLER
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 18 00 00 00
+#
+name: Vol_dn
+brand: ADLER
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 1A 00 00 00
+#
+name: Exit
+brand: ADLER
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 1B 00 00 00
+#
+name: Fav
+brand: ADLER
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 1D 00 00 00
+#
+name: Ok
+brand: ADLER
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 1F 00 00 00
+#
+name: Guide
+brand: ADLER
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 30 00 00 00
+#
+name: Play
+brand: ADLER
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 34 00 00 00
+#
+name: Stop
+brand: ADLER
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 38 00 00 00
+#
+name: Info
+brand: ADLER
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 40 00 00 00
+#
+name: 4
+brand: ADLER
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 4B 00 00 00
+#
+name: Vol_up
+brand: ADLER
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 51 00 00 00
+#
+name: Sleep
+brand: ADLER
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 62 00 00 00
+#
+name: Power
+brand: ADS
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 5B 00 00 00
+#
+name: Stop
+brand: ADS
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 07 00 00 00
+#
+name: Ch_prev
+brand: ADS
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 08 00 00 00
+#
+name: Ch_next
+brand: ADS
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 0B 00 00 00
+#
+name: Ok
+brand: ADS
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 0E 00 00 00
+#
+name: Up
+brand: ADS
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 0F 00 00 00
+#
+name: Vol_up
+brand: ADS
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 15 00 00 00
+#
+name: Left
+brand: ADS
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 16 00 00 00
+#
+name: Info
+brand: ADS
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 17 00 00 00
+#
+name: Audio
+brand: ADS
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 19 00 00 00
+#
+name: Vol_dn
+brand: ADS
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 1C 00 00 00
+#
+name: Right
+brand: ADS
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 1E 00 00 00
+#
+name: Menu
+brand: ADS
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 1F 00 00 00
+#
+name: Play
+brand: ADS
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 44 00 00 00
+#
+name: Down
+brand: ADS
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 46 00 00 00
+#
+name: 8
+brand: ADS
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 4C 00 00 00
+#
+name: 0
+brand: ADS
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 4D 00 00 00
+#
+name: 5
+brand: ADS
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 4E 00 00 00
+#
+name: 2
+brand: ADS
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 4F 00 00 00
+#
+name: Ffwd
+brand: ADS
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 50 00 00 00
+#
+name: Exit
+brand: ADS
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 52 00 00 00
+#
+name: 3
+brand: ADS
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 53 00 00 00
+#
+name: 7
+brand: ADS
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 54 00 00 00
+#
+name: 4
+brand: ADS
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 56 00 00 00
+#
+name: 1
+brand: ADS
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 57 00 00 00
+#
+name: Rew
+brand: ADS
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 58 00 00 00
+#
+name: 9
+brand: ADS
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 5C 00 00 00
+#
+name: 6
+brand: ADS
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 5E 00 00 00
+#
+name: Mute
+brand: ADS
+type: parsed
+protocol: NEC
+address: 02 00 00 00
+command: 5F 00 00 00
+#
+name: Power
+brand: Asus
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 12 ED 00 00
+#
+name: 0
+brand: Asus
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 00 FF 00 00
+#
+name: 1
+brand: Asus
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 01 FE 00 00
+#
+name: 2
+brand: Asus
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 02 FD 00 00
+#
+name: 3
+brand: Asus
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 03 FC 00 00
+#
+name: 4
+brand: Asus
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 04 FB 00 00
+#
+name: 5
+brand: Asus
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 05 FA 00 00
+#
+name: 6
+brand: Asus
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 06 F9 00 00
+#
+name: 7
+brand: Asus
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 07 F8 00 00
+#
+name: 8
+brand: Asus
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 08 F7 00 00
+#
+name: 9
+brand: Asus
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 09 F6 00 00
+#
+name: Ok
+brand: Asus
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 0A F5 00 00
+#
+name: Ch_next
+brand: Asus
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 0C F3 00 00
+#
+name: Ch_prev
+brand: Asus
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 0D F2 00 00
+#
+name: Vol_up
+brand: Asus
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 0E F1 00 00
+#
+name: Vol_dn
+brand: Asus
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 0F F0 00 00
+#
+name: Mute
+brand: Asus
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 11 EE 00 00
+#
+name: Menu
+brand: Asus
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 13 EC 00 00
+#
+name: Up
+brand: Asus
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 14 EB 00 00
+#
+name: Down
+brand: Asus
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 15 EA 00 00
+#
+name: Left
+brand: Asus
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 16 E9 00 00
+#
+name: Right
+brand: Asus
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 17 E8 00 00
+#
+name: Display
+brand: Asus
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 1A E5 00 00
+#
+name: Green
+brand: Asus
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 1D E2 00 00
+#
+name: Yellow
+brand: Asus
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 1E E1 00 00
+#
+name: Blue
+brand: Asus
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 1F E0 00 00
+#
+name: Power
+brand: Avermedia
+type: parsed
+protocol: NECext
+address: 00 ED 00 00
+command: 12 ED 00 00
+#
+name: 1
+brand: Avermedia
+type: parsed
+protocol: NECext
+address: 00 ED 00 00
+command: 01 FE 00 00
+#
+name: 2
+brand: Avermedia
+type: parsed
+protocol: NECext
+address: 00 ED 00 00
+command: 02 FD 00 00
+#
+name: 3
+brand: Avermedia
+type: parsed
+protocol: NECext
+address: 00 ED 00 00
+command: 03 FC 00 00
+#
+name: 4
+brand: Avermedia
+type: parsed
+protocol: NECext
+address: 00 ED 00 00
+command: 04 FB 00 00
+#
+name: 5
+brand: Avermedia
+type: parsed
+protocol: NECext
+address: 00 ED 00 00
+command: 05 FA 00 00
+#
+name: 6
+brand: Avermedia
+type: parsed
+protocol: NECext
+address: 00 ED 00 00
+command: 06 F9 00 00
+#
+name: 7
+brand: Avermedia
+type: parsed
+protocol: NECext
+address: 00 ED 00 00
+command: 07 F8 00 00
+#
+name: 8
+brand: Avermedia
+type: parsed
+protocol: NECext
+address: 00 ED 00 00
+command: 08 F7 00 00
+#
+name: 9
+brand: Avermedia
+type: parsed
+protocol: NECext
+address: 00 ED 00 00
+command: 09 F6 00 00
+#
+name: 0
+brand: Avermedia
+type: parsed
+protocol: NECext
+address: 00 ED 00 00
+command: 0A F5 00 00
+#
+name: Sleep
+brand: Avermedia
+type: parsed
+protocol: NECext
+address: 00 ED 00 00
+command: 0C F3 00 00
+#
+name: Menu
+brand: Avermedia
+type: parsed
+protocol: NECext
+address: 00 ED 00 00
+command: 10 EF 00 00
+#
+name: Display
+brand: Avermedia
+type: parsed
+protocol: NECext
+address: 00 ED 00 00
+command: 16 E9 00 00
+#
+name: Mute
+brand: Avermedia
+type: parsed
+protocol: NECext
+address: 00 ED 00 00
+command: 18 E7 00 00
+#
+name: Vol_up
+brand: Avermedia
+type: parsed
+protocol: NECext
+address: 00 ED 00 00
+command: 1A E5 00 00
+#
+name: Ch_next
+brand: Avermedia
+type: parsed
+protocol: NECext
+address: 00 ED 00 00
+command: 1B E4 00 00
+#
+name: Vol_dn
+brand: Avermedia
+type: parsed
+protocol: NECext
+address: 00 ED 00 00
+command: 1E E1 00 00
+#
+name: Ch_prev
+brand: Avermedia
+type: parsed
+protocol: NECext
+address: 00 ED 00 00
+command: 1F E0 00 00
+#
+name: Power
+brand: Digital Stream
+type: parsed
+protocol: NECext
+address: 04 02 00 00
+command: 00 FF 00 00
+#
+name: Mute
+brand: Digital Stream
+type: parsed
+protocol: NECext
+address: 04 02 00 00
+command: 01 FE 00 00
+#
+name: 1
+brand: Digital Stream
+type: parsed
+protocol: NECext
+address: 04 02 00 00
+command: 02 FD 00 00
+#
+name: 2
+brand: Digital Stream
+type: parsed
+protocol: NECext
+address: 04 02 00 00
+command: 03 FC 00 00
+#
+name: 3
+brand: Digital Stream
+type: parsed
+protocol: NECext
+address: 04 02 00 00
+command: 04 FB 00 00
+#
+name: 4
+brand: Digital Stream
+type: parsed
+protocol: NECext
+address: 04 02 00 00
+command: 05 FA 00 00
+#
+name: 5
+brand: Digital Stream
+type: parsed
+protocol: NECext
+address: 04 02 00 00
+command: 06 F9 00 00
+#
+name: 6
+brand: Digital Stream
+type: parsed
+protocol: NECext
+address: 04 02 00 00
+command: 07 F8 00 00
+#
+name: 7
+brand: Digital Stream
+type: parsed
+protocol: NECext
+address: 04 02 00 00
+command: 08 F7 00 00
+#
+name: 8
+brand: Digital Stream
+type: parsed
+protocol: NECext
+address: 04 02 00 00
+command: 09 F6 00 00
+#
+name: 9
+brand: Digital Stream
+type: parsed
+protocol: NECext
+address: 04 02 00 00
+command: 0A F5 00 00
+#
+name: 0
+brand: Digital Stream
+type: parsed
+protocol: NECext
+address: 04 02 00 00
+command: 0C F3 00 00
+#
+name: Audio
+brand: Digital Stream
+type: parsed
+protocol: NECext
+address: 04 02 00 00
+command: 0D F2 00 00
+#
+name: Display
+brand: Digital Stream
+type: parsed
+protocol: NECext
+address: 04 02 00 00
+command: 10 EF 00 00
+#
+name: Left
+brand: Digital Stream
+type: parsed
+protocol: NECext
+address: 04 02 00 00
+command: 15 EA 00 00
+#
+name: Right
+brand: Digital Stream
+type: parsed
+protocol: NECext
+address: 04 02 00 00
+command: 17 E8 00 00
+#
+name: Back
+brand: Digital Stream
+type: parsed
+protocol: NECext
+address: 04 02 00 00
+command: 1A E5 00 00
+#
+name: Menu
+brand: Digital Stream
+type: parsed
+protocol: NECext
+address: 04 02 00 00
+command: 1B E4 00 00
+#
+name: Sleep
+brand: Digital Stream
+type: parsed
+protocol: NECext
+address: 04 02 00 00
+command: 1E E1 00 00
+#
+name: Exit
+brand: Digital Stream
+type: parsed
+protocol: NECext
+address: 04 02 00 00
+command: 41 BE 00 00
+#
+name: Power
+brand: DigitalView
+type: parsed
+protocol: NEC
+address: 80 00 00 00
+command: 01 00 00 00
+#
+name: 3
+brand: DigitalView
+type: parsed
+protocol: NEC
+address: 80 00 00 00
+command: 02 00 00 00
+#
+name: 2
+brand: DigitalView
+type: parsed
+protocol: NEC
+address: 80 00 00 00
+command: 03 00 00 00
+#
+name: 1
+brand: DigitalView
+type: parsed
+protocol: NEC
+address: 80 00 00 00
+command: 04 00 00 00
+#
+name: 4
+brand: DigitalView
+type: parsed
+protocol: NEC
+address: 80 00 00 00
+command: 05 00 00 00
+#
+name: 5
+brand: DigitalView
+type: parsed
+protocol: NEC
+address: 80 00 00 00
+command: 06 00 00 00
+#
+name: 6
+brand: DigitalView
+type: parsed
+protocol: NEC
+address: 80 00 00 00
+command: 07 00 00 00
+#
+name: 9
+brand: DigitalView
+type: parsed
+protocol: NEC
+address: 80 00 00 00
+command: 08 00 00 00
+#
+name: 8
+brand: DigitalView
+type: parsed
+protocol: NEC
+address: 80 00 00 00
+command: 09 00 00 00
+#
+name: 7
+brand: DigitalView
+type: parsed
+protocol: NEC
+address: 80 00 00 00
+command: 0A 00 00 00
+#
+name: 0
+brand: DigitalView
+type: parsed
+protocol: NEC
+address: 80 00 00 00
+command: 0C 00 00 00
+#
+name: Menu
+brand: DigitalView
+type: parsed
+protocol: NEC
+address: 80 00 00 00
+command: 11 00 00 00
+#
+name: Up
+brand: DigitalView
+type: parsed
+protocol: NEC
+address: 80 00 00 00
+command: 12 00 00 00
+#
+name: Guide
+brand: DigitalView
+type: parsed
+protocol: NEC
+address: 80 00 00 00
+command: 13 00 00 00
+#
+name: Right
+brand: DigitalView
+type: parsed
+protocol: NEC
+address: 80 00 00 00
+command: 14 00 00 00
+#
+name: Ok
+brand: DigitalView
+type: parsed
+protocol: NEC
+address: 80 00 00 00
+command: 15 00 00 00
+#
+name: Left
+brand: DigitalView
+type: parsed
+protocol: NEC
+address: 80 00 00 00
+command: 16 00 00 00
+#
+name: Mute
+brand: DigitalView
+type: parsed
+protocol: NEC
+address: 80 00 00 00
+command: 17 00 00 00
+#
+name: Down
+brand: DigitalView
+type: parsed
+protocol: NEC
+address: 80 00 00 00
+command: 18 00 00 00
+#
+name: Exit
+brand: DigitalView
+type: parsed
+protocol: NEC
+address: 80 00 00 00
+command: 19 00 00 00
+#
+name: Info
+brand: DigitalView
+type: parsed
+protocol: NEC
+address: 80 00 00 00
+command: 1A 00 00 00
+#
+name: Power
+brand: Durabrand
+type: parsed
+protocol: NECext
+address: 80 63 00 00
+command: 0F F0 00 00
+#
+name: 1
+brand: Durabrand
+type: parsed
+protocol: NECext
+address: 80 63 00 00
+command: 00 FF 00 00
+#
+name: 2
+brand: Durabrand
+type: parsed
+protocol: NECext
+address: 80 63 00 00
+command: 01 FE 00 00
+#
+name: 3
+brand: Durabrand
+type: parsed
+protocol: NECext
+address: 80 63 00 00
+command: 02 FD 00 00
+#
+name: 4
+brand: Durabrand
+type: parsed
+protocol: NECext
+address: 80 63 00 00
+command: 03 FC 00 00
+#
+name: 5
+brand: Durabrand
+type: parsed
+protocol: NECext
+address: 80 63 00 00
+command: 04 FB 00 00
+#
+name: 6
+brand: Durabrand
+type: parsed
+protocol: NECext
+address: 80 63 00 00
+command: 05 FA 00 00
+#
+name: 7
+brand: Durabrand
+type: parsed
+protocol: NECext
+address: 80 63 00 00
+command: 06 F9 00 00
+#
+name: 8
+brand: Durabrand
+type: parsed
+protocol: NECext
+address: 80 63 00 00
+command: 07 F8 00 00
+#
+name: 9
+brand: Durabrand
+type: parsed
+protocol: NECext
+address: 80 63 00 00
+command: 08 F7 00 00
+#
+name: 0
+brand: Durabrand
+type: parsed
+protocol: NECext
+address: 80 63 00 00
+command: 09 F6 00 00
+#
+name: Ch_next
+brand: Durabrand
+type: parsed
+protocol: NECext
+address: 80 63 00 00
+command: 0A F5 00 00
+#
+name: Ch_prev
+brand: Durabrand
+type: parsed
+protocol: NECext
+address: 80 63 00 00
+command: 0B F4 00 00
+#
+name: Vol_up
+brand: Durabrand
+type: parsed
+protocol: NECext
+address: 80 63 00 00
+command: 0C F3 00 00
+#
+name: Vol_dn
+brand: Durabrand
+type: parsed
+protocol: NECext
+address: 80 63 00 00
+command: 0D F2 00 00
+#
+name: Mute
+brand: Durabrand
+type: parsed
+protocol: NECext
+address: 80 63 00 00
+command: 0E F1 00 00
+#
+name: Info
+brand: Durabrand
+type: parsed
+protocol: NECext
+address: 80 63 00 00
+command: 10 EF 00 00
+#
+name: Sleep
+brand: Durabrand
+type: parsed
+protocol: NECext
+address: 80 63 00 00
+command: 13 EC 00 00
+#
+name: Menu
+brand: Durabrand
+type: parsed
+protocol: NECext
+address: 80 63 00 00
+command: 1A E5 00 00
+#
+name: Red
+brand: Durabrand
+type: parsed
+protocol: NECext
+address: 80 63 00 00
+command: 4A B5 00 00
+#
+name: Green
+brand: Durabrand
+type: parsed
+protocol: NECext
+address: 80 63 00 00
+command: 4B B4 00 00
+#
+name: Yellow
+brand: Durabrand
+type: parsed
+protocol: NECext
+address: 80 63 00 00
+command: 4C B3 00 00
+#
+name: Blue
+brand: Durabrand
+type: parsed
+protocol: NECext
+address: 80 63 00 00
+command: 4D B2 00 00
+#
+name: Ok
+brand: Durabrand
+type: parsed
+protocol: NECext
+address: 80 63 00 00
+command: 55 AA 00 00
+#
+name: Power
+brand: Emerson
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 1F 00 00 00
+#
+name: 0
+brand: Emerson
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 06 00 00 00
+#
+name: 7
+brand: Emerson
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 08 00 00 00
+#
+name: 8
+brand: Emerson
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 09 00 00 00
+#
+name: 9
+brand: Emerson
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 0A 00 00 00
+#
+name: 4
+brand: Emerson
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 0C 00 00 00
+#
+name: 5
+brand: Emerson
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 0D 00 00 00
+#
+name: 6
+brand: Emerson
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 0E 00 00 00
+#
+name: 1
+brand: Emerson
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 10 00 00 00
+#
+name: 2
+brand: Emerson
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 11 00 00 00
+#
+name: 3
+brand: Emerson
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 12 00 00 00
+#
+name: Sleep
+brand: Emerson
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 18 00 00 00
+#
+name: Power
+brand: Gigabyte
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 02 FD 00 00
+#
+name: Ch_next
+brand: Gigabyte
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 01 FE 00 00
+#
+name: Vol_dn
+brand: Gigabyte
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 04 FB 00 00
+#
+name: Mute
+brand: Gigabyte
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 05 FA 00 00
+#
+name: Ch_prev
+brand: Gigabyte
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 06 F9 00 00
+#
+name: Vol_up
+brand: Gigabyte
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 07 F8 00 00
+#
+name: 2
+brand: Gigabyte
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 0A F5 00 00
+#
+name: 3
+brand: Gigabyte
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 0C F3 00 00
+#
+name: Down
+brand: Gigabyte
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 0D F2 00 00
+#
+name: Back
+brand: Gigabyte
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 0E F1 00 00
+#
+name: Guide
+brand: Gigabyte
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 12 ED 00 00
+#
+name: 1
+brand: Gigabyte
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 17 E8 00 00
+#
+name: 0
+brand: Gigabyte
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 18 E7 00 00
+#
+name: Right
+brand: Gigabyte
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 1A E5 00 00
+#
+name: Left
+brand: Gigabyte
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 1B E4 00 00
+#
+name: 4
+brand: Gigabyte
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 54 AB 00 00
+#
+name: 5
+brand: Gigabyte
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 55 AA 00 00
+#
+name: 6
+brand: Gigabyte
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 56 A9 00 00
+#
+name: 7
+brand: Gigabyte
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 57 A8 00 00
+#
+name: 8
+brand: Gigabyte
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 58 A7 00 00
+#
+name: 9
+brand: Gigabyte
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 59 A6 00 00
+#
+name: Ok
+brand: Gigabyte
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 5A A5 00 00
+#
+name: Up
+brand: Gigabyte
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 5B A4 00 00
+#
+name: Power
+brand: Grundig
+type: raw
+frequency: 38000
+duty_cycle: 0.330000
+data: 568 2595 570 485 569 485 570 485 570 485 570 486 569 485 570 485 570 484 571 484 571 19818 570 2596 569 1013 1098 1011 570 486 569 485 570 485 570 487 568 484 571 485 570 116371 620 2545 620 962 1149 960 621 434 621 434 621 434 621 435 620 436 618 435 620 116332 621 2543 621 433 622 433 622 434 621 433 621 434 621 435 620 432 622 432 623 433 621
+#
+name: Vol_up
+brand: Grundig
+type: raw
+frequency: 38000
+duty_cycle: 0.330000
+data: 510 2653 610 443 513 542 611 443 612 443 611 446 611 443 607 447 511 544 608 445 609 19779 607 2554 513 1070 512 541 514 543 1141 969 608 446 512 542 513 543 512 543 608 116330 510 2652 512 543 512 543 511 544 511 543 511 543 512 543 512 542 513 543 511 543 511
+#
+name: Vol_dn
+brand: Grundig
+type: raw
+frequency: 38000
+duty_cycle: 0.330000
+data: 621 2542 623 431 624 432 623 432 623 431 624 432 623 431 624 431 624 431 624 431 624 19765 624 2540 625 431 624 957 625 429 1154 956 625 430 624 430 625 429 626 430 625 116315 511 2653 609 445 569 1014 568 486 1098 1013 628 426 568 486 569 486 569 486 569 116383 622 2540 625 430 625 431 624 430 625 430 624 431 624 429 625 429 626 430 624 430 625
+#
+name: Ch_next
+brand: Grundig
+type: raw
+frequency: 38000
+duty_cycle: 0.330000
+data: 622 2540 624 431 624 430 624 431 623 431 623 431 624 431 623 430 624 431 624 431 623 19763 621 2542 622 960 1151 960 1149 962 1148 961 619 434 620 435 642 116287 509 2654 601 981 1040 1071 1038 1071 1039 1070 510 545 510 545 509 116427 612 2553 612 442 613 441 614 443 611 442 613 443 612 442 612 442 612 443 612 443 611
+#
+name: Ch_prev
+brand: Grundig
+type: raw
+frequency: 38000
+duty_cycle: 0.330000
+data: 602 2560 603 452 511 544 511 544 510 544 511 544 511 546 509 545 510 545 510 544 511 19876 509 2656 539 515 540 516 539 1042 1069 1042 1068 1040 540 515 539 515 540 116398 603 2560 605 449 605 450 605 449 605 450 604 450 603 452 605 451 603 451 603 449 606
+#
+name: Ok
+brand: Grundig
+type: raw
+frequency: 38000
+duty_cycle: 0.330000
+data: 623 2540 626 428 570 486 625 428 627 428 627 428 569 485 627 428 627 428 626 428 627 19760 625 2538 627 956 625 428 627 429 624 430 625 429 626 429 625 429 626 428 627 428 627 116314 568 2595 628 426 628 428 627 426 629 425 571 486 626 427 570 486 626 428 627 427 627
+#
+name: Mute
+brand: Grundig
+type: raw
+frequency: 38000
+duty_cycle: 0.330000
+data: 612 2551 613 441 615 440 613 442 614 440 613 441 615 440 614 440 615 439 615 440 615 19750 615 2551 614 439 614 967 616 439 615 439 615 441 615 439 616 437 617 440 615 438 616 116327 611 2551 613 442 613 969 614 440 612 443 613 441 613 440 614 442 611 442 614 441 614 116326 615 2549 616 439 614 439 617 439 614 440 616 438 616 439 617 438 616 439 617 438 615
+#
+name: Info
+brand: Grundig
+type: raw
+frequency: 38000
+duty_cycle: 0.330000
+data: 508 2656 509 545 510 545 509 545 510 545 510 545 510 545 510 544 511 545 510 545 509 19877 508 2654 511 544 602 979 1131 452 511 1071 1132 978 605 449 606 448 606 116326 621 2544 620 432 623 960 1151 430 624 960 1151 959 621 433 622 431 623 116308 621 2541 623 432 623 960 1151 430 624 958 1153 958 623 431 623 431 624 116318 624 2540 624 430 624 430 625 430 625 430 624 431 624 431 623 430 624 430 625 430 624
+#
+name: Red
+brand: Grundig
+type: raw
+frequency: 38000
+duty_cycle: 0.330000
+data: 485 2679 486 569 486 571 484 569 486 569 486 570 485 570 484 570 485 569 485 570 485 19902 485 2680 485 1098 1014 1095 1015 567 486 569 486 1097 485 569 486 569 486 116464 510 2655 510 544 511 545 510 543 512 544 511 545 510 544 511 544 511 544 511 544 511
+#
+name: Green
+brand: Grundig
+type: raw
+frequency: 38000
+duty_cycle: 0.330000
+data: 622 2543 622 432 622 433 622 432 623 433 622 433 621 433 622 433 622 433 622 433 621 19766 590 2573 592 991 1120 463 622 433 590 463 592 465 622 959 623 432 621 433 591 116349 623 2542 623 959 1153 430 623 433 622 433 621 431 624 960 622 431 623 432 623 116328 570 2596 569 484 571 485 570 485 570 486 569 485 570 486 569 485 570 486 569 485 626
+#
+name: Yellow
+brand: Grundig
+type: raw
+frequency: 38000
+duty_cycle: 0.330000
+data: 510 2653 611 443 513 542 513 542 611 443 513 542 614 441 513 542 610 446 610 444 612 19775 512 2652 611 443 514 543 512 1070 1041 541 512 543 512 1070 610 445 512 543 512 116429 569 2596 569 485 570 484 571 1012 1099 484 569 484 571 1013 569 485 570 484 571 116383 569 2596 569 485 570 485 570 486 569 484 571 484 571 485 570 485 570 484 571 484 571
+#
+name: Blue
+brand: Grundig
+type: raw
+frequency: 38000
+duty_cycle: 0.330000
+data: 622 2543 622 432 622 432 623 433 622 431 623 432 623 432 623 431 623 432 623 431 624 19766 622 2542 623 959 1152 431 622 432 623 960 1151 958 623 432 623 433 621 116320 621 2544 621 962 1149 432 621 433 622 961 1150 959 622 434 620 433 622 116334 621 2544 620 434 622 432 623 433 622 432 622 432 623 431 624 432 591 462 625 431 623
+#
+name: 1
+brand: Grundig
+type: raw
+frequency: 38000
+duty_cycle: 0.330000
+data: 619 2545 621 434 620 434 621 436 619 435 620 433 621 435 620 434 621 435 620 434 620 19768 620 2545 620 434 620 963 619 434 621 434 1150 960 621 434 620 435 619 434 621 116323 641 2523 619 435 619 963 619 437 641 413 1147 963 618 436 642 412 642 413 642 116311 615 2552 613 442 613 441 613 441 608 446 608 447 608 446 609 448 607 448 606 447 608
+#
+name: 2
+brand: Grundig
+type: raw
+frequency: 38000
+duty_cycle: 0.330000
+data: 570 2597 568 484 628 427 571 484 627 428 570 486 569 486 569 486 569 485 570 485 570 19819 569 2595 570 1012 1099 1012 569 485 1099 1011 610 444 571 485 609 445 513 116432 609 2557 610 971 1139 969 611 445 1042 1068 513 543 609 444 610 445 513 116441 621 2544 621 432 622 436 619 435 620 434 620 434 621 434 621 432 622 435 620 435 643
+#
+name: 3
+brand: Grundig
+type: raw
+frequency: 38000
+duty_cycle: 0.330000
+data: 617 2546 642 413 618 436 642 412 619 438 617 437 617 439 616 436 618 436 619 437 618 19771 616 2548 640 415 640 414 617 966 640 415 1169 942 615 439 615 439 639 415 639 116317 640 2522 620 436 619 436 619 437 618 435 620 435 620 436 619 436 618 436 619 437 641
+#
+name: 4
+brand: Grundig
+type: raw
+frequency: 38000
+duty_cycle: 0.330000
+data: 509 2654 511 544 511 543 512 545 510 545 510 544 511 544 511 544 511 543 512 545 510 19877 511 2655 510 1072 510 545 1039 1071 1039 1070 511 545 510 544 511 545 510 116434 510 2654 511 1071 511 543 1041 1070 1040 1070 511 544 511 544 511 544 511 116444 613 2550 615 442 612 443 612 441 614 440 614 442 607 447 614 442 607 446 609 446 609
+#
+name: 5
+brand: Grundig
+type: raw
+frequency: 38000
+duty_cycle: 0.330000
+data: 568 2597 568 485 570 484 570 485 570 485 570 485 570 485 570 483 572 485 570 485 570 19818 570 2595 570 484 571 1012 1099 1011 1099 1011 570 485 570 484 571 483 572 116374 622 2543 622 432 623 960 1151 958 1152 959 622 432 622 432 623 432 623 116334 621 2544 621 434 620 434 621 432 623 431 624 432 623 433 621 435 620 434 621 434 621
+#
+name: 6
+brand: Grundig
+type: raw
+frequency: 38000
+duty_cycle: 0.330000
+data: 569 2595 570 485 570 485 570 484 571 485 570 484 571 485 570 485 570 485 570 485 570 19819 511 2653 512 1072 1039 542 511 1070 1042 1069 512 543 512 542 513 543 512 116432 638 2526 615 967 1144 440 613 970 1142 965 616 440 615 440 614 440 615 116343 604 2559 606 449 606 449 606 450 604 449 606 450 605 450 605 450 605 449 606 449 606
+#
+name: 7
+brand: Grundig
+type: raw
+frequency: 38000
+duty_cycle: 0.330000
+data: 568 2596 569 486 569 483 572 485 570 485 570 485 570 485 570 484 571 485 569 485 626 19762 570 2595 570 486 569 486 626 429 569 1013 1098 1011 570 485 570 485 626 429 569 116376 569 2594 571 485 570 485 570 484 571 1012 1099 1010 571 485 570 484 571 485 570 116387 591 2573 624 430 625 430 625 429 625 430 625 429 625 431 623 429 626 431 624 430 625
+#
+name: 8
+brand: Grundig
+type: raw
+frequency: 38000
+duty_cycle: 0.330000
+data: 616 2548 618 438 617 438 617 438 616 437 618 438 617 437 617 439 616 438 616 438 640 19748 618 2545 620 964 619 435 619 434 1150 433 620 962 621 434 620 435 620 435 620 116326 569 2594 571 1012 570 484 571 483 1101 483 570 1012 570 484 571 484 571 484 571 116386 624 2540 625 429 626 429 626 430 625 428 626 428 627 429 625 430 625 430 625 431 624
+#
+name: 9
+brand: Grundig
+type: raw
+frequency: 38000
+duty_cycle: 0.330000
+data: 621 2542 623 431 624 433 622 432 622 432 623 432 623 433 622 433 622 432 623 432 623 19767 621 2543 621 432 623 960 622 433 1151 433 620 961 621 432 623 433 621 433 622 116324 623 2542 623 431 623 959 625 431 1152 428 625 960 622 432 623 429 626 431 624 116332 622 2544 621 433 622 432 623 432 622 433 622 434 620 432 623 433 622 433 622 433 622
+#
+name: 0
+brand: Grundig
+type: raw
+frequency: 38000
+duty_cycle: 0.330000
+data: 621 2544 621 432 623 432 623 432 623 433 622 433 622 432 623 432 623 432 622 432 623 19745 622 2542 623 960 622 433 622 432 622 433 1151 959 622 431 624 433 622 432 623 116335 624 2539 626 957 625 429 625 430 625 430 1154 956 625 430 624 431 624 430 625 116332 622 2543 622 433 622 433 622 433 622 433 622 433 622 433 621 433 622 433 622 433 622
+#
+name: Power
+brand: Grundig
+type: raw
+frequency: 38000
+duty_cycle: 0.330000
+data: 604 2557 605 452 604 451 605 451 605 454 602 452 604 450 606 450 606 452 604 452 604 19746 603 2558 604 976 1132 974 604 452 604 452 604 451 605 451 605 451 606 451 605 116246 602 2559 603 453 603 454 602 453 603 453 604 452 604 452 604 453 603 453 603 453 603
+#
+name: Info
+brand: Grundig
+type: raw
+frequency: 38000
+duty_cycle: 0.330000
+data: 603 2558 604 451 605 451 605 452 604 450 606 450 606 451 606 451 605 451 605 451 605 19744 605 2558 604 450 606 975 1133 448 605 975 1133 973 605 452 604 452 604 116252 603 2559 603 452 604 452 605 452 604 452 604 451 605 454 602 454 602 452 604 452 605
+#
+name: Ok
+brand: Grundig
+type: raw
+frequency: 38000
+duty_cycle: 0.330000
+data: 601 2561 601 453 603 455 601 455 602 454 603 454 602 453 603 455 602 455 601 453 603 19749 602 2560 603 977 604 452 604 453 603 452 604 453 603 452 604 453 603 453 604 452 604 116240 613 2547 615 442 614 443 613 442 614 443 613 443 613 443 613 443 613 443 613 443 607
+#
+name: Mute
+brand: Grundig
+type: raw
+frequency: 38000
+duty_cycle: 0.330000
+data: 602 2559 603 452 604 452 604 453 604 452 604 451 605 453 603 452 604 454 603 452 604 19747 601 2560 602 454 602 980 601 455 601 456 600 456 600 455 601 456 600 457 599 456 600 116184 604 2558 605 452 604 978 603 453 603 452 604 452 604 452 604 451 605 453 603 452 604 116254 604 2557 605 452 604 451 605 450 606 451 605 451 605 451 605 452 605 452 604 452 604
+#
+name: Vol_up
+brand: Grundig
+type: raw
+frequency: 38000
+duty_cycle: 0.330000
+data: 616 2545 617 440 616 440 616 440 616 441 615 441 615 440 616 439 617 440 616 441 615 19734 615 2547 615 964 617 440 616 441 1144 961 615 441 615 441 615 440 616 442 615 116235 615 2547 615 441 615 441 615 440 616 442 614 442 614 440 616 441 615 441 615 441 616
+#
+name: Vol_dn
+brand: Grundig
+type: raw
+frequency: 38000
+duty_cycle: 0.330000
+data: 600 2562 600 455 601 454 602 455 602 454 602 455 601 453 603 455 601 455 602 456 600 19750 601 2559 603 453 603 978 603 454 1129 977 602 453 603 453 603 453 603 455 602 116250 613 2548 614 440 616 442 614 442 614 442 614 442 614 442 614 441 615 441 615 442 615
+#
+name: Ch_next
+brand: Grundig
+type: raw
+frequency: 38000
+duty_cycle: 0.330000
+data: 603 2559 603 452 604 452 604 452 604 451 605 452 604 451 605 452 604 453 604 452 604 19745 605 2557 606 976 1133 972 1134 973 1133 972 606 451 605 451 605 116200 616 2548 614 965 1145 961 1145 961 1144 962 614 442 614 441 615 116207 613 2547 616 967 1143 960 1145 961 1144 961 615 441 615 441 615 116266 613 2548 615 442 614 442 614 443 613 443 613 443 613 442 614 442 614 443 613 445 611
+#
+name: Ch_prev
+brand: Grundig
+type: raw
+frequency: 38000
+duty_cycle: 0.330000
+data: 595 2566 597 459 597 459 597 461 595 462 594 460 596 461 595 462 594 462 594 460 596 19756 588 2572 591 465 591 465 591 989 1120 986 1120 987 591 464 592 465 592 116206 592 2571 591 464 593 464 592 989 1119 986 1119 984 594 464 592 463 593 116221 592 2570 592 465 591 465 592 988 1120 984 1122 986 592 464 592 464 593 116221 598 2564 598 458 598 458 598 983 1126 980 1126 979 599 459 597 459 597 116276 599 2562 600 455 601 456 600 456 600 457 599 457 599 457 599 456 600 457 599 457 599
+#
+name: 1
+brand: Grundig
+type: raw
+frequency: 38000
+duty_cycle: 0.330000
+data: 614 2546 616 440 616 441 615 440 616 441 615 442 614 441 615 440 616 441 615 441 616 19735 614 2547 615 441 615 966 608 448 608 447 1137 970 607 448 615 442 608 448 608 116181 616 2547 615 441 615 965 616 441 615 441 1145 961 616 441 615 439 617 440 616 116250 615 2547 615 439 617 441 615 441 615 440 616 440 616 440 616 440 616 441 615 441 615
+#
+name: 2
+brand: Grundig
+type: raw
+frequency: 38000
+duty_cycle: 0.330000
+data: 590 2570 592 466 596 458 598 458 598 459 597 460 596 460 596 460 596 461 595 460 596 19752 597 2568 594 985 1125 980 597 460 1125 980 597 461 595 461 595 461 595 116261 592 2572 590 463 593 465 591 464 592 465 591 464 598 459 597 459 597 460 596 462 594
+#
+name: 3
+brand: Grundig
+type: raw
+frequency: 38000
+duty_cycle: 0.330000
+data: 595 2566 596 461 595 461 596 460 596 460 596 461 595 460 596 462 594 461 595 461 595 19753 595 2568 595 461 619 437 596 985 596 460 1125 981 595 462 618 439 617 437 596 116194 618 2543 619 438 618 438 618 962 619 439 1146 957 620 437 619 438 618 437 619 116187 616 2547 615 439 617 441 615 965 616 440 1145 961 616 439 617 440 617 440 616 116251 609 2553 610 445 611 445 611 443 613 444 613 445 611 444 612 445 612 445 611 444 612
+#
+name: 4
+brand: Grundig
+type: raw
+frequency: 38000
+duty_cycle: 0.330000
+data: 605 2557 605 449 607 452 604 450 606 450 606 451 605 451 605 453 603 452 604 451 605 19746 602 2559 603 979 602 453 1132 975 1130 975 603 453 603 454 602 453 603 116256 592 2568 594 462 594 462 594 462 594 463 593 463 593 463 593 462 594 463 593 462 594
+#
+name: 5
+brand: Grundig
+type: raw
+frequency: 38000
+duty_cycle: 0.330000
+data: 605 2559 603 450 606 451 605 450 606 451 605 452 605 450 606 452 604 451 606 451 605 19745 605 2557 605 450 606 974 1134 973 1133 972 606 450 606 450 606 450 607 116192 605 2555 608 450 606 974 1135 970 1135 971 606 449 607 449 607 448 608 116265 601 2561 601 454 602 454 602 455 601 454 603 455 601 455 601 456 601 457 599 455 601
+#
+name: 6
+brand: Grundig
+type: raw
+frequency: 38000
+duty_cycle: 0.330000
+data: 593 2570 592 463 593 463 593 463 593 463 593 463 593 463 593 463 593 463 593 463 593 19757 592 2570 593 989 1119 460 593 989 1120 984 594 463 593 463 593 464 593 116204 594 2568 594 986 1122 459 594 987 1121 984 594 464 592 462 594 462 594 116279 595 2566 596 461 595 460 597 462 594 460 596 461 595 461 595 460 596 461 595 460 596
+#
+name: 7
+brand: Grundig
+type: raw
+frequency: 38000
+duty_cycle: 0.330000
+data: 613 2549 613 441 615 442 614 442 607 448 608 447 609 449 607 449 607 448 608 448 608 19742 607 2554 609 449 607 449 607 449 607 974 1135 971 607 449 607 448 608 448 608 116243 604 2558 604 451 605 451 605 451 605 453 603 453 603 452 604 451 605 451 605 452 604
+#
+name: 8
+brand: Grundig
+type: raw
+frequency: 38000
+duty_cycle: 0.330000
+data: 594 2568 594 461 595 461 595 460 596 463 594 460 596 461 595 461 595 461 595 462 594 19756 592 2570 593 987 594 463 593 462 1122 459 594 987 594 462 594 462 595 462 594 126031 595 2565 598 985 595 462 594 460 1126 457 594 985 596 461 596 460 596 461 596 116268 597 2568 594 460 596 460 596 461 596 460 596 460 596 460 596 461 596 460 596 461 595
+#
+name: 9
+brand: Grundig
+type: raw
+frequency: 38000
+duty_cycle: 0.330000
+data: 596 2566 596 459 597 460 596 459 597 459 597 459 597 461 595 460 596 460 596 459 597 19754 595 2566 596 459 597 984 597 459 1126 456 596 985 596 460 596 460 596 459 597 116194 595 2568 594 461 595 985 596 461 1124 455 597 985 596 460 596 460 596 460 596 116269 618 2545 617 437 619 437 619 437 619 438 618 438 618 437 619 438 618 438 618 438 618
+#
+name: Red
+brand: Grundig
+type: raw
+frequency: 38000
+duty_cycle: 0.330000
+data: 606 2554 608 449 607 448 608 448 608 449 607 448 608 449 607 448 608 448 608 449 607 19741 608 2555 607 973 1136 970 1136 445 608 448 608 974 607 448 608 449 607 116251 605 2556 606 449 607 449 607 450 606 450 606 449 607 450 606 449 607 450 606 450 606
+#
+name: Green
+brand: Grundig
+type: raw
+frequency: 38000
+duty_cycle: 0.330000
+data: 591 2571 591 465 591 464 592 464 598 460 596 459 597 459 598 461 595 459 597 459 598 19751 597 2567 595 985 1125 456 596 461 596 461 618 437 596 986 619 437 596 461 619 116231 597 2563 600 459 597 459 597 458 598 459 597 457 599 458 599 458 598 458 598 458 598
+#
+name: Yellow
+brand: Grundig
+type: raw
+frequency: 38000
+duty_cycle: 0.330000
+data: 613 2547 615 440 617 441 616 440 616 441 616 441 615 440 616 441 615 438 618 442 614 19733 616 2547 616 440 616 440 616 966 1144 435 617 440 616 966 615 440 616 440 617 116235 594 2565 597 460 596 461 595 461 595 461 595 460 596 459 597 461 619 436 620 437 596
+#
+name: Blue
+brand: Grundig
+type: raw
+frequency: 38000
+duty_cycle: 0.330000
+data: 597 2564 599 457 599 458 599 457 599 457 599 458 599 457 599 457 599 458 599 458 598 19751 601 2561 602 980 1128 451 603 454 602 979 1130 975 603 453 604 453 603 116255 605 2556 606 450 606 452 604 451 605 452 604 452 604 452 604 451 605 452 604 451 605
+#
+name: Power
+brand: Hauppauge
+type: parsed
+protocol: RC5
+address: 1D 00 00 00
+command: 3D 00 00 00
+#
+name: 0
+brand: Hauppauge
+type: parsed
+protocol: RC5
+address: 1D 00 00 00
+command: 00 00 00 00
+#
+name: 1
+brand: Hauppauge
+type: parsed
+protocol: RC5
+address: 1D 00 00 00
+command: 01 00 00 00
+#
+name: 2
+brand: Hauppauge
+type: parsed
+protocol: RC5
+address: 1D 00 00 00
+command: 02 00 00 00
+#
+name: 3
+brand: Hauppauge
+type: parsed
+protocol: RC5
+address: 1D 00 00 00
+command: 03 00 00 00
+#
+name: 4
+brand: Hauppauge
+type: parsed
+protocol: RC5
+address: 1D 00 00 00
+command: 04 00 00 00
+#
+name: 5
+brand: Hauppauge
+type: parsed
+protocol: RC5
+address: 1D 00 00 00
+command: 05 00 00 00
+#
+name: 6
+brand: Hauppauge
+type: parsed
+protocol: RC5
+address: 1D 00 00 00
+command: 06 00 00 00
+#
+name: 7
+brand: Hauppauge
+type: parsed
+protocol: RC5
+address: 1D 00 00 00
+command: 07 00 00 00
+#
+name: 8
+brand: Hauppauge
+type: parsed
+protocol: RC5
+address: 1D 00 00 00
+command: 08 00 00 00
+#
+name: 9
+brand: Hauppauge
+type: parsed
+protocol: RC5
+address: 1D 00 00 00
+command: 09 00 00 00
+#
+name: Menu
+brand: Hauppauge
+type: parsed
+protocol: RC5
+address: 1D 00 00 00
+command: 0D 00 00 00
+#
+name: Mute
+brand: Hauppauge
+type: parsed
+protocol: RC5
+address: 1D 00 00 00
+command: 0F 00 00 00
+#
+name: Vol_up
+brand: Hauppauge
+type: parsed
+protocol: RC5
+address: 1D 00 00 00
+command: 10 00 00 00
+#
+name: Vol_dn
+brand: Hauppauge
+type: parsed
+protocol: RC5
+address: 1D 00 00 00
+command: 11 00 00 00
+#
+name: Ch_prev
+brand: Hauppauge
+type: parsed
+protocol: RC5
+address: 1D 00 00 00
+command: 12 00 00 00
+#
+name: Up
+brand: Hauppauge
+type: parsed
+protocol: RC5
+address: 1D 00 00 00
+command: 14 00 00 00
+#
+name: Down
+brand: Hauppauge
+type: parsed
+protocol: RC5
+address: 1D 00 00 00
+command: 15 00 00 00
+#
+name: Left
+brand: Hauppauge
+type: parsed
+protocol: RC5
+address: 1D 00 00 00
+command: 16 00 00 00
+#
+name: Right
+brand: Hauppauge
+type: parsed
+protocol: RC5
+address: 1D 00 00 00
+command: 17 00 00 00
+#
+name: Back
+brand: Hauppauge
+type: parsed
+protocol: RC5
+address: 1D 00 00 00
+command: 1F 00 00 00
+#
+name: Ch_next
+brand: Hauppauge
+type: parsed
+protocol: RC5
+address: 1D 00 00 00
+command: 20 00 00 00
+#
+name: Rew
+brand: Hauppauge
+type: parsed
+protocol: RC5
+address: 1D 00 00 00
+command: 24 00 00 00
+#
+name: Ok
+brand: Hauppauge
+type: parsed
+protocol: RC5
+address: 1D 00 00 00
+command: 25 00 00 00
+#
+name: Ffwd
+brand: Hauppauge
+type: parsed
+protocol: RC5
+address: 1D 00 00 00
+command: 34 00 00 00
+#
+name: Play
+brand: Hauppauge
+type: parsed
+protocol: RC5
+address: 1D 00 00 00
+command: 35 00 00 00
+#
+name: Stop
+brand: Hauppauge
+type: parsed
+protocol: RC5
+address: 1D 00 00 00
+command: 36 00 00 00
+#
+name: Home
+brand: Hauppauge
+type: parsed
+protocol: RC5
+address: 1D 00 00 00
+command: 3B 00 00 00
+#
+name: Power
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 10 00 00
+command: 00 FF 00 00
+#
+name: 1
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 10 00 00
+command: 03 FC 00 00
+#
+name: 2
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 10 00 00
+command: 04 FB 00 00
+#
+name: 3
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 10 00 00
+command: 05 FA 00 00
+#
+name: 4
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 10 00 00
+command: 06 F9 00 00
+#
+name: 5
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 10 00 00
+command: 07 F8 00 00
+#
+name: 6
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 10 00 00
+command: 08 F7 00 00
+#
+name: 7
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 10 00 00
+command: 09 F6 00 00
+#
+name: 8
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 10 00 00
+command: 0A F5 00 00
+#
+name: 9
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 10 00 00
+command: 0B F4 00 00
+#
+name: 0
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 10 00 00
+command: 0C F3 00 00
+#
+name: Ch_prev
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 10 00 00
+command: 0F F0 00 00
+#
+name: Ch_next
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 10 00 00
+command: 10 EF 00 00
+#
+name: Up
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 10 00 00
+command: 11 EE 00 00
+#
+name: Left
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 10 00 00
+command: 12 ED 00 00
+#
+name: Right
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 10 00 00
+command: 14 EB 00 00
+#
+name: Down
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 10 00 00
+command: 15 EA 00 00
+#
+name: Mute
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 10 00 00
+command: 18 E7 00 00
+#
+name: Guide
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 10 00 00
+command: 1B E4 00 00
+#
+name: Vol_up
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 10 00 00
+command: 1F E0 00 00
+#
+name: Vol_dn
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 10 00 00
+command: 40 BF 00 00
+#
+name: Back
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 10 00 00
+command: 41 BE 00 00
+#
+name: Info
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 10 00 00
+command: 43 BC 00 00
+#
+name: Sleep
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 10 00 00
+command: 4C B3 00 00
+#
+name: Power
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 30 00 00
+command: 00 FF 00 00
+#
+name: 1
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 30 00 00
+command: 03 FC 00 00
+#
+name: 2
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 30 00 00
+command: 04 FB 00 00
+#
+name: 3
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 30 00 00
+command: 05 FA 00 00
+#
+name: 4
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 30 00 00
+command: 06 F9 00 00
+#
+name: 5
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 30 00 00
+command: 07 F8 00 00
+#
+name: 6
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 30 00 00
+command: 08 F7 00 00
+#
+name: 7
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 30 00 00
+command: 09 F6 00 00
+#
+name: 8
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 30 00 00
+command: 0A F5 00 00
+#
+name: 9
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 30 00 00
+command: 0B F4 00 00
+#
+name: 0
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 30 00 00
+command: 0C F3 00 00
+#
+name: Info
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 30 00 00
+command: 0E F1 00 00
+#
+name: Menu
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 30 00 00
+command: 0F F0 00 00
+#
+name: Ch_list
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 30 00 00
+command: 10 EF 00 00
+#
+name: Guide
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 30 00 00
+command: 11 EE 00 00
+#
+name: Up
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 30 00 00
+command: 12 ED 00 00
+#
+name: Left
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 30 00 00
+command: 13 EC 00 00
+#
+name: Right
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 30 00 00
+command: 15 EA 00 00
+#
+name: Down
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 30 00 00
+command: 16 E9 00 00
+#
+name: Back
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 30 00 00
+command: 18 E7 00 00
+#
+name: Audio
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 30 00 00
+command: 1A E5 00 00
+#
+name: Exit
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 30 00 00
+command: 1B E4 00 00
+#
+name: Ch_next
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 30 00 00
+command: 1C E3 00 00
+#
+name: Ch_prev
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 30 00 00
+command: 1D E2 00 00
+#
+name: Power
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 41 00 00
+command: 00 FF 00 00
+#
+name: Source
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 41 00 00
+command: 02 FD 00 00
+#
+name: 1
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 41 00 00
+command: 03 FC 00 00
+#
+name: 2
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 41 00 00
+command: 04 FB 00 00
+#
+name: 3
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 41 00 00
+command: 05 FA 00 00
+#
+name: 4
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 41 00 00
+command: 06 F9 00 00
+#
+name: 5
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 41 00 00
+command: 07 F8 00 00
+#
+name: 6
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 41 00 00
+command: 08 F7 00 00
+#
+name: 7
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 41 00 00
+command: 09 F6 00 00
+#
+name: 8
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 41 00 00
+command: 0A F5 00 00
+#
+name: 9
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 41 00 00
+command: 0B F4 00 00
+#
+name: 0
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 41 00 00
+command: 0C F3 00 00
+#
+name: Menu
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 41 00 00
+command: 0E F1 00 00
+#
+name: Ch_prev
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 41 00 00
+command: 0F F0 00 00
+#
+name: Ch_next
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 41 00 00
+command: 10 EF 00 00
+#
+name: Up
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 41 00 00
+command: 11 EE 00 00
+#
+name: Left
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 41 00 00
+command: 12 ED 00 00
+#
+name: Right
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 41 00 00
+command: 14 EB 00 00
+#
+name: Down
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 41 00 00
+command: 15 EA 00 00
+#
+name: Exit
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 41 00 00
+command: 16 E9 00 00
+#
+name: Guide
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 41 00 00
+command: 1B E4 00 00
+#
+name: Vol_up
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 41 00 00
+command: 1F E0 00 00
+#
+name: Vol_dn
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 41 00 00
+command: 40 BF 00 00
+#
+name: Info
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 41 00 00
+command: 43 BC 00 00
+#
+name: Audio
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 41 00 00
+command: 45 BA 00 00
+#
+name: Sleep
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 41 00 00
+command: 4C B3 00 00
+#
+name: Power
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 49 00 00
+command: 00 FF 00 00
+#
+name: 1
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 49 00 00
+command: 03 FC 00 00
+#
+name: 2
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 49 00 00
+command: 04 FB 00 00
+#
+name: 3
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 49 00 00
+command: 05 FA 00 00
+#
+name: 4
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 49 00 00
+command: 06 F9 00 00
+#
+name: 5
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 49 00 00
+command: 07 F8 00 00
+#
+name: 6
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 49 00 00
+command: 08 F7 00 00
+#
+name: 7
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 49 00 00
+command: 09 F6 00 00
+#
+name: 8
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 49 00 00
+command: 0A F5 00 00
+#
+name: 9
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 49 00 00
+command: 0B F4 00 00
+#
+name: 0
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 49 00 00
+command: 0C F3 00 00
+#
+name: Ch_prev
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 49 00 00
+command: 0F F0 00 00
+#
+name: Ch_next
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 49 00 00
+command: 10 EF 00 00
+#
+name: Up
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 49 00 00
+command: 11 EE 00 00
+#
+name: Left
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 49 00 00
+command: 12 ED 00 00
+#
+name: Right
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 49 00 00
+command: 14 EB 00 00
+#
+name: Down
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 49 00 00
+command: 15 EA 00 00
+#
+name: Back
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 49 00 00
+command: 16 E9 00 00
+#
+name: Mute
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 49 00 00
+command: 18 E7 00 00
+#
+name: Guide
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 49 00 00
+command: 1B E4 00 00
+#
+name: Vol_up
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 49 00 00
+command: 1F E0 00 00
+#
+name: Vol_dn
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 49 00 00
+command: 40 BF 00 00
+#
+name: Info
+brand: Humax
+type: parsed
+protocol: NECext
+address: 00 49 00 00
+command: 43 BC 00 00
+#
+name: Power
+brand: JVC
+type: parsed
+protocol: JVC
+address: 03 00 00 00
+command: 17 00 00 00
+#
+name: Info
+brand: JVC
+type: parsed
+protocol: JVC
+address: 03 00 00 00
+command: 04 00 00 00
+#
+name: Ok
+brand: JVC
+type: parsed
+protocol: JVC
+address: 03 00 00 00
+command: 0A 00 00 00
+#
+name: Ch_prev
+brand: JVC
+type: parsed
+protocol: JVC
+address: 03 00 00 00
+command: 18 00 00 00
+#
+name: Ch_next
+brand: JVC
+type: parsed
+protocol: JVC
+address: 03 00 00 00
+command: 19 00 00 00
+#
+name: Mute
+brand: JVC
+type: parsed
+protocol: JVC
+address: 03 00 00 00
+command: 1C 00 00 00
+#
+name: Vol_dn
+brand: JVC
+type: parsed
+protocol: JVC
+address: 03 00 00 00
+command: 1E 00 00 00
+#
+name: Vol_up
+brand: JVC
+type: parsed
+protocol: JVC
+address: 03 00 00 00
+command: 1F 00 00 00
+#
+name: 0
+brand: JVC
+type: parsed
+protocol: JVC
+address: 03 00 00 00
+command: 20 00 00 00
+#
+name: 1
+brand: JVC
+type: parsed
+protocol: JVC
+address: 03 00 00 00
+command: 21 00 00 00
+#
+name: 2
+brand: JVC
+type: parsed
+protocol: JVC
+address: 03 00 00 00
+command: 22 00 00 00
+#
+name: 3
+brand: JVC
+type: parsed
+protocol: JVC
+address: 03 00 00 00
+command: 23 00 00 00
+#
+name: 4
+brand: JVC
+type: parsed
+protocol: JVC
+address: 03 00 00 00
+command: 24 00 00 00
+#
+name: 5
+brand: JVC
+type: parsed
+protocol: JVC
+address: 03 00 00 00
+command: 25 00 00 00
+#
+name: 6
+brand: JVC
+type: parsed
+protocol: JVC
+address: 03 00 00 00
+command: 26 00 00 00
+#
+name: 7
+brand: JVC
+type: parsed
+protocol: JVC
+address: 03 00 00 00
+command: 27 00 00 00
+#
+name: 8
+brand: JVC
+type: parsed
+protocol: JVC
+address: 03 00 00 00
+command: 28 00 00 00
+#
+name: 9
+brand: JVC
+type: parsed
+protocol: JVC
+address: 03 00 00 00
+command: 29 00 00 00
+#
+name: Right
+brand: JVC
+type: parsed
+protocol: JVC
+address: 03 00 00 00
+command: 5A 00 00 00
+#
+name: Left
+brand: JVC
+type: parsed
+protocol: JVC
+address: 03 00 00 00
+command: 5B 00 00 00
+#
+name: Menu
+brand: JVC
+type: parsed
+protocol: JVC
+address: 03 00 00 00
+command: 7A 00 00 00
+#
+name: Down
+brand: JVC
+type: parsed
+protocol: JVC
+address: 03 00 00 00
+command: 7B 00 00 00
+#
+name: Up
+brand: JVC
+type: parsed
+protocol: JVC
+address: 03 00 00 00
+command: 7C 00 00 00
+#
+name: Back
+brand: JVC
+type: parsed
+protocol: JVC
+address: 03 00 00 00
+command: E6 00 00 00
+#
+name: Power
+brand: Kworld
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 1D E2 00 00
+#
+name: 1
+brand: Kworld
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 00 FF 00 00
+#
+name: 2
+brand: Kworld
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 01 FE 00 00
+#
+name: 3
+brand: Kworld
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 02 FD 00 00
+#
+name: 4
+brand: Kworld
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 03 FC 00 00
+#
+name: 5
+brand: Kworld
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 04 FB 00 00
+#
+name: 6
+brand: Kworld
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 05 FA 00 00
+#
+name: 7
+brand: Kworld
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 06 F9 00 00
+#
+name: 8
+brand: Kworld
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 07 F8 00 00
+#
+name: 9
+brand: Kworld
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 08 F7 00 00
+#
+name: Return
+brand: Kworld
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 09 F6 00 00
+#
+name: 0
+brand: Kworld
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 0A F5 00 00
+#
+name: Ok
+brand: Kworld
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 0B F4 00 00
+#
+name: Back
+brand: Kworld
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 0E F1 00 00
+#
+name: Ch_next
+brand: Kworld
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 10 EF 00 00
+#
+name: Ch_prev
+brand: Kworld
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 11 EE 00 00
+#
+name: Vol_dn
+brand: Kworld
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 12 ED 00 00
+#
+name: Vol_up
+brand: Kworld
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 13 EC 00 00
+#
+name: Mute
+brand: Kworld
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 14 EB 00 00
+#
+name: Audio
+brand: Kworld
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 15 EA 00 00
+#
+name: Stop
+brand: Kworld
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 1A E5 00 00
+#
+name: Home
+brand: Kworld
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 1F E0 00 00
+#
+name: Up
+brand: Kworld
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 20 DF 00 00
+#
+name: Down
+brand: Kworld
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 21 DE 00 00
+#
+name: Rew
+brand: Kworld
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 40 BF 00 00
+#
+name: Left
+brand: Kworld
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 42 BD 00 00
+#
+name: Right
+brand: Kworld
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 43 BC 00 00
+#
+name: Play
+brand: Kworld
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 44 BB 00 00
+#
+name: Sleep
+brand: Kworld
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 4A B5 00 00
+#
+name: Info
+brand: Kworld
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 4B B4 00 00
+#
+name: Power
+brand: LG
+type: parsed
+protocol: NECext
+address: 01 01 00 00
+command: 1C E3 00 00
+#
+name: Mute
+brand: LG
+type: parsed
+protocol: NECext
+address: 01 01 00 00
+command: 0A F5 00 00
+#
+name: Power
+brand: MAGNASONIC
+type: parsed
+protocol: NECext
+address: 83 7A 00 00
+command: 08 F7 00 00
+#
+name: Ch_next
+brand: MAGNASONIC
+type: parsed
+protocol: NECext
+address: 83 7A 00 00
+command: 00 FF 00 00
+#
+name: Ch_prev
+brand: MAGNASONIC
+type: parsed
+protocol: NECext
+address: 83 7A 00 00
+command: 01 FE 00 00
+#
+name: Vol_up
+brand: MAGNASONIC
+type: parsed
+protocol: NECext
+address: 83 7A 00 00
+command: 02 FD 00 00
+#
+name: Vol_dn
+brand: MAGNASONIC
+type: parsed
+protocol: NECext
+address: 83 7A 00 00
+command: 03 FC 00 00
+#
+name: 0
+brand: MAGNASONIC
+type: parsed
+protocol: NECext
+address: 83 7A 00 00
+command: 05 FA 00 00
+#
+name: Sleep
+brand: MAGNASONIC
+type: parsed
+protocol: NECext
+address: 83 7A 00 00
+command: 0E F1 00 00
+#
+name: 1
+brand: MAGNASONIC
+type: parsed
+protocol: NECext
+address: 83 7A 00 00
+command: 11 EE 00 00
+#
+name: 2
+brand: MAGNASONIC
+type: parsed
+protocol: NECext
+address: 83 7A 00 00
+command: 12 ED 00 00
+#
+name: 3
+brand: MAGNASONIC
+type: parsed
+protocol: NECext
+address: 83 7A 00 00
+command: 13 EC 00 00
+#
+name: 4
+brand: MAGNASONIC
+type: parsed
+protocol: NECext
+address: 83 7A 00 00
+command: 14 EB 00 00
+#
+name: 5
+brand: MAGNASONIC
+type: parsed
+protocol: NECext
+address: 83 7A 00 00
+command: 15 EA 00 00
+#
+name: 6
+brand: MAGNASONIC
+type: parsed
+protocol: NECext
+address: 83 7A 00 00
+command: 16 E9 00 00
+#
+name: 7
+brand: MAGNASONIC
+type: parsed
+protocol: NECext
+address: 83 7A 00 00
+command: 17 E8 00 00
+#
+name: 8
+brand: MAGNASONIC
+type: parsed
+protocol: NECext
+address: 83 7A 00 00
+command: 18 E7 00 00
+#
+name: 9
+brand: MAGNASONIC
+type: parsed
+protocol: NECext
+address: 83 7A 00 00
+command: 19 E6 00 00
+#
+name: Return
+brand: MAGNASONIC
+type: parsed
+protocol: NECext
+address: 83 7A 00 00
+command: 1B E4 00 00
+#
+name: Power
+brand: Mitsubishi
+type: parsed
+protocol: NECext
+address: 0C FB 00 00
+command: 15 EA 00 00
+#
+name: Source
+brand: Mitsubishi
+type: parsed
+protocol: NECext
+address: 0C FB 00 00
+command: 01 FE 00 00
+#
+name: Ch_next
+brand: Mitsubishi
+type: parsed
+protocol: NECext
+address: 0C FB 00 00
+command: 02 FD 00 00
+#
+name: Ch_prev
+brand: Mitsubishi
+type: parsed
+protocol: NECext
+address: 0C FB 00 00
+command: 03 FC 00 00
+#
+name: 0
+brand: Mitsubishi
+type: parsed
+protocol: NECext
+address: 0C FB 00 00
+command: 04 FB 00 00
+#
+name: 4
+brand: Mitsubishi
+type: parsed
+protocol: NECext
+address: 0C FB 00 00
+command: 08 F7 00 00
+#
+name: 5
+brand: Mitsubishi
+type: parsed
+protocol: NECext
+address: 0C FB 00 00
+command: 09 F6 00 00
+#
+name: 6
+brand: Mitsubishi
+type: parsed
+protocol: NECext
+address: 0C FB 00 00
+command: 0A F5 00 00
+#
+name: 7
+brand: Mitsubishi
+type: parsed
+protocol: NECext
+address: 0C FB 00 00
+command: 0B F4 00 00
+#
+name: 8
+brand: Mitsubishi
+type: parsed
+protocol: NECext
+address: 0C FB 00 00
+command: 0C F3 00 00
+#
+name: 9
+brand: Mitsubishi
+type: parsed
+protocol: NECext
+address: 0C FB 00 00
+command: 0D F2 00 00
+#
+name: Exit
+brand: Mitsubishi
+type: parsed
+protocol: NECext
+address: 0C FB 00 00
+command: 0F F0 00 00
+#
+name: Down
+brand: Mitsubishi
+type: parsed
+protocol: NECext
+address: 0C FB 00 00
+command: 10 EF 00 00
+#
+name: Info
+brand: Mitsubishi
+type: parsed
+protocol: NECext
+address: 0C FB 00 00
+command: 13 EC 00 00
+#
+name: Left
+brand: Mitsubishi
+type: parsed
+protocol: NECext
+address: 0C FB 00 00
+command: 14 EB 00 00
+#
+name: Right
+brand: Mitsubishi
+type: parsed
+protocol: NECext
+address: 0C FB 00 00
+command: 17 E8 00 00
+#
+name: Ok
+brand: Mitsubishi
+type: parsed
+protocol: NECext
+address: 0C FB 00 00
+command: 18 E7 00 00
+#
+name: Up
+brand: Mitsubishi
+type: parsed
+protocol: NECext
+address: 0C FB 00 00
+command: 19 E6 00 00
+#
+name: Power
+brand: Mitsubishi
+type: parsed
+protocol: Sharp
+address: 01 00 00 00
+command: 16 00 00 00
+#
+name: 1
+brand: Mitsubishi
+type: parsed
+protocol: Sharp
+address: 01 00 00 00
+command: 01 00 00 00
+#
+name: 2
+brand: Mitsubishi
+type: parsed
+protocol: Sharp
+address: 01 00 00 00
+command: 02 00 00 00
+#
+name: 3
+brand: Mitsubishi
+type: parsed
+protocol: Sharp
+address: 01 00 00 00
+command: 03 00 00 00
+#
+name: 4
+brand: Mitsubishi
+type: parsed
+protocol: Sharp
+address: 01 00 00 00
+command: 04 00 00 00
+#
+name: 5
+brand: Mitsubishi
+type: parsed
+protocol: Sharp
+address: 01 00 00 00
+command: 05 00 00 00
+#
+name: 6
+brand: Mitsubishi
+type: parsed
+protocol: Sharp
+address: 01 00 00 00
+command: 06 00 00 00
+#
+name: 7
+brand: Mitsubishi
+type: parsed
+protocol: Sharp
+address: 01 00 00 00
+command: 07 00 00 00
+#
+name: 8
+brand: Mitsubishi
+type: parsed
+protocol: Sharp
+address: 01 00 00 00
+command: 08 00 00 00
+#
+name: 9
+brand: Mitsubishi
+type: parsed
+protocol: Sharp
+address: 01 00 00 00
+command: 09 00 00 00
+#
+name: 0
+brand: Mitsubishi
+type: parsed
+protocol: Sharp
+address: 01 00 00 00
+command: 0A 00 00 00
+#
+name: Ch_next
+brand: Mitsubishi
+type: parsed
+protocol: Sharp
+address: 01 00 00 00
+command: 11 00 00 00
+#
+name: Ch_prev
+brand: Mitsubishi
+type: parsed
+protocol: Sharp
+address: 01 00 00 00
+command: 12 00 00 00
+#
+name: Vol_up
+brand: Mitsubishi
+type: parsed
+protocol: Sharp
+address: 01 00 00 00
+command: 14 00 00 00
+#
+name: Vol_dn
+brand: Mitsubishi
+type: parsed
+protocol: Sharp
+address: 01 00 00 00
+command: 15 00 00 00
+#
+name: Mute
+brand: Mitsubishi
+type: parsed
+protocol: Sharp
+address: 01 00 00 00
+command: 17 00 00 00
+#
+name: Display
+brand: Mitsubishi
+type: parsed
+protocol: Sharp
+address: 01 00 00 00
+command: 1B 00 00 00
+#
+name: Menu
+brand: Mitsubishi
+type: parsed
+protocol: Sharp
+address: 01 00 00 00
+command: 20 00 00 00
+#
+name: Power
+brand: Nagra
+type: parsed
+protocol: NEC
+address: 08 00 00 00
+command: 0A 00 00 00
+#
+name: 0
+brand: Nagra
+type: parsed
+protocol: NEC
+address: 08 00 00 00
+command: 00 00 00 00
+#
+name: 1
+brand: Nagra
+type: parsed
+protocol: NEC
+address: 08 00 00 00
+command: 01 00 00 00
+#
+name: 2
+brand: Nagra
+type: parsed
+protocol: NEC
+address: 08 00 00 00
+command: 02 00 00 00
+#
+name: 3
+brand: Nagra
+type: parsed
+protocol: NEC
+address: 08 00 00 00
+command: 03 00 00 00
+#
+name: 4
+brand: Nagra
+type: parsed
+protocol: NEC
+address: 08 00 00 00
+command: 04 00 00 00
+#
+name: 5
+brand: Nagra
+type: parsed
+protocol: NEC
+address: 08 00 00 00
+command: 05 00 00 00
+#
+name: 6
+brand: Nagra
+type: parsed
+protocol: NEC
+address: 08 00 00 00
+command: 06 00 00 00
+#
+name: 7
+brand: Nagra
+type: parsed
+protocol: NEC
+address: 08 00 00 00
+command: 07 00 00 00
+#
+name: 8
+brand: Nagra
+type: parsed
+protocol: NEC
+address: 08 00 00 00
+command: 08 00 00 00
+#
+name: 9
+brand: Nagra
+type: parsed
+protocol: NEC
+address: 08 00 00 00
+command: 09 00 00 00
+#
+name: Mute
+brand: Nagra
+type: parsed
+protocol: NEC
+address: 08 00 00 00
+command: 0B 00 00 00
+#
+name: Menu
+brand: Nagra
+type: parsed
+protocol: NEC
+address: 08 00 00 00
+command: 0C 00 00 00
+#
+name: Vol_dn
+brand: Nagra
+type: parsed
+protocol: NEC
+address: 08 00 00 00
+command: 0E 00 00 00
+#
+name: Ch_prev
+brand: Nagra
+type: parsed
+protocol: NEC
+address: 08 00 00 00
+command: 10 00 00 00
+#
+name: Up
+brand: Nagra
+type: parsed
+protocol: NEC
+address: 08 00 00 00
+command: 11 00 00 00
+#
+name: Down
+brand: Nagra
+type: parsed
+protocol: NEC
+address: 08 00 00 00
+command: 12 00 00 00
+#
+name: Left
+brand: Nagra
+type: parsed
+protocol: NEC
+address: 08 00 00 00
+command: 13 00 00 00
+#
+name: Right
+brand: Nagra
+type: parsed
+protocol: NEC
+address: 08 00 00 00
+command: 14 00 00 00
+#
+name: Ok
+brand: Nagra
+type: parsed
+protocol: NEC
+address: 08 00 00 00
+command: 1D 00 00 00
+#
+name: Vol_up
+brand: Nagra
+type: parsed
+protocol: NEC
+address: 08 00 00 00
+command: 1F 00 00 00
+#
+name: Ch_next
+brand: Nagra
+type: parsed
+protocol: NEC
+address: 08 00 00 00
+command: 20 00 00 00
+#
+name: Fav
+brand: Nagra
+type: parsed
+protocol: NEC
+address: 08 00 00 00
+command: 28 00 00 00
+#
+name: Power
+brand: Open Box
+type: parsed
+protocol: NECext
+address: 80 FF 00 00
+command: 0A F5 00 00
+#
+name: Ch_next
+brand: Open Box
+type: parsed
+protocol: NECext
+address: 80 FF 00 00
+command: 00 FF 00 00
+#
+name: Up
+brand: Open Box
+type: parsed
+protocol: NECext
+address: 80 FF 00 00
+command: 00 FF 00 00
+#
+name: Ch_prev
+brand: Open Box
+type: parsed
+protocol: NECext
+address: 80 FF 00 00
+command: 01 FE 00 00
+#
+name: Down
+brand: Open Box
+type: parsed
+protocol: NECext
+address: 80 FF 00 00
+command: 01 FE 00 00
+#
+name: Vol_up
+brand: Open Box
+type: parsed
+protocol: NECext
+address: 80 FF 00 00
+command: 02 FD 00 00
+#
+name: Right
+brand: Open Box
+type: parsed
+protocol: NECext
+address: 80 FF 00 00
+command: 02 FD 00 00
+#
+name: Vol_dn
+brand: Open Box
+type: parsed
+protocol: NECext
+address: 80 FF 00 00
+command: 03 FC 00 00
+#
+name: Left
+brand: Open Box
+type: parsed
+protocol: NECext
+address: 80 FF 00 00
+command: 03 FC 00 00
+#
+name: Menu
+brand: Open Box
+type: parsed
+protocol: NECext
+address: 80 FF 00 00
+command: 04 FB 00 00
+#
+name: Red
+brand: Open Box
+type: parsed
+protocol: NECext
+address: 80 FF 00 00
+command: 05 FA 00 00
+#
+name: Play
+brand: Open Box
+type: parsed
+protocol: NECext
+address: 80 FF 00 00
+command: 07 F8 00 00
+#
+name: Green
+brand: Open Box
+type: parsed
+protocol: NECext
+address: 80 FF 00 00
+command: 09 F6 00 00
+#
+name: Mute
+brand: Open Box
+type: parsed
+protocol: NECext
+address: 80 FF 00 00
+command: 0D F2 00 00
+#
+name: Ffwd
+brand: Open Box
+type: parsed
+protocol: NECext
+address: 80 FF 00 00
+command: 0E F1 00 00
+#
+name: 0
+brand: Open Box
+type: parsed
+protocol: NECext
+address: 80 FF 00 00
+command: 10 EF 00 00
+#
+name: 1
+brand: Open Box
+type: parsed
+protocol: NECext
+address: 80 FF 00 00
+command: 11 EE 00 00
+#
+name: 2
+brand: Open Box
+type: parsed
+protocol: NECext
+address: 80 FF 00 00
+command: 12 ED 00 00
+#
+name: 3
+brand: Open Box
+type: parsed
+protocol: NECext
+address: 80 FF 00 00
+command: 13 EC 00 00
+#
+name: 4
+brand: Open Box
+type: parsed
+protocol: NECext
+address: 80 FF 00 00
+command: 14 EB 00 00
+#
+name: 5
+brand: Open Box
+type: parsed
+protocol: NECext
+address: 80 FF 00 00
+command: 15 EA 00 00
+#
+name: 6
+brand: Open Box
+type: parsed
+protocol: NECext
+address: 80 FF 00 00
+command: 16 E9 00 00
+#
+name: 7
+brand: Open Box
+type: parsed
+protocol: NECext
+address: 80 FF 00 00
+command: 17 E8 00 00
+#
+name: 8
+brand: Open Box
+type: parsed
+protocol: NECext
+address: 80 FF 00 00
+command: 18 E7 00 00
+#
+name: 9
+brand: Open Box
+type: parsed
+protocol: NECext
+address: 80 FF 00 00
+command: 19 E6 00 00
+#
+name: Exit
+brand: Open Box
+type: parsed
+protocol: NECext
+address: 80 FF 00 00
+command: 1B E4 00 00
+#
+name: Rew
+brand: Open Box
+type: parsed
+protocol: NECext
+address: 80 FF 00 00
+command: 1D E2 00 00
+#
+name: Info
+brand: Open Box
+type: parsed
+protocol: NECext
+address: 80 FF 00 00
+command: 1E E1 00 00
+#
+name: Ok
+brand: Open Box
+type: parsed
+protocol: NECext
+address: 80 FF 00 00
+command: 1F E0 00 00
+#
+name: Yellow
+brand: Open Box
+type: parsed
+protocol: NECext
+address: 80 FF 00 00
+command: 42 BD 00 00
+#
+name: Blue
+brand: Open Box
+type: parsed
+protocol: NECext
+address: 80 FF 00 00
+command: 43 BC 00 00
+#
+name: Audio
+brand: Open Box
+type: parsed
+protocol: NECext
+address: 80 FF 00 00
+command: 45 BA 00 00
+#
+name: Sleep
+brand: Open Box
+type: parsed
+protocol: NECext
+address: 80 FF 00 00
+command: 46 B9 00 00
+#
+name: Stop
+brand: Open Box
+type: parsed
+protocol: NECext
+address: 80 FF 00 00
+command: 5E A1 00 00
+#
+name: Power
+brand: orion
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 00 00 00 00
+#
+name: Vol_dn
+brand: orion
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 01 00 00 00
+#
+name: Ok
+brand: orion
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 02 00 00 00
+#
+name: 9
+brand: orion
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 03 00 00 00
+#
+name: Ch_next
+brand: orion
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 05 00 00 00
+#
+name: Vol_up
+brand: orion
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 06 00 00 00
+#
+name: 8
+brand: orion
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 07 00 00 00
+#
+name: Exit
+brand: orion
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 09 00 00 00
+#
+name: Ch_prev
+brand: orion
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 0A 00 00 00
+#
+name: 7
+brand: orion
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 0B 00 00 00
+#
+name: Mute
+brand: orion
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 0E 00 00 00
+#
+name: Fav
+brand: orion
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 10 00 00 00
+#
+name: Menu
+brand: orion
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 11 00 00 00
+#
+name: Audio
+brand: orion
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 12 00 00 00
+#
+name: 6
+brand: orion
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 13 00 00 00
+#
+name: Info
+brand: orion
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 15 00 00 00
+#
+name: 1
+brand: orion
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 16 00 00 00
+#
+name: 5
+brand: orion
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 17 00 00 00
+#
+name: 2
+brand: orion
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 1A 00 00 00
+#
+name: 4
+brand: orion
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 1B 00 00 00
+#
+name: 3
+brand: orion
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 1E 00 00 00
+#
+name: Sleep
+brand: orion
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 40 00 00 00
+#
+name: 0
+brand: orion
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 44 00 00 00
+#
+name: Source
+brand: orion
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 50 00 00 00
+#
+name: Power
+brand: Panasonic
+type: parsed
+protocol: Panasonic
+address: 80 02 00 00
+command: BD 00 00 00
+#
+name: 1
+brand: Panasonic
+type: parsed
+protocol: Panasonic
+address: 80 02 00 00
+command: A0 00 00 00
+#
+name: 2
+brand: Panasonic
+type: parsed
+protocol: Panasonic
+address: 80 02 00 00
+command: A1 00 00 00
+#
+name: 3
+brand: Panasonic
+type: parsed
+protocol: Panasonic
+address: 80 02 00 00
+command: A2 00 00 00
+#
+name: 4
+brand: Panasonic
+type: parsed
+protocol: Panasonic
+address: 80 02 00 00
+command: A3 00 00 00
+#
+name: 5
+brand: Panasonic
+type: parsed
+protocol: Panasonic
+address: 80 02 00 00
+command: A4 00 00 00
+#
+name: 6
+brand: Panasonic
+type: parsed
+protocol: Panasonic
+address: 80 02 00 00
+command: A5 00 00 00
+#
+name: 7
+brand: Panasonic
+type: parsed
+protocol: Panasonic
+address: 80 02 00 00
+command: A6 00 00 00
+#
+name: 8
+brand: Panasonic
+type: parsed
+protocol: Panasonic
+address: 80 02 00 00
+command: A7 00 00 00
+#
+name: 9
+brand: Panasonic
+type: parsed
+protocol: Panasonic
+address: 80 02 00 00
+command: A8 00 00 00
+#
+name: 0
+brand: Panasonic
+type: parsed
+protocol: Panasonic
+address: 80 02 00 00
+command: A9 00 00 00
+#
+name: Info
+brand: Panasonic
+type: parsed
+protocol: Panasonic
+address: 80 02 00 00
+command: B9 00 00 00
+#
+name: Ok
+brand: Panasonic
+type: parsed
+protocol: Panasonic
+address: 80 02 00 00
+command: C3 00 00 00
+#
+name: Guide
+brand: Panasonic
+type: parsed
+protocol: Panasonic
+address: 80 02 00 00
+command: C5 00 00 00
+#
+name: Exit
+brand: Panasonic
+type: parsed
+protocol: Panasonic
+address: 80 02 00 00
+command: C6 00 00 00
+#
+name: Ch_next
+brand: Panasonic
+type: parsed
+protocol: Panasonic
+address: 80 02 00 00
+command: CA 00 00 00
+#
+name: Up
+brand: Panasonic
+type: parsed
+protocol: Panasonic
+address: 80 02 00 00
+command: CA 00 00 00
+#
+name: Ch_prev
+brand: Panasonic
+type: parsed
+protocol: Panasonic
+address: 80 02 00 00
+command: CB 00 00 00
+#
+name: Down
+brand: Panasonic
+type: parsed
+protocol: Panasonic
+address: 80 02 00 00
+command: CB 00 00 00
+#
+name: Left
+brand: Panasonic
+type: parsed
+protocol: Panasonic
+address: 80 02 00 00
+command: CD 00 00 00
+#
+name: Right
+brand: Panasonic
+type: parsed
+protocol: Panasonic
+address: 80 02 00 00
+command: CE 00 00 00
+#
+name: Power
+brand: Panasonic
+type: parsed
+protocol: Panasonic
+address: 80 00 00 00
+command: 3D 00 00 00
+#
+name: Sleep
+brand: Panasonic
+type: parsed
+protocol: Panasonic
+address: 80 00 00 00
+command: 0F 00 00 00
+#
+name: Vol_up
+brand: Panasonic
+type: parsed
+protocol: Panasonic
+address: 80 00 00 00
+command: 20 00 00 00
+#
+name: Vol_dn
+brand: Panasonic
+type: parsed
+protocol: Panasonic
+address: 80 00 00 00
+command: 21 00 00 00
+#
+name: Ch_next
+brand: Panasonic
+type: parsed
+protocol: Panasonic
+address: 80 00 00 00
+command: 34 00 00 00
+#
+name: Ch_prev
+brand: Panasonic
+type: parsed
+protocol: Panasonic
+address: 80 00 00 00
+command: 35 00 00 00
+#
+name: Up
+brand: Panasonic
+type: parsed
+protocol: Panasonic
+address: 80 00 00 00
+command: 4A 00 00 00
+#
+name: Down
+brand: Panasonic
+type: parsed
+protocol: Panasonic
+address: 80 00 00 00
+command: 4B 00 00 00
+#
+name: Left
+brand: Panasonic
+type: parsed
+protocol: Panasonic
+address: 80 00 00 00
+command: 4E 00 00 00
+#
+name: Right
+brand: Panasonic
+type: parsed
+protocol: Panasonic
+address: 80 00 00 00
+command: 4F 00 00 00
+#
+name: Menu
+brand: Panasonic
+type: parsed
+protocol: Panasonic
+address: 80 00 00 00
+command: 52 00 00 00
+#
+name: Exit
+brand: Panasonic
+type: parsed
+protocol: Panasonic
+address: 80 00 00 00
+command: D3 00 00 00
+#
+name: Back
+brand: Panasonic
+type: parsed
+protocol: Panasonic
+address: 80 00 00 00
+command: D4 00 00 00
+#
+name: Power
+brand: PixelView
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 1E E1 00 00
+#
+name: 1
+brand: PixelView
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 01 FE 00 00
+#
+name: 0
+brand: PixelView
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 02 FD 00 00
+#
+name: 4
+brand: PixelView
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 05 FA 00 00
+#
+name: 7
+brand: PixelView
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 06 F9 00 00
+#
+name: Play
+brand: PixelView
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 08 F7 00 00
+#
+name: 5
+brand: PixelView
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 09 F6 00 00
+#
+name: 8
+brand: PixelView
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 0A F5 00 00
+#
+name: 2
+brand: PixelView
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 0B F4 00 00
+#
+name: 9
+brand: PixelView
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 12 ED 00 00
+#
+name: Ch_prev
+brand: PixelView
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 14 EB 00 00
+#
+name: 6
+brand: PixelView
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 15 EA 00 00
+#
+name: Ch_next
+brand: PixelView
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 16 E9 00 00
+#
+name: Vol_dn
+brand: PixelView
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 17 E8 00 00
+#
+name: Mute
+brand: PixelView
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 18 E7 00 00
+#
+name: 3
+brand: PixelView
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 1B E4 00 00
+#
+name: Stop
+brand: PixelView
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 1D E2 00 00
+#
+name: Vol_up
+brand: PixelView
+type: parsed
+protocol: NECext
+address: 86 6B 00 00
+command: 1F E0 00 00
+#
+name: Power
+brand: Sony
+type: parsed
+protocol: SIRC
+address: 02 00 00 00
+command: 15 00 00 00
+#
+name: 1
+brand: Sony
+type: parsed
+protocol: SIRC
+address: 02 00 00 00
+command: 00 00 00 00
+#
+name: 2
+brand: Sony
+type: parsed
+protocol: SIRC
+address: 02 00 00 00
+command: 01 00 00 00
+#
+name: 3
+brand: Sony
+type: parsed
+protocol: SIRC
+address: 02 00 00 00
+command: 02 00 00 00
+#
+name: 4
+brand: Sony
+type: parsed
+protocol: SIRC
+address: 02 00 00 00
+command: 03 00 00 00
+#
+name: 5
+brand: Sony
+type: parsed
+protocol: SIRC
+address: 02 00 00 00
+command: 04 00 00 00
+#
+name: 6
+brand: Sony
+type: parsed
+protocol: SIRC
+address: 02 00 00 00
+command: 05 00 00 00
+#
+name: 7
+brand: Sony
+type: parsed
+protocol: SIRC
+address: 02 00 00 00
+command: 06 00 00 00
+#
+name: 8
+brand: Sony
+type: parsed
+protocol: SIRC
+address: 02 00 00 00
+command: 07 00 00 00
+#
+name: 9
+brand: Sony
+type: parsed
+protocol: SIRC
+address: 02 00 00 00
+command: 08 00 00 00
+#
+name: 0
+brand: Sony
+type: parsed
+protocol: SIRC
+address: 02 00 00 00
+command: 09 00 00 00
+#
+name: Ok
+brand: Sony
+type: parsed
+protocol: SIRC
+address: 02 00 00 00
+command: 0B 00 00 00
+#
+name: Ch_next
+brand: Sony
+type: parsed
+protocol: SIRC
+address: 02 00 00 00
+command: 10 00 00 00
+#
+name: Ch_prev
+brand: Sony
+type: parsed
+protocol: SIRC
+address: 02 00 00 00
+command: 11 00 00 00
+#
+name: Vol_up
+brand: Sony
+type: parsed
+protocol: SIRC
+address: 02 00 00 00
+command: 12 00 00 00
+#
+name: Vol_dn
+brand: Sony
+type: parsed
+protocol: SIRC
+address: 02 00 00 00
+command: 13 00 00 00
+#
+name: Stop
+brand: Sony
+type: parsed
+protocol: SIRC
+address: 02 00 00 00
+command: 18 00 00 00
+#
+name: Play
+brand: Sony
+type: parsed
+protocol: SIRC
+address: 02 00 00 00
+command: 1A 00 00 00
+#
+name: Sleep
+brand: Sony
+type: parsed
+protocol: SIRC
+address: 02 00 00 00
+command: 36 00 00 00
+#
+name: Up
+brand: Sony
+type: parsed
+protocol: SIRC
+address: 02 00 00 00
+command: 42 00 00 00
+#
+name: Down
+brand: Sony
+type: parsed
+protocol: SIRC
+address: 02 00 00 00
+command: 43 00 00 00
+#
+name: Menu
+brand: Sony
+type: parsed
+protocol: SIRC
+address: 02 00 00 00
+command: 4D 00 00 00
+#
+name: Info
+brand: Sony
+type: parsed
+protocol: SIRC
+address: 02 00 00 00
+command: 60 00 00 00
+#
+name: Right
+brand: Sony
+type: parsed
+protocol: SIRC
+address: 02 00 00 00
+command: 61 00 00 00
+#
+name: Left
+brand: Sony
+type: parsed
+protocol: SIRC
+address: 02 00 00 00
+command: 62 00 00 00
+#
+name: Power
+brand: Supportplus
+type: parsed
+protocol: RC5
+address: 0A 00 00 00
+command: 0C 00 00 00
+#
+name: 0
+brand: Supportplus
+type: parsed
+protocol: RC5
+address: 0A 00 00 00
+command: 00 00 00 00
+#
+name: 1
+brand: Supportplus
+type: parsed
+protocol: RC5
+address: 0A 00 00 00
+command: 01 00 00 00
+#
+name: 2
+brand: Supportplus
+type: parsed
+protocol: RC5
+address: 0A 00 00 00
+command: 02 00 00 00
+#
+name: 3
+brand: Supportplus
+type: parsed
+protocol: RC5
+address: 0A 00 00 00
+command: 03 00 00 00
+#
+name: 4
+brand: Supportplus
+type: parsed
+protocol: RC5
+address: 0A 00 00 00
+command: 04 00 00 00
+#
+name: 5
+brand: Supportplus
+type: parsed
+protocol: RC5
+address: 0A 00 00 00
+command: 05 00 00 00
+#
+name: 6
+brand: Supportplus
+type: parsed
+protocol: RC5
+address: 0A 00 00 00
+command: 06 00 00 00
+#
+name: 7
+brand: Supportplus
+type: parsed
+protocol: RC5
+address: 0A 00 00 00
+command: 07 00 00 00
+#
+name: 8
+brand: Supportplus
+type: parsed
+protocol: RC5
+address: 0A 00 00 00
+command: 08 00 00 00
+#
+name: 9
+brand: Supportplus
+type: parsed
+protocol: RC5
+address: 0A 00 00 00
+command: 09 00 00 00
+#
+name: Rew
+brand: Supportplus
+type: parsed
+protocol: RC5
+address: 0A 00 00 00
+command: 0B 00 00 00
+#
+name: Blue
+brand: Supportplus
+type: parsed
+protocol: RC5
+address: 0A 00 00 00
+command: 0F 00 00 00
+#
+name: Vol_up
+brand: Supportplus
+type: parsed
+protocol: RC5
+address: 0A 00 00 00
+command: 10 00 00 00
+#
+name: Vol_dn
+brand: Supportplus
+type: parsed
+protocol: RC5
+address: 0A 00 00 00
+command: 11 00 00 00
+#
+name: Ch_next
+brand: Supportplus
+type: parsed
+protocol: RC5
+address: 0A 00 00 00
+command: 20 00 00 00
+#
+name: Ch_prev
+brand: Supportplus
+type: parsed
+protocol: RC5
+address: 0A 00 00 00
+command: 21 00 00 00
+#
+name: Exit
+brand: Supportplus
+type: parsed
+protocol: RC5
+address: 0A 00 00 00
+command: 28 00 00 00
+#
+name: Green
+brand: Supportplus
+type: parsed
+protocol: RC5
+address: 0A 00 00 00
+command: 2F 00 00 00
+#
+name: Mute
+brand: Supportplus
+type: parsed
+protocol: RC5X
+address: 0A 00 00 00
+command: 46 00 00 00
+#
+name: Play
+brand: Supportplus
+type: parsed
+protocol: RC5X
+address: 0A 00 00 00
+command: 4F 00 00 00
+#
+name: Up
+brand: Supportplus
+type: parsed
+protocol: RC5X
+address: 0A 00 00 00
+command: 50 00 00 00
+#
+name: Down
+brand: Supportplus
+type: parsed
+protocol: RC5X
+address: 0A 00 00 00
+command: 51 00 00 00
+#
+name: Red
+brand: Supportplus
+type: parsed
+protocol: RC5X
+address: 0A 00 00 00
+command: 52 00 00 00
+#
+name: Left
+brand: Supportplus
+type: parsed
+protocol: RC5X
+address: 0A 00 00 00
+command: 55 00 00 00
+#
+name: Right
+brand: Supportplus
+type: parsed
+protocol: RC5X
+address: 0A 00 00 00
+command: 56 00 00 00
+#
+name: Ok
+brand: Supportplus
+type: parsed
+protocol: RC5X
+address: 0A 00 00 00
+command: 57 00 00 00
+#
+name: Menu
+brand: Supportplus
+type: parsed
+protocol: RC5X
+address: 0A 00 00 00
+command: 6A 00 00 00
+#
+name: Stop
+brand: Supportplus
+type: parsed
+protocol: RC5X
+address: 0A 00 00 00
+command: 6C 00 00 00
+#
+name: Yellow
+brand: Supportplus
+type: parsed
+protocol: RC5X
+address: 0A 00 00 00
+command: 70 00 00 00
+#
+name: Power
+brand: Syntax-Brillian
+type: parsed
+protocol: NECext
+address: 04 B9 00 00
+command: 00 FF 00 00
+#
+name: Vol_up
+brand: Syntax-Brillian
+type: parsed
+protocol: NECext
+address: 04 B9 00 00
+command: 16 E9 00 00
+#
+name: Vol_dn
+brand: Syntax-Brillian
+type: parsed
+protocol: NECext
+address: 04 B9 00 00
+command: 17 E8 00 00
+#
+name: Mute
+brand: Syntax-Brillian
+type: parsed
+protocol: NECext
+address: 04 B9 00 00
+command: 1A E5 00 00
+#
+name: Ch_next
+brand: Syntax-Brillian
+type: parsed
+protocol: NECext
+address: 04 B9 00 00
+command: 14 EB 00 00
+#
+name: Ch_prev
+brand: Syntax-Brillian
+type: parsed
+protocol: NECext
+address: 04 B9 00 00
+command: 15 EA 00 00
+#
+name: Ok
+brand: Syntax-Brillian
+type: parsed
+protocol: NECext
+address: 04 B9 00 00
+command: 1C E3 00 00
+#
+name: Up
+brand: Syntax-Brillian
+type: parsed
+protocol: NECext
+address: 04 B9 00 00
+command: 10 EF 00 00
+#
+name: Down
+brand: Syntax-Brillian
+type: parsed
+protocol: NECext
+address: 04 B9 00 00
+command: 11 EE 00 00
+#
+name: Left
+brand: Syntax-Brillian
+type: parsed
+protocol: NECext
+address: 04 B9 00 00
+command: 12 ED 00 00
+#
+name: Right
+brand: Syntax-Brillian
+type: parsed
+protocol: NECext
+address: 04 B9 00 00
+command: 13 EC 00 00
+#
+name: Menu
+brand: Syntax-Brillian
+type: parsed
+protocol: NECext
+address: 04 B9 00 00
+command: 1B E4 00 00
+#
+name: Exit
+brand: Syntax-Brillian
+type: parsed
+protocol: NECext
+address: 04 B9 00 00
+command: 18 E7 00 00
+#
+name: Source
+brand: Syntax-Brillian
+type: parsed
+protocol: NECext
+address: 04 B9 00 00
+command: 1D E2 00 00
+#
+name: Power
+brand: Tevion
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 1C 00 00 00
+#
+name: Vol_up
+brand: Tevion
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 4B 00 00 00
+#
+name: Vol_dn
+brand: Tevion
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 4F 00 00 00
+#
+name: Mute
+brand: Tevion
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 08 00 00 00
+#
+name: Ch_next
+brand: Tevion
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 09 00 00 00
+#
+name: Ok
+brand: Tevion
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 06 00 00 00
+#
+name: Up
+brand: Tevion
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 1A 00 00 00
+#
+name: Down
+brand: Tevion
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 48 00 00 00
+#
+name: Left
+brand: Tevion
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 47 00 00 00
+#
+name: Right
+brand: Tevion
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 07 00 00 00
+#
+name: Menu
+brand: Tevion
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 18 00 00 00
+#
+name: Back
+brand: Tevion
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 49 00 00 00
+#
+name: Source
+brand: Tevion
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 17 00 00 00
+#
+name: Exit
+brand: Tevion
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 0A 00 00 00
+#
+name: Power
+brand: Twinhan
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 16 00 00 00
+#
+name: 2
+brand: Twinhan
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 01 00 00 00
+#
+name: Ch_prev
+brand: Twinhan
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 02 00 00 00
+#
+name: 1
+brand: Twinhan
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 03 00 00 00
+#
+name: Ch_next
+brand: Twinhan
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 05 00 00 00
+#
+name: 3
+brand: Twinhan
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 06 00 00 00
+#
+name: 4
+brand: Twinhan
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 09 00 00 00
+#
+name: Vol_dn
+brand: Twinhan
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 0A 00 00 00
+#
+name: 7
+brand: Twinhan
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 0D 00 00 00
+#
+name: Return
+brand: Twinhan
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 0E 00 00 00
+#
+name: Mute
+brand: Twinhan
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 10 00 00 00
+#
+name: Play
+brand: Twinhan
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 14 00 00 00
+#
+name: 0
+brand: Twinhan
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 15 00 00 00
+#
+name: Fav
+brand: Twinhan
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 17 00 00 00
+#
+name: 8
+brand: Twinhan
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 19 00 00 00
+#
+name: Stop
+brand: Twinhan
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 1A 00 00 00
+#
+name: 9
+brand: Twinhan
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 1B 00 00 00
+#
+name: Guide
+brand: Twinhan
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 1C 00 00 00
+#
+name: 5
+brand: Twinhan
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 1D 00 00 00
+#
+name: Vol_up
+brand: Twinhan
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 1E 00 00 00
+#
+name: 6
+brand: Twinhan
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 1F 00 00 00
+#
+name: Rew
+brand: Twinhan
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 40 00 00 00
+#
+name: Power
+brand: WD
+type: parsed
+protocol: NECext
+address: 84 79 00 00
+command: 12 ED 00 00
+#
+name: Down
+brand: WD
+type: parsed
+protocol: NECext
+address: 84 79 00 00
+command: 00 FF 00 00
+#
+name: Stop
+brand: WD
+type: parsed
+protocol: NECext
+address: 84 79 00 00
+command: 04 FB 00 00
+#
+name: Up
+brand: WD
+type: parsed
+protocol: NECext
+address: 84 79 00 00
+command: 05 FA 00 00
+#
+name: Home
+brand: WD
+type: parsed
+protocol: NECext
+address: 84 79 00 00
+command: 06 F9 00 00
+#
+name: Left
+brand: WD
+type: parsed
+protocol: NECext
+address: 84 79 00 00
+command: 07 F8 00 00
+#
+name: Ok
+brand: WD
+type: parsed
+protocol: NECext
+address: 84 79 00 00
+command: 08 F7 00 00
+#
+name: Right
+brand: WD
+type: parsed
+protocol: NECext
+address: 84 79 00 00
+command: 09 F6 00 00
+#
+name: Play
+brand: WD
+type: parsed
+protocol: NECext
+address: 84 79 00 00
+command: 0A F5 00 00
+#
+name: Back
+brand: WD
+type: parsed
+protocol: NECext
+address: 84 79 00 00
+command: 1B E4 00 00
+#
+name: Ffwd
+brand: WD
+type: parsed
+protocol: NECext
+address: 84 79 00 00
+command: 1E E1 00 00
+#
+name: Rew
+brand: WD
+type: parsed
+protocol: NECext
+address: 84 79 00 00
+command: 1F E0 00 00
+#
+name: Power
+brand: Yuan
+type: parsed
+protocol: NEC
+address: 80 00 00 00
+command: 03 00 00 00
+#
+name: Mute
+brand: Yuan
+type: parsed
+protocol: NEC
+address: 80 00 00 00
+command: 00 00 00 00
+#
+name: 1
+brand: Yuan
+type: parsed
+protocol: NEC
+address: 80 00 00 00
+command: 04 00 00 00
+#
+name: 2
+brand: Yuan
+type: parsed
+protocol: NEC
+address: 80 00 00 00
+command: 05 00 00 00
+#
+name: 3
+brand: Yuan
+type: parsed
+protocol: NEC
+address: 80 00 00 00
+command: 06 00 00 00
+#
+name: Vol_up
+brand: Yuan
+type: parsed
+protocol: NEC
+address: 80 00 00 00
+command: 07 00 00 00
+#
+name: 4
+brand: Yuan
+type: parsed
+protocol: NEC
+address: 80 00 00 00
+command: 08 00 00 00
+#
+name: 5
+brand: Yuan
+type: parsed
+protocol: NEC
+address: 80 00 00 00
+command: 09 00 00 00
+#
+name: 6
+brand: Yuan
+type: parsed
+protocol: NEC
+address: 80 00 00 00
+command: 0A 00 00 00
+#
+name: Vol_dn
+brand: Yuan
+type: parsed
+protocol: NEC
+address: 80 00 00 00
+command: 0B 00 00 00
+#
+name: 7
+brand: Yuan
+type: parsed
+protocol: NEC
+address: 80 00 00 00
+command: 0C 00 00 00
+#
+name: 8
+brand: Yuan
+type: parsed
+protocol: NEC
+address: 80 00 00 00
+command: 0D 00 00 00
+#
+name: 9
+brand: Yuan
+type: parsed
+protocol: NEC
+address: 80 00 00 00
+command: 0E 00 00 00
+#
+name: Ch_next
+brand: Yuan
+type: parsed
+protocol: NEC
+address: 80 00 00 00
+command: 0F 00 00 00
+#
+name: Exit
+brand: Yuan
+type: parsed
+protocol: NEC
+address: 80 00 00 00
+command: 10 00 00 00
+#
+name: 0
+brand: Yuan
+type: parsed
+protocol: NEC
+address: 80 00 00 00
+command: 11 00 00 00
+#
+name: Ok
+brand: Yuan
+type: parsed
+protocol: NEC
+address: 80 00 00 00
+command: 12 00 00 00
+#
+name: Ch_prev
+brand: Yuan
+type: parsed
+protocol: NEC
+address: 80 00 00 00
+command: 13 00 00 00
+#
+name: Up
+brand: Yuan
+type: parsed
+protocol: NEC
+address: 80 00 00 00
+command: 15 00 00 00
+#
+name: Display
+brand: Yuan
+type: parsed
+protocol: NEC
+address: 80 00 00 00
+command: 17 00 00 00
+#
+name: Left
+brand: Yuan
+type: parsed
+protocol: NEC
+address: 80 00 00 00
+command: 18 00 00 00
+#
+name: Menu
+brand: Yuan
+type: parsed
+protocol: NEC
+address: 80 00 00 00
+command: 19 00 00 00
+#
+name: Right
+brand: Yuan
+type: parsed
+protocol: NEC
+address: 80 00 00 00
+command: 1A 00 00 00
+#
+name: Down
+brand: Yuan
+type: parsed
+protocol: NEC
+address: 80 00 00 00
+command: 1D 00 00 00
+#
+name: Stop
+brand: Yuan
+type: parsed
+protocol: NEC
+address: 80 00 00 00
+command: 44 00 00 00
+#
+name: Play
+brand: Yuan
+type: parsed
+protocol: NEC
+address: 80 00 00 00
+command: 46 00 00 00

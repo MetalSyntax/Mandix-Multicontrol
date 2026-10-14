@@ -26,33 +26,26 @@ class MainActivity : AppCompatActivity() {
     private lateinit var prefs: SharedPreferences
     private var vibrator: Vibrator? = null
 
-    // Perfil y configuración activa
-    private var activeAddress: Int = 0x00
-    private var activeAddressHigh: Int? = 0xBF
-    private var activeFrequency: Int = 38000
-    private var activeBrandName: String = "Placa China CX-507 (014)"
-    private var cmdPower: Int = RemoteConstants.CMD_POWER
-    private var cmdVolUp: Int = RemoteConstants.CMD_VOL_UP
-    private var cmdVolDown: Int = RemoteConstants.CMD_VOL_DOWN
-    private var cmdChUp: Int = RemoteConstants.CMD_CH_UP
-    private var cmdChDown: Int = RemoteConstants.CMD_CH_DOWN
-    private var cmdMute: Int = RemoteConstants.CMD_MUTE
+    // Código activo (marca del manual, código de la librería universal o dirección NEC barrida)
+    private lateinit var profile: RemoteProfile
+    // 0 = AUTO: cada protocolo usa su portadora (NEC 38k, Sony 40k, Philips 36k...)
+    private var freqOverride: Int = 0
 
     // Variables de Auto-Scan
     private var scanJob: Job? = null
     private var isScanning = false
     private var isScanPaused = false
-    private var scanCurrentAddress = 0x00
-    private var scanFrequency = 38000
-    // Último perfil completo visto durante el barrido modo 2 (para Guardar con addressHigh y comandos reales)
-    private var scanLastProfile: RemoteProfile? = null
+    private var scanIndex = 0
     // Pulsación larga (mantener VOL/CH repite como el mando físico)
     private var holdJob: Job? = null
+
+    private val freqValues = intArrayOf(0, 36000, 38000, 40000, 56000)
+    private fun freqLabels() = listOf(getString(R.string.freq_auto)) + freqValues.drop(1).map { "${it / 1000} kHz" }
 
     /** Nombre real del equipo donde corre la app (nunca hardcodeado). */
     private fun deviceName(): String {
         val manu = Build.MANUFACTURER?.replaceFirstChar { it.uppercase() } ?: ""
-        val model = Build.MODEL ?: "Equipo desconocido"
+        val model = Build.MODEL ?: getString(R.string.unknown_device)
         return if (model.startsWith(manu, ignoreCase = true)) model else "$manu $model".trim()
     }
 
@@ -62,7 +55,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(binding.root)
 
         irHelper = IrManagerHelper(this)
-        prefs = getSharedPreferences("rm014s_prefs_v3", Context.MODE_PRIVATE)
+        prefs = getSharedPreferences("rm014s_prefs_v4", Context.MODE_PRIVATE)
 
         // Configuración moderna de Vibrator según la versión de Android del equipo en uso
         vibrator = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
@@ -74,72 +67,36 @@ class MainActivity : AppCompatActivity() {
         }
 
         loadSavedSettings()
-        // La portadora del RM-014S+ es fija a 38 kHz: si el perfil guardado trae
-        // otra (p. ej. cargó un preset Sony/Philips), se respeta solo ese perfil;
-        // el selector principal permite volver a 38 kHz en un toque.
         updateDisplayScreen()
         setupMainFrequencySelector()
         setupButtonListeners()
         checkIrHardware()
     }
 
-    /** Aviso si este equipo no tiene emisor IR o su rango no incluye 38 kHz. */
+    /** Aviso si este equipo no tiene emisor IR. */
     private fun checkIrHardware() {
         binding.tvDeviceName.text = deviceName()
         if (!irHelper.hasIrEmitter) {
-            Toast.makeText(
-                this,
-                "Este equipo (${deviceName()}) no tiene emisor infrarrojo: no podrá emitir. Verifica con la cámara de otro celular.",
-                Toast.LENGTH_LONG
-            ).show()
+            Toast.makeText(this, getString(R.string.toast_no_ir, deviceName()), Toast.LENGTH_LONG).show()
         }
     }
 
-    /**
-     * Selector de frecuencia portadora en la pantalla principal.
-     * Por defecto y como fija del RM-014S+: 38 kHz.
-     * Las demás solo son diagnóstico (Sony 40k / Philips 36k / RCA 56k):
-     * si el hardware no las soporta, se avisa y se sigue intentando igual.
-     */
+    /** Selector de portadora: AUTO (por protocolo) o forzada para diagnóstico. */
     private fun setupMainFrequencySelector() {
-        val options = listOf(
-            "38 kHz — FIJA RM-014S+ (NEC)",
-            "36 kHz — Philips / RC-5",
-            "40 kHz — Sony / SIRC",
-            "56 kHz — RCA / Thomson"
-        )
         binding.spinnerMainFreq.adapter =
-            ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, options)
-        binding.spinnerMainFreq.setSelection(
-            when (activeFrequency) {
-                36000 -> 1
-                40000 -> 2
-                56000 -> 3
-                else -> 0
-            },
-            false
-        )
+            ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, freqLabels())
+        binding.spinnerMainFreq.setSelection(freqValues.indexOf(freqOverride).coerceAtLeast(0), false)
         binding.spinnerMainFreq.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>?, view: View?, position: Int, id: Long) {
-                val freq = when (position) {
-                    1 -> 36000
-                    2 -> 40000
-                    3 -> 56000
-                    else -> 38000
-                }
-                if (freq != activeFrequency) {
-                    activeFrequency = freq
-                    prefs.edit().putInt("active_frequency", activeFrequency).apply()
-                    updateDisplayScreen()
-                    if (!irHelper.isFrequencySupported(freq)) {
-                        Toast.makeText(
-                            this@MainActivity,
-                            "Ojo: ${deviceName()} declara ${irHelper.getHardwareInfo()}; $freq Hz puede no emitirse. 38 kHz es la fija del RM-014S+.",
-                            Toast.LENGTH_LONG
-                        ).show()
-                    } else {
-                        Toast.makeText(this@MainActivity, "Frecuencia: ${freq / 1000} kHz", Toast.LENGTH_SHORT).show()
-                    }
+                val freq = freqValues[position]
+                if (freq == freqOverride) return
+                freqOverride = freq
+                prefs.edit().putInt("freq_override", freqOverride).apply()
+                updateDisplayScreen()
+                if (freq > 0 && !irHelper.isFrequencySupported(freq)) {
+                    Toast.makeText(this@MainActivity,
+                        getString(R.string.toast_freq_unsupported, deviceName(), irHelper.getHardwareInfo(this@MainActivity), freq / 1000),
+                        Toast.LENGTH_LONG).show()
                 }
             }
             override fun onNothingSelected(parent: AdapterView<*>?) {}
@@ -147,63 +104,28 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun loadSavedSettings() {
-        activeAddress = prefs.getInt("active_address", 0x00)
-        val high = prefs.getInt("active_address_high", -1)
-        activeAddressHigh = if (high != -1) high else null
-        activeFrequency = prefs.getInt("active_frequency", 38000)
-        activeBrandName = prefs.getString("active_brand_name", "Placa China CX-507 (014)") ?: "Placa China CX-507 (014)"
-
-        cmdPower = prefs.getInt("cmd_power", RemoteConstants.CMD_POWER)
-        cmdVolUp = prefs.getInt("cmd_vol_up", RemoteConstants.CMD_VOL_UP)
-        cmdVolDown = prefs.getInt("cmd_vol_down", RemoteConstants.CMD_VOL_DOWN)
-        cmdChUp = prefs.getInt("cmd_ch_up", RemoteConstants.CMD_CH_UP)
-        cmdChDown = prefs.getInt("cmd_ch_down", RemoteConstants.CMD_CH_DOWN)
-        cmdMute = prefs.getInt("cmd_mute", RemoteConstants.CMD_MUTE)
+        freqOverride = prefs.getInt("freq_override", 0)
+        profile = prefs.getString("remote_id", null)?.let { RemoteLibrary.find(this, it) }
+            ?: RemoteConstants.PROFILES.first()
     }
 
-    private fun saveProfile(profile: RemoteProfile) {
-        activeAddress = profile.address
-        activeAddressHigh = profile.addressHigh
-        activeFrequency = profile.frequency
-        activeBrandName = profile.name
-
-        cmdPower = profile.cmdPower
-        cmdVolUp = profile.cmdVolUp
-        cmdVolDown = profile.cmdVolDown
-        cmdChUp = profile.cmdChUp
-        cmdChDown = profile.cmdChDown
-        cmdMute = profile.cmdMute
-
-        prefs.edit()
-            .putInt("active_address", activeAddress)
-            .putInt("active_address_high", activeAddressHigh ?: -1)
-            .putInt("active_frequency", activeFrequency)
-            .putString("active_brand_name", activeBrandName)
-            .putInt("cmd_power", cmdPower)
-            .putInt("cmd_vol_up", cmdVolUp)
-            .putInt("cmd_vol_down", cmdVolDown)
-            .putInt("cmd_ch_up", cmdChUp)
-            .putInt("cmd_ch_down", cmdChDown)
-            .putInt("cmd_mute", cmdMute)
-            .apply()
-
+    private fun saveProfile(p: RemoteProfile) {
+        profile = p
+        prefs.edit().putString("remote_id", p.id).apply()
         updateDisplayScreen()
         flashLedThreeTimes()
     }
 
+    private fun effectiveFrequency(p: RemoteProfile = profile) = if (freqOverride > 0) freqOverride else p.frequency
+
     private fun updateDisplayScreen() {
-        val freqKhz = activeFrequency / 1000
-        binding.tvDisplayFrequency.text = if (activeFrequency == 38000) "38 kHz FIJA" else "$freqKhz kHz"
-        binding.tvActiveProfileName.text = "$activeBrandName • ${freqKhz}kHz"
-        // Mantiene el selector principal sincronizado (p. ej. tras cargar un preset o calibrar)
-        val pos = when (activeFrequency) {
-            36000 -> 1
-            40000 -> 2
-            56000 -> 3
-            else -> 0
-        }
-        if (::binding.isInitialized && binding.spinnerMainFreq.selectedItemPosition != pos) {
-            binding.spinnerMainFreq.setSelection(pos, false)
+        val khz = effectiveFrequency() / 1000.0
+        val khzText = if (khz % 1.0 == 0.0) "${khz.toInt()}" else "%.1f".format(khz)
+        binding.tvDisplayFrequency.text = if (freqOverride > 0) "$khzText kHz" else "$khzText kHz AUTO"
+        binding.tvActiveProfileName.text = "${profile.codeNumber} • ${profile.name}"
+        if (::binding.isInitialized && binding.spinnerMainFreq.adapter != null) {
+            val pos = freqValues.indexOf(freqOverride).coerceAtLeast(0)
+            if (binding.spinnerMainFreq.selectedItemPosition != pos) binding.spinnerMainFreq.setSelection(pos, false)
         }
     }
 
@@ -211,13 +133,10 @@ class MainActivity : AppCompatActivity() {
      * Feedback Háptico Realista: simula la resistencia mecánica y clic de un control físico
      */
     private fun triggerMechanicalFeedback(view: View? = null) {
-        // 1. Háptica directa de la vista
         view?.performHapticFeedback(
             HapticFeedbackConstants.VIRTUAL_KEY,
             HapticFeedbackConstants.FLAG_IGNORE_GLOBAL_SETTING
         )
-
-        // 2. Vibración háptica en el motor del dispositivo
         try {
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 vibrator?.vibrate(VibrationEffect.createPredefined(VibrationEffect.EFFECT_CLICK))
@@ -229,7 +148,6 @@ class MainActivity : AppCompatActivity() {
             }
         } catch (_: Exception) {}
 
-        // 3. Destello visual en el LED virtual
         binding.viewLedIr.setBackgroundResource(R.drawable.led_indicator_active)
         binding.viewLedIr.postDelayed({
             binding.viewLedIr.setBackgroundResource(R.drawable.led_indicator)
@@ -247,46 +165,35 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    private fun sendCommand(command: Int, view: View? = null) {
+    private fun sendKey(key: String, view: View? = null) {
         triggerMechanicalFeedback(view)
+        val signal = profile.signal(key)
+        if (signal == null) {
+            Toast.makeText(this, getString(R.string.toast_key_missing, profile.codeNumber), Toast.LENGTH_SHORT).show()
+            return
+        }
         lifecycleScope.launch {
-            val ok = irHelper.transmitNec(
-                address = activeAddress,
-                command = command,
-                frequency = activeFrequency,
-                addressHigh = activeAddressHigh,
-                doubleBurst = true
-            )
-            if (!ok) {
-                Toast.makeText(
-                    this@MainActivity,
-                    "No se pudo emitir IR en ${deviceName()}. Revisa emisor y línea de vista.",
-                    Toast.LENGTH_SHORT
-                ).show()
+            if (!irHelper.transmit(signal, freqOverride)) {
+                Toast.makeText(this@MainActivity, getString(R.string.toast_tx_failed, deviceName()), Toast.LENGTH_SHORT).show()
             }
         }
     }
 
     /**
-     * Mantener presionado VOL±/CH±/POWER repite la trama como el mando físico
-     * (el RM-014S+ envía ráfagas continuas al mantener la tecla).
+     * Mantener presionado VOL±/CH± repite la tecla como el mando físico.
+     * (POWER y MUTE no se repiten: encenderían y apagarían en bucle.)
      */
-    private fun setupHoldRepeat(view: View, commandProvider: () -> Int) {
+    private fun setupHoldRepeat(view: View, key: String) {
         view.setOnTouchListener { v, event ->
             when (event.action) {
                 android.view.MotionEvent.ACTION_DOWN -> {
                     holdJob?.cancel()
                     holdJob = lifecycleScope.launch {
-                        // Espera típica antes de empezar a repetir
                         delay(450)
+                        val signal = profile.signal(key) ?: return@launch
                         while (true) {
-                            irHelper.transmitNecHold(
-                                address = activeAddress,
-                                command = commandProvider(),
-                                frequency = activeFrequency,
-                                addressHigh = activeAddressHigh,
-                                repeats = 2
-                            )
+                            irHelper.transmit(signal, freqOverride)
+                            delay(60)
                         }
                     }
                     v.isPressed = true
@@ -305,7 +212,6 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun setupButtonListeners() {
-        // Visor OLED y placa serigrafiada inferior
         binding.layoutOledScreen.setOnClickListener { v ->
             triggerMechanicalFeedback(v)
             showBrandSelectorDialog()
@@ -318,86 +224,41 @@ class MainActivity : AppCompatActivity() {
             triggerMechanicalFeedback(v)
             showManualDialog()
         }
-
-        // Botón SET Físico
         binding.btnSet.setOnClickListener { v ->
             triggerMechanicalFeedback(v)
             showAutoScanDialog()
         }
 
-        // 1. Cabecera (ImageButtons vectoriales)
-        binding.btnPower.setOnClickListener { v -> sendCommand(cmdPower, v) }
-        binding.btnMute.setOnClickListener { v -> sendCommand(cmdMute, v) }
-
-        // 2. Teclado Numérico
-        binding.btnNum1.setOnClickListener { v -> sendCommand(RemoteConstants.CMD_NUM_1, v) }
-        binding.btnNum2.setOnClickListener { v -> sendCommand(RemoteConstants.CMD_NUM_2, v) }
-        binding.btnNum3.setOnClickListener { v -> sendCommand(RemoteConstants.CMD_NUM_3, v) }
-        binding.btnNum4.setOnClickListener { v -> sendCommand(RemoteConstants.CMD_NUM_4, v) }
-        binding.btnNum5.setOnClickListener { v -> sendCommand(RemoteConstants.CMD_NUM_5, v) }
-        binding.btnNum6.setOnClickListener { v -> sendCommand(RemoteConstants.CMD_NUM_6, v) }
-        binding.btnNum7.setOnClickListener { v -> sendCommand(RemoteConstants.CMD_NUM_7, v) }
-        binding.btnNum8.setOnClickListener { v -> sendCommand(RemoteConstants.CMD_NUM_8, v) }
-        binding.btnNum9.setOnClickListener { v -> sendCommand(RemoteConstants.CMD_NUM_9, v) }
-        binding.btnNum0.setOnClickListener { v -> sendCommand(RemoteConstants.CMD_NUM_0, v) }
-        binding.btnChList.setOnClickListener { v -> sendCommand(RemoteConstants.CMD_CH_LIST, v) }
-        binding.btnReturn.setOnClickListener { v -> sendCommand(RemoteConstants.CMD_RETURN, v) }
-
-        // 3. Modos
-        binding.btnPMode.setOnClickListener { v -> sendCommand(RemoteConstants.CMD_P_MODE, v) }
-        binding.btnGuide.setOnClickListener { v -> sendCommand(RemoteConstants.CMD_GUIDE, v) }
-        binding.btnSMode.setOnClickListener { v -> sendCommand(RemoteConstants.CMD_S_MODE, v) }
-
-        // 4. Menú y Source
-        binding.btnMenu.setOnClickListener { v -> sendCommand(RemoteConstants.CMD_MENU, v) }
-        binding.btnSource.setOnClickListener { v -> sendCommand(RemoteConstants.CMD_SOURCE, v) }
-
-        // D-PAD
-        binding.btnUp.setOnClickListener { v -> sendCommand(RemoteConstants.CMD_UP, v) }
-        binding.btnDown.setOnClickListener { v -> sendCommand(RemoteConstants.CMD_DOWN, v) }
-        binding.btnLeft.setOnClickListener { v -> sendCommand(RemoteConstants.CMD_LEFT, v) }
-        binding.btnRight.setOnClickListener { v -> sendCommand(RemoteConstants.CMD_RIGHT, v) }
-        binding.btnOk.setOnClickListener { v -> sendCommand(RemoteConstants.CMD_OK, v) }
-
-        binding.btnBack.setOnClickListener { v -> sendCommand(RemoteConstants.CMD_BACK, v) }
-        binding.btnExit.setOnClickListener { v -> sendCommand(RemoteConstants.CMD_EXIT, v) }
-
-        // 5. Volumen y Canales
-        binding.btnVolUp.setOnClickListener { v -> sendCommand(cmdVolUp, v) }
-        binding.btnVolDown.setOnClickListener { v -> sendCommand(cmdVolDown, v) }
-        binding.btnChUp.setOnClickListener { v -> sendCommand(cmdChUp, v) }
-        binding.btnChDown.setOnClickListener { v -> sendCommand(cmdChDown, v) }
-        // Mantener presionado repite como el control físico
-        setupHoldRepeat(binding.btnVolUp) { cmdVolUp }
-        setupHoldRepeat(binding.btnVolDown) { cmdVolDown }
-        setupHoldRepeat(binding.btnChUp) { cmdChUp }
-        setupHoldRepeat(binding.btnChDown) { cmdChDown }
-        setupHoldRepeat(binding.btnPower) { cmdPower }
-        setupHoldRepeat(binding.btnMute) { cmdMute }
-
-        binding.btnDisplay.setOnClickListener { v -> sendCommand(RemoteConstants.CMD_DISPLAY, v) }
-        binding.btnSleep.setOnClickListener { v -> sendCommand(RemoteConstants.CMD_SLEEP, v) }
-
-        // 6. Multimedia
-        binding.btnFav.setOnClickListener { v -> sendCommand(RemoteConstants.CMD_FAV, v) }
-        binding.btnInfo.setOnClickListener { v -> sendCommand(RemoteConstants.CMD_INFO, v) }
-        binding.btnAudio.setOnClickListener { v -> sendCommand(RemoteConstants.CMD_AUDIO, v) }
-        binding.btnHome.setOnClickListener { v -> sendCommand(RemoteConstants.CMD_HOME, v) }
-
-        binding.btnRewind.setOnClickListener { v -> sendCommand(RemoteConstants.CMD_REWIND, v) }
-        binding.btnPlayPause.setOnClickListener { v -> sendCommand(RemoteConstants.CMD_PLAY_PAUSE, v) }
-        binding.btnStop.setOnClickListener { v -> sendCommand(RemoteConstants.CMD_STOP, v) }
-        binding.btnFastFwd.setOnClickListener { v -> sendCommand(RemoteConstants.CMD_FAST_FWD, v) }
-
-        // 7. Colores
-        binding.btnColorRed.setOnClickListener { v -> sendCommand(RemoteConstants.CMD_COLOR_RED, v) }
-        binding.btnColorGreen.setOnClickListener { v -> sendCommand(RemoteConstants.CMD_COLOR_GREEN, v) }
-        binding.btnColorYellow.setOnClickListener { v -> sendCommand(RemoteConstants.CMD_COLOR_YELLOW, v) }
-        binding.btnColorBlue.setOnClickListener { v -> sendCommand(RemoteConstants.CMD_COLOR_BLUE, v) }
+        val keys = mapOf(
+            binding.btnPower to "Power", binding.btnMute to "Mute",
+            binding.btnNum1 to "1", binding.btnNum2 to "2", binding.btnNum3 to "3",
+            binding.btnNum4 to "4", binding.btnNum5 to "5", binding.btnNum6 to "6",
+            binding.btnNum7 to "7", binding.btnNum8 to "8", binding.btnNum9 to "9",
+            binding.btnNum0 to "0", binding.btnChList to "Ch_list", binding.btnReturn to "Return",
+            binding.btnPMode to "P_mode", binding.btnGuide to "Guide", binding.btnSMode to "S_mode",
+            binding.btnMenu to "Menu", binding.btnSource to "Source",
+            binding.btnUp to "Up", binding.btnDown to "Down", binding.btnLeft to "Left",
+            binding.btnRight to "Right", binding.btnOk to "Ok",
+            binding.btnBack to "Back", binding.btnExit to "Exit",
+            binding.btnVolUp to "Vol_up", binding.btnVolDown to "Vol_dn",
+            binding.btnChUp to "Ch_next", binding.btnChDown to "Ch_prev",
+            binding.btnDisplay to "Display", binding.btnSleep to "Sleep",
+            binding.btnFav to "Fav", binding.btnInfo to "Info", binding.btnAudio to "Audio", binding.btnHome to "Home",
+            binding.btnRewind to "Rew", binding.btnPlayPause to "Play", binding.btnStop to "Stop", binding.btnFastFwd to "Ffwd",
+            binding.btnColorRed to "Red", binding.btnColorGreen to "Green",
+            binding.btnColorYellow to "Yellow", binding.btnColorBlue to "Blue"
+        )
+        keys.forEach { (view, key) -> view.setOnClickListener { v -> sendKey(key, v) } }
+        listOf(binding.btnVolUp, binding.btnVolDown, binding.btnChUp, binding.btnChDown)
+            .forEach { setupHoldRepeat(it, keys.getValue(it)) }
     }
 
+    /** Un paso del barrido: una o varias señales; [profile] null = lote de la búsqueda profunda (se refina). */
+    private class ScanCand(val code: String, val label: String, val signals: List<IrSignal>, val profile: RemoteProfile?)
+
     /**
-     * Diálogo de Búsqueda Automática con Spinners (Look & Feel del control)
+     * Búsqueda automática: como el RM-014S+ físico, recorre los códigos de su memoria
+     * (aquí la librería universal, cada uno en su protocolo real) hasta que la TV reacciona.
      */
     private fun showAutoScanDialog() {
         val dialog = Dialog(this)
@@ -420,232 +281,165 @@ class MainActivity : AppCompatActivity() {
         val btnTestVol = dialog.findViewById<Button>(R.id.btnTestVol)
         val btnCancelScan = dialog.findViewById<Button>(R.id.btnCancelScan)
         val tvHwInfo = dialog.findViewById<TextView>(R.id.tvScanHwInfo)
-        tvHwInfo.text = "Equipo: ${deviceName()} • IR: ${irHelper.getHardwareInfo()} • Fija RM-014S+: 38 kHz"
+        tvHwInfo.text = getString(R.string.scan_hw_info, deviceName(), irHelper.getHardwareInfo(this))
 
-        // 1. Configurar Spinner de Frecuencias (38 kHz fija del RM-014S+ por defecto)
-        val freqOptions = listOf(
-            "38 kHz — FIJA RM-014S+ (NEC, recomendada)",
-            "36 kHz — Philips / RC-5 (diagnóstico)",
-            "40 kHz — Sony / SIRC (diagnóstico)",
-            "56 kHz — RCA / Thomson (diagnóstico)"
-        )
-        val freqAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, freqOptions)
-        spinnerFreq.adapter = freqAdapter
-        when (activeFrequency) {
-            36000 -> spinnerFreq.setSelection(1)
-            40000 -> spinnerFreq.setSelection(2)
-            56000 -> spinnerFreq.setSelection(3)
-            else -> spinnerFreq.setSelection(0)
-        }
+        spinnerFreq.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, freqLabels())
+        spinnerFreq.setSelection(freqValues.indexOf(freqOverride).coerceAtLeast(0))
 
-        // 2. Configurar Spinner de Modos de Búsqueda
-        val modeOptions = listOf(
-            "1. Placas Chinas CX-507 / CV9203 / MStar (Rápido)",
-            "2. Códigos Oficiales Manual RM-014S+ (001 - 250)",
-            "3. Barrido Exhaustivo Total (0x00 a 0xFF)"
+        val library = RemoteLibrary.codes(this)
+        fun lib(list: List<RemoteProfile>, key: String) =
+            list.map { p -> ScanCand(p.codeNumber, p.name, listOf(p.signal(key) ?: p.base), p) }
+        val deep = RemoteLibrary.deepBatches(this)
+        // Cada modo = (etiqueta, candidatos, pausa tras cada paso en ms)
+        val modes = listOf(
+            Triple(getString(R.string.scan_mode_lib_power, library.size), lib(library, "Power"), 800L),
+            library.filter { it.keys.containsKey("Vol_dn") }.let { Triple(getString(R.string.scan_mode_lib_vol, it.size), lib(it, "Vol_dn"), 800L) },
+            Triple(getString(R.string.scan_mode_brands, RemoteConstants.PROFILES.size), lib(RemoteConstants.PROFILES, "Power"), 800L),
+            Triple(getString(R.string.scan_mode_deep, deep.size), deep.mapIndexed { i, b ->
+                val hex = if (b[0].protocol == "NEC") "%02X".format(b[0].address) else "%04X".format(b[0].address)
+                ScanCand("$hex", getString(R.string.scan_deep_batch, b[0].protocol, hex, b.size, if (i < deep.size / 3) 1 else 2), b, null)
+            }, 350L),
+            Triple(getString(R.string.scan_mode_nec), (0L..0xFFL).map { a ->
+                val p = RemoteLibrary.necSweep(a)
+                ScanCand(p.codeNumber, p.name, listOf(p.signal("Vol_up")!!, p.base.copy(command = 0x02)), p)
+            }, 350L)
         )
-        val modeAdapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, modeOptions)
-        spinnerMode.adapter = modeAdapter
+        val DEEP = 3
+        spinnerMode.adapter = ArrayAdapter(this, android.R.layout.simple_spinner_dropdown_item, modes.map { it.first })
 
         isScanning = false
         isScanPaused = false
-        scanCurrentAddress = 0x00
-        scanLastProfile = null
-        // La frecuencia de barrido parte de la seleccionada en pantalla (38 kHz fija por defecto)
-        scanFrequency = activeFrequency
+        scanIndex = 0
+        var mode = 0
+        var candidates = modes[0].second
+        var wait = modes[0].third
+        var refining = false
+        var scanFreq = freqOverride
 
-        // Botón Test Cámara
         btnTestCamera.setOnClickListener {
             triggerMechanicalFeedback(it)
-            Toast.makeText(this, "Emitiendo ráfaga... Mira el LED superior con la cámara de otro celular", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, R.string.toast_camera_test, Toast.LENGTH_LONG).show()
             lifecycleScope.launch {
-                val selectedFreq = when (spinnerFreq.selectedItemPosition) {
-                    1 -> 36000
-                    2 -> 40000
-                    3 -> 56000
-                    else -> 38000
-                }
-                irHelper.transmitCameraTestSignal(selectedFreq)
+                irHelper.transmitCameraTestSignal(freqValues[spinnerFreq.selectedItemPosition].takeIf { f -> f > 0 } ?: 38000)
             }
         }
+
+        fun current() = candidates[scanIndex.coerceIn(0, candidates.lastIndex)]
+        // La búsqueda profunda dura varios minutos: se recuerda dónde quedó
+        fun saveDeepPos() { if (mode == DEEP && !refining) prefs.edit().putInt("deep_pos", scanIndex).apply() }
 
         fun updateScanUI() {
-            val hex = String.format("0x%02X", scanCurrentAddress)
-            tvScanHex.text = hex
-            val freqKhz = scanFrequency / 1000
-            tvScanDetails.text = "Dir: $hex ($scanCurrentAddress/255) • ${freqKhz}kHz • Pulso: VOL+ (x2)"
-            progressBar.progress = scanCurrentAddress
+            val c = current()
+            val sig = c.signals[0]
+            val khz = (if (scanFreq > 0) scanFreq else IrCodec.encode(sig).frequency) / 1000
+            tvScanHex.text = c.code
+            tvScanDetails.text = getString(R.string.scan_details, scanIndex + 1, candidates.size, c.label, sig.describe(), khz)
+            progressBar.progress = scanIndex + 1
         }
 
-        // Iniciar el escaneo según la selección
-        btnStartScan.setOnClickListener {
-            triggerMechanicalFeedback(it)
-            scanFrequency = when (spinnerFreq.selectedItemPosition) {
-                1 -> 36000
-                2 -> 40000
-                3 -> 56000
-                else -> 38000
-            }
-            val scanMode = spinnerMode.selectedItemPosition
+        /** Emite el paso actual (mismo protocolo que usará al guardarlo). */
+        suspend fun fireCurrent() {
+            val c = current()
+            c.signals.forEach { irHelper.transmit(it, scanFreq, firstFrameOnly = c.profile == null) }
+        }
 
+        fun runScan(startAt: Int) {
+            scanIndex = startAt.coerceIn(0, candidates.lastIndex)
+            progressBar.max = candidates.size
             isScanning = true
             isScanPaused = false
             btnStartScan.isEnabled = false
-            tvScanStatus.text = "Buscando... Apunta al televisor"
-
+            btnPauseResume.text = getString(R.string.btn_pause)
+            tvScanStatus.text = getString(if (refining) R.string.scan_refining else R.string.scan_searching)
             scanJob?.cancel()
             scanJob = lifecycleScope.launch {
-                if (!irHelper.hasIrEmitter) {
-                    tvScanStatus.text = "Este equipo (${deviceName()}) no tiene emisor IR"
-                    Toast.makeText(this@MainActivity, "Sin emisor IR en ${deviceName()}: el barrido no puede emitir.", Toast.LENGTH_LONG).show()
-                    isScanning = false
-                    btnStartScan.isEnabled = true
-                    return@launch
+                while (isScanning && scanIndex < candidates.size) {
+                    while (isScanPaused) delay(100)
+                    updateScanUI()
+                    triggerMechanicalFeedback()
+                    fireCurrent()
+                    delay(wait)
+                    if (!isScanPaused) { scanIndex++; if (scanIndex % 10 == 0) saveDeepPos() }
                 }
-                if (!irHelper.isFrequencySupported(scanFrequency)) {
-                    Toast.makeText(
-                        this@MainActivity,
-                        "${deviceName()} declara ${irHelper.getHardwareInfo()}: se barre a ${scanFrequency / 1000}kHz igual, pero si no responde vuelve a 38 kHz.",
-                        Toast.LENGTH_LONG
-                    ).show()
-                }
-                if (scanMode == 0) {
-                    // MODO 1: Placas Chinas OEM (CX-507, CV9203, MStar) — todo a la frecuencia elegida (38 kHz fija)
-                    // Se prueban varios VOL+ candidatos por dirección porque cada placa usa un comando distinto.
-                    val oemAddresses = intArrayOf(
-                        0x00, 0x04, 0x40, 0x08, 0x80, 0x20, 0x01, 0x02, 0xBF, 0xEF, 0x7F, 0x55, 0x50, 0x1F, 0x0E, 0x41
-                    )
-                    val volCandidates = intArrayOf(
-                        RemoteConstants.CMD_VOL_UP, 0x02, 0x44, 0x46
-                    )
-                    for (addr in oemAddresses) {
-                        if (!isScanning) break
-                        while (isScanPaused) delay(100)
-
-                        scanCurrentAddress = addr
-                        scanLastProfile = null
-                        updateScanUI()
-                        triggerMechanicalFeedback()
-
-                        for (cmd in volCandidates) {
-                            if (!isScanning || isScanPaused) break
-                            tvScanDetails.text = "Dir: ${String.format("0x%02X", addr)} • ${scanFrequency / 1000}kHz • VOL cmd 0x%02X (x2)".format(cmd)
-                            irHelper.transmitNec(addr, cmd, scanFrequency, null, true)
-                            delay(260)
-                        }
-                        delay(120)
-                    }
-                } else if (scanMode == 1) {
-                    // MODO 2: Códigos oficiales de 3 dígitos del manual.
-                    // Se emite TODO a la frecuencia seleccionada (38 kHz fija por defecto),
-                    // no a la de cada perfil, para no saltar de portadora a mitad del barrido.
-                    for (profile in RemoteConstants.PROFILES) {
-                        if (!isScanning) break
-                        while (isScanPaused) delay(100)
-
-                        scanCurrentAddress = profile.address
-                        scanLastProfile = profile
-                        updateScanUI()
-                        tvScanDetails.text = "Cód: ${profile.codeNumber} (${profile.name}) • ${scanFrequency / 1000}kHz"
-                        triggerMechanicalFeedback()
-
-                        irHelper.transmitNec(profile.address, profile.cmdVolUp, scanFrequency, profile.addressHigh, true)
-                        delay(350)
-                    }
-                } else {
-                    // MODO 3: Barrido Exhaustivo Total 0x00 .. 0xFF a la frecuencia elegida.
-                    // Prueba 2 comandos VOL+ por dirección para cubrir placas con mapeo alterno.
-                    scanLastProfile = null
-                    scanCurrentAddress = 0x00
-                    while (isScanning && scanCurrentAddress <= 0xFF) {
-                        while (isScanPaused) delay(100)
-
-                        updateScanUI()
-                        triggerMechanicalFeedback()
-
-                        irHelper.transmitNec(scanCurrentAddress, RemoteConstants.CMD_VOL_UP, scanFrequency, null, true)
-                        delay(140)
-                        irHelper.transmitNec(scanCurrentAddress, 0x02, scanFrequency, null, true)
-                        delay(220)
-
-                        if (scanCurrentAddress < 0xFF) {
-                            scanCurrentAddress++
-                        } else {
-                            break
-                        }
-                    }
-                }
-
-                tvScanStatus.text = "Barrido completado"
+                if (mode == DEEP && !refining && scanIndex >= candidates.size) prefs.edit().remove("deep_pos").apply()
+                scanIndex = scanIndex.coerceAtMost(candidates.lastIndex)
+                tvScanStatus.text = getString(R.string.scan_done)
                 isScanning = false
                 btnStartScan.isEnabled = true
             }
         }
 
-        // Detener y Guardar (conserva dirección extendida y comandos si el barrido iba por códigos oficiales)
+        btnStartScan.setOnClickListener {
+            triggerMechanicalFeedback(it)
+            if (!irHelper.hasIrEmitter) {
+                tvScanStatus.text = getString(R.string.scan_no_ir, deviceName())
+                return@setOnClickListener
+            }
+            mode = spinnerMode.selectedItemPosition
+            candidates = modes[mode].second
+            wait = modes[mode].third
+            refining = false
+            scanFreq = freqValues[spinnerFreq.selectedItemPosition]
+            val resume = if (mode == DEEP) prefs.getInt("deep_pos", 0) else 0
+            if (resume > 0) Toast.makeText(this, getString(R.string.toast_deep_resume, resume + 1, candidates.size), Toast.LENGTH_LONG).show()
+            runScan(resume)
+        }
+
         btnStopAndSave.setOnClickListener {
             triggerMechanicalFeedback(it)
             isScanning = false
             scanJob?.cancel()
-
-            val frozen = scanLastProfile
-            if (frozen != null) {
-                // Venía del modo 2: guarda el perfil completo pero a la frecuencia del barrido (38 kHz fija por defecto)
-                val calibrated = frozen.copy(frequency = scanFrequency)
-                saveProfile(calibrated)
-            } else {
-                val hex = String.format("0x%02X", scanCurrentAddress)
-                activeAddress = scanCurrentAddress
-                activeAddressHigh = null
-                activeFrequency = scanFrequency
-                activeBrandName = "Calibrado Auto ($hex)"
-
-                prefs.edit()
-                    .putInt("active_address", activeAddress)
-                    .putInt("active_address_high", -1)
-                    .putInt("active_frequency", activeFrequency)
-                    .putString("active_brand_name", activeBrandName)
-                    .apply()
-
-                updateDisplayScreen()
-                flashLedThreeTimes()
+            val c = current()
+            if (c.profile == null) {
+                // Lote de la búsqueda profunda: probar uno a uno este lote y el anterior (por la demora al reaccionar)
+                saveDeepPos()
+                val batches = listOfNotNull(candidates.getOrNull(scanIndex - 1), c)
+                candidates = batches.flatMap { b -> b.signals }.map { s ->
+                    val p = RemoteLibrary.deepProfile(this, s)
+                    ScanCand(p.codeNumber, p.name, listOf(s), p)
+                }
+                wait = 2500L
+                refining = true
+                Toast.makeText(this, R.string.toast_refine, Toast.LENGTH_LONG).show()
+                runScan(0)
+                return@setOnClickListener
             }
+            val p = c.profile
+            saveProfile(p)
+            if (refining) prefs.edit().remove("deep_pos").apply()
             dialog.dismiss()
-            val hex = String.format("0x%02X", scanCurrentAddress)
-            Toast.makeText(this, "¡Calibrado exitoso! Código $hex a ${scanFrequency / 1000}kHz", Toast.LENGTH_LONG).show()
+            Toast.makeText(this, getString(R.string.toast_saved, p.codeNumber, p.name), Toast.LENGTH_LONG).show()
         }
 
         btnStepBack.setOnClickListener {
             triggerMechanicalFeedback(it)
-            if (scanCurrentAddress > 0) {
-                scanCurrentAddress--
-                updateScanUI()
-                lifecycleScope.launch {
-                    irHelper.transmitNec(scanCurrentAddress, RemoteConstants.CMD_VOL_UP, scanFrequency, null, true)
-                }
+            // Retroceder pausa el barrido para poder confirmar el código con PROBAR
+            if (isScanning) {
+                isScanPaused = true
+                btnPauseResume.text = getString(R.string.btn_resume)
+                tvScanStatus.text = getString(R.string.scan_paused)
             }
+            if (scanIndex > 0) scanIndex--
+            updateScanUI()
+            lifecycleScope.launch { fireCurrent() }
         }
 
         btnPauseResume.setOnClickListener {
             triggerMechanicalFeedback(it)
             isScanPaused = !isScanPaused
-            if (isScanPaused) {
-                btnPauseResume.text = "▶ SEGUIR"
-                tvScanStatus.text = "Pausado"
-            } else {
-                btnPauseResume.text = "⏸ PAUSAR"
-                tvScanStatus.text = "Buscando... Apunta al televisor"
-            }
+            if (isScanPaused) saveDeepPos()
+            btnPauseResume.text = getString(if (isScanPaused) R.string.btn_resume else R.string.btn_pause)
+            tvScanStatus.text = getString(if (isScanPaused) R.string.scan_paused else if (refining) R.string.scan_refining else R.string.scan_searching)
         }
 
         btnTestVol.setOnClickListener {
             triggerMechanicalFeedback(it)
-            lifecycleScope.launch {
-                irHelper.transmitNec(scanCurrentAddress, RemoteConstants.CMD_VOL_UP, scanFrequency, null, true)
-            }
+            updateScanUI()
+            lifecycleScope.launch { fireCurrent() }
         }
 
         btnCancelScan.setOnClickListener {
+            if (isScanning) saveDeepPos()
             isScanning = false
             scanJob?.cancel()
             dialog.dismiss()
@@ -655,7 +449,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Diálogo de Selección de Marcas / Código de 3 dígitos
+     * Diálogo de Selección de Marcas / Código
      */
     private fun showBrandSelectorDialog() {
         val dialog = Dialog(this)
@@ -667,42 +461,36 @@ class MainActivity : AppCompatActivity() {
         val btnApplyCode = dialog.findViewById<Button>(R.id.btnApplyCode)
         val rvBrands = dialog.findViewById<RecyclerView>(R.id.rvBrands)
         val btnClose = dialog.findViewById<Button>(R.id.btnCloseBrandDialog)
+        val library = RemoteLibrary.codes(this)
+        dialog.findViewById<TextView>(R.id.tvBrandSubtitle).text =
+            getString(R.string.brand_subtitle, library.first().codeNumber, library.last().codeNumber)
 
         btnApplyCode.setOnClickListener {
             triggerMechanicalFeedback(it)
-            val codeStr = etCodeNumber.text.toString().trim()
-            val matched = RemoteConstants.PROFILES.firstOrNull { it.codeNumber == codeStr }
+            val code = etCodeNumber.text.toString().trim().trimStart('0').padStart(3, '0')
+            val matched = (RemoteConstants.PROFILES + library).firstOrNull { p -> p.codeNumber == code }
             if (matched != null) {
                 saveProfile(matched)
                 dialog.dismiss()
-                Toast.makeText(this, "Código ${matched.codeNumber} (${matched.name}) cargado", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.toast_code_loaded, matched.codeNumber, matched.name), Toast.LENGTH_SHORT).show()
             } else {
-                val codeInt = codeStr.toIntOrNull() ?: 0
-                val addr = codeInt and 0xFF
-                // Los códigos manuales del RM-014S+ emiten en NEC @ 38 kHz fijos,
-                // salvo que el usuario haya elegido otra portadora en el selector principal.
-                val profile = RemoteProfile("custom_$codeInt", "Código $codeStr", "SET + $codeStr", codeStr, addr, null, activeFrequency)
-                saveProfile(profile)
-                dialog.dismiss()
-                Toast.makeText(this, "Código personalizado $codeStr cargado a ${activeFrequency / 1000}kHz", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.toast_code_unknown, code), Toast.LENGTH_SHORT).show()
             }
         }
 
         rvBrands.layoutManager = LinearLayoutManager(this)
         rvBrands.adapter = BrandAdapter(
             profiles = RemoteConstants.PROFILES,
-            onProfileSelected = { profile ->
+            onProfileSelected = { p ->
                 triggerMechanicalFeedback()
-                saveProfile(profile)
+                saveProfile(p)
                 dialog.dismiss()
-                Toast.makeText(this, "Perfil '${profile.name}' (${profile.brandButtonLabel}) activado", Toast.LENGTH_SHORT).show()
+                Toast.makeText(this, getString(R.string.toast_profile_on, p.name, p.brandButtonLabel), Toast.LENGTH_SHORT).show()
             },
-            onTestProfile = { profile ->
+            onTestProfile = { p ->
                 triggerMechanicalFeedback()
-                lifecycleScope.launch {
-                    irHelper.transmitNec(profile.address, profile.cmdVolUp, profile.frequency, profile.addressHigh, true)
-                }
-                Toast.makeText(this, "Probando VOL+ en ${profile.name}...", Toast.LENGTH_SHORT).show()
+                lifecycleScope.launch { irHelper.transmit(p.signal("Vol_up") ?: p.base, freqOverride) }
+                Toast.makeText(this, getString(R.string.toast_testing, p.name), Toast.LENGTH_SHORT).show()
             }
         )
 
@@ -712,9 +500,8 @@ class MainActivity : AppCompatActivity() {
     }
 
     /**
-     * Muestra el Manual y Especificaciones 1:1.
-     * El nombre del equipo se resuelve en tiempo de ejecución (Build.MODEL),
-     * nunca hardcodeado.
+     * Muestra el Manual y Especificaciones.
+     * El nombre del equipo se resuelve en tiempo de ejecución (Build.MODEL).
      */
     private fun showManualDialog() {
         val dialog = Dialog(this)
@@ -722,22 +509,16 @@ class MainActivity : AppCompatActivity() {
         dialog.setContentView(R.layout.dialog_manual_specs)
         dialog.window?.setBackgroundDrawableResource(android.R.color.transparent)
 
-        val tvLineOfSight = dialog.findViewById<TextView>(R.id.tvManualLineOfSight)
-        tvLineOfSight.text = "• Línea de visión directa: Asegura siempre una línea directa sin obstáculos entre el emisor IR superior de tu ${deviceName()} y el receptor de la TV."
-        val tvManualDevice = dialog.findViewById<TextView>(R.id.tvManualDevice)
-        tvManualDevice.text = "Emitiendo desde: ${deviceName()} • IR: ${irHelper.getHardwareInfo()} • Portadora fija RM-014S+: 38 kHz"
+        dialog.findViewById<TextView>(R.id.tvManualLineOfSight).text = getString(R.string.manual_tip_sight, deviceName())
+        dialog.findViewById<TextView>(R.id.tvManualDevice).text =
+            getString(R.string.manual_device, deviceName(), irHelper.getHardwareInfo(this))
 
-        val btnClose = dialog.findViewById<Button>(R.id.btnCloseManual)
-        val btnAccept = dialog.findViewById<Button>(R.id.btnAcceptManual)
-
-        btnClose.setOnClickListener { v ->
+        val close = View.OnClickListener { v ->
             triggerMechanicalFeedback(v)
             dialog.dismiss()
         }
-        btnAccept.setOnClickListener { v ->
-            triggerMechanicalFeedback(v)
-            dialog.dismiss()
-        }
+        dialog.findViewById<Button>(R.id.btnCloseManual).setOnClickListener(close)
+        dialog.findViewById<Button>(R.id.btnAcceptManual).setOnClickListener(close)
 
         dialog.show()
     }

@@ -122,44 +122,65 @@
                     </LinearLayout>
                 </RelativeLayout>
 
-                <!-- VISOR INTEGRADO DEL CONTROL (Perfil actual y acceso a Ajustes/Buscador) -->
+                <!-- FILA: VISOR DEL CÓDIGO ACTIVO + FRECUENCIA (mismo estilo que BUSCAR / MANUAL) -->
                 <LinearLayout
-                    android:id="@+id/layoutOledScreen"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
-                    android:paddingTop="5dp"
-                    android:paddingBottom="5dp"
-                    android:paddingStart="10dp"
-                    android:paddingEnd="10dp"
-                    android:background="@drawable/btn_remote_dark_pill"
-                    android:gravity="center_vertical"
-                    android:orientation="horizontal">
+                    android:gravity="center"
+                    android:orientation="horizontal"
+                    android:weightSum="2">
 
-                    <TextView
-                        android:id="@+id/tvStatusDot"
-                        android:layout_width="8dp"
-                        android:layout_height="8dp"
-                        android:background="@drawable/led_indicator_active"
-                        android:backgroundTint="#34D399" />
-
-                    <TextView
-                        android:id="@+id/tvActiveProfileName"
+                    <LinearLayout
+                        android:id="@+id/layoutOledScreen"
                         android:layout_width="0dp"
-                        android:layout_height="wrap_content"
+                        android:layout_height="38dp"
                         android:layout_weight="1"
-                        android:layout_marginStart="8dp"
-                        android:text="Placa China CX-507 (014) • 38kHz"
-                        android:textColor="#E5E7EB"
-                        android:textSize="10sp"
-                        android:textStyle="bold"
-                        android:fontFamily="monospace" />
+                        android:layout_marginEnd="6dp"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="8dp"
+                        android:background="@drawable/btn_remote_dark_pill"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
 
-                    <ImageView
-                        android:layout_width="14dp"
-                        android:layout_height="14dp"
-                        android:src="@android:drawable/ic_menu_search"
-                        app:tint="@color/amber_accent" />
+                        <TextView
+                            android:id="@+id/tvStatusDot"
+                            android:layout_width="8dp"
+                            android:layout_height="8dp"
+                            android:background="@drawable/led_indicator_active"
+                            android:backgroundTint="#34D399" />
+
+                        <TextView
+                            android:id="@+id/tvActiveProfileName"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:layout_marginStart="6dp"
+                            android:ellipsize="end"
+                            android:maxLines="2"
+                            android:text=""
+                            android:textColor="#E5E7EB"
+                            android:textSize="10sp"
+                            android:textStyle="bold"
+                            android:fontFamily="monospace" />
+
+                        <ImageView
+                            android:layout_width="14dp"
+                            android:layout_height="14dp"
+                            android:src="@android:drawable/ic_menu_search"
+                            app:tint="@color/amber_accent" />
+                    </LinearLayout>
+
+                    <Spinner
+                        android:id="@+id/spinnerMainFreq"
+                        android:layout_width="0dp"
+                        android:layout_height="38dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="6dp"
+                        android:background="@drawable/btn_remote_dark_pill"
+                        android:paddingStart="10dp"
+                        android:paddingEnd="10dp"
+                        android:theme="@style/ThemeOverlay.AppCompat.Dark" />
                 </LinearLayout>
 
                 <!-- 2. TECLADO NUMÉRICO (3x4) -->
@@ -796,6 +817,17 @@
                     android:textStyle="bold"
                     android:letterSpacing="0.12" />
 
+                <!-- NOMBRE REAL DEL EQUIPO EN USO (se rellena con Build.MODEL en tiempo de ejecución) -->
+                <TextView
+                    android:id="@+id/tvDeviceName"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="4dp"
+                    android:text="—"
+                    android:textColor="#9CA3AF"
+                    android:textSize="10sp"
+                    android:fontFamily="monospace" />
+
                 <!-- BOTONES SEPARADOS: BUSCADOR Y MANUAL -->
                 <LinearLayout
                     android:id="@+id/layoutPlateBottom"
@@ -814,7 +846,7 @@
                         android:layout_weight="1"
                         android:layout_marginEnd="6dp"
                         android:background="@drawable/btn_remote_dark_pill"
-                        android:text="📡 BUSCAR"
+                        android:text="@string/btn_search"
                         android:textColor="@color/amber_accent"
                         android:textSize="11sp"
                         android:textStyle="bold" />
@@ -826,7 +858,7 @@
                         android:layout_weight="1"
                         android:layout_marginStart="6dp"
                         android:background="@drawable/btn_remote_dark_pill"
-                        android:text="📖 MANUAL"
+                        android:text="@string/btn_manual"
                         android:textColor="#38BDF8"
                         android:textSize="11sp"
                         android:textStyle="bold" />
