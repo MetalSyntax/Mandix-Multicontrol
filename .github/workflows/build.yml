@@ -1,0 +1,31 @@
+name: Compilar APK Android Nativo (Kotlin)
+
+on:
+  push:
+    branches: [ "main", "master" ]
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Configurar JDK 17
+        uses: actions/setup-java@v4
+        with:
+          distribution: 'temurin'
+          java-version: '17'
+          cache: 'gradle'
+
+      - name: Permisos para gradlew
+        run: chmod +x gradlew || true
+
+      - name: Compilar con Gradle
+        run: ./gradlew assembleDebug
+
+      - name: Subir APK
+        uses: actions/upload-artifact@v4
+        with:
+          name: RM014S-Native-Debug-APK
+          path: app/build/outputs/apk/debug/app-debug.apk

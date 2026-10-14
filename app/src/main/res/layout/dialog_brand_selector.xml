@@ -1,0 +1,82 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_remote_chassis"
+    android:padding="20dp">
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Configurar Marca / Dirección IR"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <!-- Entrada manual Hex -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:background="#131416"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:padding="10dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dirección Hex: 0x"
+            android:textColor="#D1D5DB"
+            android:textStyle="bold" />
+
+        <EditText
+            android:id="@+id/etHexAddress"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:maxLength="2"
+            android:fontFamily="monospace"
+            android:textColor="@color/amber_accent"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:hint="00"
+            android:textColorHint="#555"
+            android:background="@null"
+            android:textAllCaps="true" />
+
+        <Button
+            android:id="@+id/btnApplyHex"
+            android:layout_width="wrap_content"
+            android:layout_height="38dp"
+            android:text="Aplicar"
+            android:textColor="@color/black_bg"
+            android:backgroundTint="@color/amber_accent" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Preajustes de marcas y placas OEM chinas:"
+        android:textColor="#9CA3AF"
+        android:textSize="12sp"
+        android:textStyle="bold" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rvBrands"
+        android:layout_width="match_parent"
+        android:layout_height="240dp"
+        android:layout_marginTop="8dp" />
+
+    <Button
+        android:id="@+id/btnCloseBrandDialog"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="Cerrar"
+        android:textColor="#9CA3AF" />
+
+</LinearLayout>

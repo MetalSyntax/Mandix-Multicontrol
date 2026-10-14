@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:background="@drawable/bg_remote_chassis"
+    android:padding="20dp">
+
+    <!-- Cabecera -->
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="📡 Modo Búsqueda Automática"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="4dp"
+        android:text="Apunta tu Tecno Camon 30 hacia el TV (1.5 - 2m)"
+        android:textColor="#B0B3BC"
+        android:textSize="12sp" />
+
+    <!-- Caja del código actual en Hex -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:background="#121316"
+        android:orientation="vertical"
+        android:gravity="center"
+        android:padding="16dp">
+
+        <TextView
+            android:id="@+id/tvScanStatus"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Transmitiendo comando VOL+..."
+            android:textColor="@color/amber_accent"
+            android:textSize="12sp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvScanHex"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="4dp"
+            android:text="0x00"
+            android:textColor="@color/white"
+            android:textSize="38sp"
+            android:textStyle="bold"
+            android:fontFamily="monospace" />
+
+        <TextView
+            android:id="@+id/tvScanProgress"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Dirección: 0 / 255 (Chasis NEC)"
+            android:textColor="#888B94"
+            android:textSize="12sp" />
+
+        <ProgressBar
+            android:id="@+id/progressBarScan"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="8dp"
+            android:layout_marginTop="12dp"
+            android:max="255"
+            android:progress="0" />
+    </LinearLayout>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="14dp"
+        android:text="En cuanto el TV muestre la barra de volumen, presiona inmediatamente el botón abajo:"
+        android:textColor="#D1D5DB"
+        android:textSize="13sp"
+        android:gravity="center" />
+
+    <!-- Botón GIGANTE ¡DETENER / GUARDAR! -->
+    <Button
+        android:id="@+id/btnStopAndSave"
+        android:layout_width="match_parent"
+        android:layout_height="56dp"
+        android:layout_marginTop="14dp"
+        android:text="¡DETENER / GUARDAR!"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:textStyle="bold"
+        android:backgroundTint="#10B981" />
+
+    <!-- Controles de ajuste fino -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:orientation="horizontal"
+        android:weightSum="3">
+
+        <Button
+            android:id="@+id/btnStepBack"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="42dp"
+            android:layout_weight="1"
+            android:text="1 Atrás"
+            android:textSize="11sp"
+            android:textColor="#D1D5DB" />
+
+        <Button
+            android:id="@+id/btnPauseResume"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="42dp"
+            android:layout_weight="1"
+            android:layout_marginStart="6dp"
+            android:layout_marginEnd="6dp"
+            android:text="Pausar"
+            android:textSize="11sp"
+            android:textColor="#D1D5DB" />
+
+        <Button
+            android:id="@+id/btnTestVol"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
+            android:layout_width="0dp"
+            android:layout_height="42dp"
+            android:layout_weight="1"
+            android:text="Probar VOL"
+            android:textSize="11sp"
+            android:textColor="@color/amber_accent" />
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/btnCancelScan"
+        style="@style/Widget.MaterialComponents.Button.TextButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="6dp"
+        android:text="Cancelar"
+        android:textColor="#9CA3AF" />
+
+</LinearLayout>
