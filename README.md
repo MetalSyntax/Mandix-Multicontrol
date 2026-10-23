@@ -4,7 +4,7 @@
 </h1>
 
 <p align="center">
-  <a href="https://github.com/MetalSyntax/Mandix-Multicontrol-/releases/latest"><img src="https://img.shields.io/github/v/release/MetalSyntax/Mandix-Multicontrol-?label=download&color=f5a623" alt="Latest release"></a>
+  <a href="https://github.com/MetalSyntax/Mandix-Multicontrol/releases/latest"><img src="https://img.shields.io/github/v/release/MetalSyntax/Mandix-Multicontrol?label=download&color=f5a623" alt="Latest release"></a>
   <img src="https://img.shields.io/badge/Android-5.0%2B-3ddc84?logo=android&logoColor=white" alt="Android 5.0+">
   <img src="https://img.shields.io/badge/Kotlin-native-7f52ff?logo=kotlin&logoColor=white" alt="Kotlin">
   <a href="LICENSE"><img src="https://img.shields.io/badge/license-MIT-blue" alt="MIT License"></a>
@@ -63,7 +63,7 @@ It started as a native Android recreation of the generic **RM-014S+** Chinese un
 
 ## 📲 Install
 
-1. Download **`Mandix-v4.3.apk`** from the [latest release](https://github.com/MetalSyntax/Mandix-Multicontrol-/releases/latest).
+1. Download **`Mandix-v4.3.apk`** from the [latest release](https://github.com/MetalSyntax/Mandix-Multicontrol/releases/latest).
 2. Open it on the phone and allow *Install unknown apps* for your browser/file manager when Android asks.
 3. Open **Mandix**, pick a remote from the tabs at the top and point the top of the phone at the device.
 
@@ -104,8 +104,8 @@ It started as a native Android recreation of the generic **RM-014S+** Chinese un
 ### Compilation Commands
 
 ```bash
-git clone https://github.com/MetalSyntax/Mandix-Multicontrol-.git
-cd Mandix-Multicontrol-
+git clone https://github.com/MetalSyntax/Mandix-Multicontrol.git
+cd Mandix-Multicontrol
 ./gradlew assembleDebug
 # APK → app/build/outputs/apk/debug/app-debug.apk
 ```
