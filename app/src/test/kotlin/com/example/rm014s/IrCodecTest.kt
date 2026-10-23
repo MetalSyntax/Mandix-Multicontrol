@@ -81,4 +81,76 @@ class IrCodecTest {
         }
         assertEquals(RemoteConstants.PROFILES.size, RemoteConstants.PROFILES.map { it.codeNumber }.toSet().size)
     }
+
+    @Test fun altModeRepeatsAndInverts() {
+        val nec = IrCodec.encode(IrSignal("NEC", 0x04, 0x08)).frames
+        val rep = IrManagerHelper.withRepeats(nec)
+        assertEquals(3, rep.size)
+        assertEquals(listOf(9000, 2250, 560), rep[2].pattern.toList())
+        assertEquals(110000, rep[1].pattern.sum() + rep[1].gapUs)
+        assertEquals(3, IrManagerHelper.withRepeats(nec.take(1)).size)
+        val inv = IrManagerHelper.invertForDriver(nec[0].pattern)
+        assertEquals(9000, inv[1]); assertTrue(inv.size % 2 == 1)
+    }
+
+    // Vectores de los tests de IRremoteESP8266 (estado inicial de cada clase)
+    @Test fun acGreeReset() {
+        val b = AcCodec.greeBytes(AcState(power = false, mode = AcMode.AUTO, temp = 25, fan = 0))
+        assertEquals(listOf(0x00, 0x09, 0x20, 0x50, 0x00, 0x20, 0x00, 0x50), b.toList())
+    }
+
+    @Test fun acCoolixDefault() {
+        assertEquals(0xB21FC8, AcCodec.coolixWord(AcState(mode = AcMode.AUTO, temp = 25)))
+        assertEquals(0xB27BE0, AcCodec.coolixWord(AcState(power = false)))
+    }
+
+    @Test fun acMideaChecksum() {
+        assertEquals(0x62, AcCodec.mideaChecksum(0xA1826FFFFF00))
+        val raw = AcCodec.encode("MIDEA", AcState()).raw!!
+        assertTrue(raw.size % 2 == 1)
+        assertEquals(1, IrCodec.encode(AcCodec.encode("COOLIX", AcState())).frames.size)
+    }
+
+    @Test fun audioAndAcLibraries() {
+        val cn = RemoteLibrary.parse(File("src/main/assets/audio_cn.ir").readText(), device = Device.AUDIO)
+        assertEquals(1, cn.size); assertEquals(0x46L, cn[0].keys["Mode"]!!.command)
+        val audio = RemoteLibrary.parse(File("src/main/assets/audio.ir").readText(), device = Device.AUDIO)
+        assertTrue(audio.size > 50)
+        val ac = RemoteLibrary.parse(File("src/main/assets/ac.ir").readText(), device = Device.AC)
+        assertTrue(ac.size > 100)
+        // Electrolux EACM-16 (primer modelo de ac.ir): sus 6 estados en un solo código
+        assertEquals(setOf("Off", "Dh", "Cool_hi", "Cool_lo", "Heat_hi", "Heat_lo"), ac[0].keys.keys)
+        assertTrue(ac[0].name.contains("Electrolux"))
+    }
+
+    // Descubierto probando en la corneta de la habitación (23-oct-2026): estos números deben seguir apuntando a esos mandos
+    @Test fun cornetaHabLearnSources() {
+        var lib = emptyList<RemoteProfile>()
+        Device.AUDIO.files.forEach { lib = lib + RemoteLibrary.parse(File("src/main/assets/$it").readText(), RemoteLibrary.FIRST_CODE + lib.size, Device.AUDIO) }
+        fun code(n: String) = lib.first { it.codeNumber == n }
+        assertEquals(IrSignal("NEC", 0x00, 0x16), code("104").keys["Vol_dn"])
+        assertEquals(IrSignal("NEC", 0x80, 0x06), code("165").keys["Vol_dn"])
+        assertEquals(IrSignal("NEC", 0x78, 0xCC), code("185").keys["Power"])
+        val custom = SkinRemotes.get("corneta_hab").builtIn[0].keys
+        assertEquals(code("165").keys["Vol_dn"], custom["Vol_up"])
+        assertEquals(IrManagerHelper.Mode.ALT, SkinRemotes.get("aire_hab").txMode)
+    }
+
+    // Flipper-IRDB TVs/Hisense/Hisense_RokuTV.ir: "address: 86 05", "V_down command: 0D F2"
+    @Test fun hisenseRokuTv() {
+        val hisense = SkinRemotes.get("roku").builtIn.first()
+        assertEquals(IrSignal("NECext", 0x0586, 0xF20D), hisense.keys["Vol_dn"])
+        assertEquals(IrSignal("NEC", 0x04, 0x09), hisense.keys["Mute"])
+        assertEquals("key:Vol_dn", SkinRemotes.get("amazon").autoProbe)
+    }
+
+    // Flipper-IRDB LED_Lighting/Unknown/RGB.ir ("On: 00 EF / 03 FC") y Tasmota MagicHome (0xFFF807 = apagar)
+    @Test fun ledRemotes() {
+        val generic = SkinRemotes.get("luz_generica").builtIn
+        assertEquals(IrSignal("NECext", 0xEF00, 0xFC03), generic[0].keys["P3"])
+        assertEquals(IrSignal("NEC", 0x00, 0x1F), generic[1].keys["P2"])
+        val magic = SkinRemotes.get("magic_home").builtIn[0].keys
+        assertEquals(IrSignal("NEC", 0x00, 0x0D), magic["On"])
+        assertEquals(IrSignal("NEC", 0x00, 0x09), magic["BrightUp"])
+    }
 }

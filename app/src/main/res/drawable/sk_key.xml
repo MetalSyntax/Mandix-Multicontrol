@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Base en grises para tecla de control: el color real lo da backgroundTint (multiply) -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:state_pressed="true">
+        <shape android:shape="rectangle">
+            <gradient android:angle="270" android:startColor="#9A9A9A" android:endColor="#B8B8B8" />
+            <corners android:radius="6dp" />
+            <stroke android:width="1dp" android:color="#555555" />
+        </shape>
+    </item>
+    <item>
+        <shape android:shape="rectangle">
+            <gradient android:angle="270" android:startColor="#FFFFFF" android:endColor="#C9C9C9" />
+            <corners android:radius="6dp" />
+            <stroke android:width="1dp" android:color="#8A8A8A" />
+        </shape>
+    </item>
+</selector>

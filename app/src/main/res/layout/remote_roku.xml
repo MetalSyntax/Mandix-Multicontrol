@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black_bg"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <include android:id="@+id/tabs" layout="@layout/view_device_tabs" />
+        <include android:id="@+id/code" layout="@layout/view_code_selector" />
+
+        <!-- Roku (control simple IR) con teclas de volumen laterales -->
+        <LinearLayout style="@style/SkRow">
+        <LinearLayout style="@style/SkBody" android:layout_width="188dp" android:backgroundTint="#1A1A1C">
+            <FrameLayout android:layout_width="match_parent" android:layout_height="wrap_content">
+                <ImageButton style="@style/Sk" android:layout_width="30dp" android:layout_height="30dp" android:layout_gravity="center" android:src="@drawable/ic_power" android:padding="7dp" android:tint="#E53935" android:tag="key:Power" android:contentDescription="Power" />
+                <View android:id="@+id/viewLedIr" android:layout_width="6dp" android:layout_height="6dp" android:layout_gravity="end|center_vertical" android:background="@drawable/led_indicator" />
+            </FrameLayout>
+            <LinearLayout style="@style/SkRow">
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Pill" android:layout_width="58dp" android:text="←" android:textSize="16sp" android:tag="key:Back" />
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Pill" android:layout_width="58dp" android:text="⌂" android:textSize="16sp" android:tag="key:Home" />
+            </LinearLayout>
+            <!-- Cruz morada -->
+            <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="6dp" android:orientation="vertical" android:gravity="center_horizontal">
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Key" android:layout_width="52dp" android:layout_height="40dp" android:layout_margin="0dp" android:backgroundTint="#6A4FC2" android:text="︿" android:textColor="#FFFFFF" android:textSize="16sp" android:tag="key:Up" />
+                <LinearLayout style="@style/SkRow">
+                    <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Key" android:layout_width="40dp" android:layout_height="52dp" android:layout_margin="0dp" android:backgroundTint="#6A4FC2" android:text="‹" android:textColor="#FFFFFF" android:textSize="22sp" android:tag="key:Left" />
+                    <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Key" android:layout_width="52dp" android:layout_height="52dp" android:layout_margin="0dp" android:backgroundTint="#5B40B0" android:text="OK" android:textColor="#FFFFFF" android:textSize="14sp" android:tag="key:Ok" />
+                    <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Key" android:layout_width="40dp" android:layout_height="52dp" android:layout_margin="0dp" android:backgroundTint="#6A4FC2" android:text="›" android:textColor="#FFFFFF" android:textSize="22sp" android:tag="key:Right" />
+                </LinearLayout>
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Key" android:layout_width="52dp" android:layout_height="40dp" android:layout_margin="0dp" android:backgroundTint="#6A4FC2" android:text="﹀" android:textColor="#FFFFFF" android:textSize="16sp" android:tag="key:Down" />
+            </LinearLayout>
+            <LinearLayout style="@style/SkRow" android:layout_marginTop="6dp">
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Pill" android:layout_width="42dp" android:text="⟲" android:textSize="15sp" android:tag="key:Replay" />
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Pill" android:layout_width="42dp" android:text="☾" android:textSize="15sp" android:tag="key:Sleep" />
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Pill" android:layout_width="42dp" android:text="✱" android:textSize="15sp" android:tag="key:Options" />
+            </LinearLayout>
+            <LinearLayout style="@style/SkRow">
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Pill" android:layout_width="42dp" android:text="◀◀" android:textSize="9sp" android:tag="key:Rew" />
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Pill" android:layout_width="42dp" android:text="▶❚❚" android:textSize="9sp" android:tag="key:Play" />
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Pill" android:layout_width="42dp" android:text="▶▶" android:textSize="9sp" android:tag="key:Ffwd" />
+            </LinearLayout>
+            <LinearLayout style="@style/SkRow" android:layout_marginTop="8dp">
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Pill" android:layout_width="64dp" android:layout_height="24dp" android:backgroundTint="#F2F2F2" android:text="NETFLIX" android:textSize="9sp" android:textColor="#E50914" android:tag="key:Netflix" />
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Pill" android:layout_width="64dp" android:layout_height="24dp" android:backgroundTint="#1E4FB4" android:text="Disney+" android:textSize="9sp" android:textColor="#FFFFFF" android:tag="key:Disney" />
+            </LinearLayout>
+            <LinearLayout style="@style/SkRow">
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Pill" android:layout_width="64dp" android:layout_height="24dp" android:backgroundTint="#1CE783" android:text="hulu" android:textSize="10sp" android:textColor="#0B2E1A" android:tag="key:Hulu" />
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Pill" android:layout_width="64dp" android:layout_height="24dp" android:backgroundTint="#1FA3E0" android:text="sling" android:textSize="10sp" android:textColor="#FFFFFF" android:tag="key:Sling" />
+            </LinearLayout>
+        </LinearLayout>
+        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical" android:layout_marginTop="40dp">
+            <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Key" android:layout_width="16dp" android:layout_height="40dp" android:layout_margin="1dp" android:backgroundTint="#1A1A1C" android:text="+" android:textColor="#CCCCCC" android:tag="key:Vol_up" />
+            <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Key" android:layout_width="16dp" android:layout_height="40dp" android:layout_margin="1dp" android:backgroundTint="#1A1A1C" android:text="−" android:textColor="#CCCCCC" android:tag="key:Vol_dn" />
+        </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

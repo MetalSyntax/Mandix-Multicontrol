@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black_bg"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <include android:id="@+id/tabs" layout="@layout/view_device_tabs" />
+        <include android:id="@+id/code" layout="@layout/view_code_selector" />
+
+        <!-- Amazon Fire TV (Alexa Voice Remote): solo Power/Vol/Mute son IR (van al TV); el resto es Bluetooth -->
+        <LinearLayout style="@style/SkBody" android:layout_width="180dp" android:backgroundTint="#1C1C1E">
+            <LinearLayout style="@style/SkRow" android:layout_width="match_parent" android:gravity="start">
+                <ImageButton style="@style/Sk" android:layout_width="30dp" android:layout_height="30dp" android:src="@drawable/ic_power" android:padding="7dp" android:tag="key:Power" android:contentDescription="Power" />
+                <View android:id="@+id/viewLedIr" android:layout_width="6dp" android:layout_height="6dp" android:layout_marginStart="44dp" android:background="@drawable/led_indicator" />
+            </LinearLayout>
+            <androidx.appcompat.widget.AppCompatButton style="@style/Sk" android:layout_width="38dp" android:layout_height="38dp" android:backgroundTint="#22B8D8" android:text="◯" android:textColor="#FFFFFF" android:tag="bt:Alexa" />
+            <FrameLayout android:layout_width="132dp" android:layout_height="132dp" android:layout_marginTop="6dp">
+                <View android:layout_width="match_parent" android:layout_height="match_parent" android:background="@drawable/sk_circle" android:backgroundTint="#141415" android:backgroundTintMode="multiply" />
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Flat" android:layout_width="44dp" android:layout_height="34dp" android:layout_gravity="top|center_horizontal" android:layout_margin="0dp" android:text="•" android:tag="bt:Up" />
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Flat" android:layout_width="44dp" android:layout_height="34dp" android:layout_gravity="bottom|center_horizontal" android:layout_margin="0dp" android:text="•" android:tag="bt:Down" />
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Flat" android:layout_width="34dp" android:layout_height="44dp" android:layout_gravity="start|center_vertical" android:layout_margin="0dp" android:text="•" android:tag="bt:Left" />
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Flat" android:layout_width="34dp" android:layout_height="44dp" android:layout_gravity="end|center_vertical" android:layout_margin="0dp" android:text="•" android:tag="bt:Right" />
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk" android:layout_width="66dp" android:layout_height="66dp" android:layout_gravity="center" android:backgroundTint="#1E1E20" android:tag="bt:Select" />
+            </FrameLayout>
+            <LinearLayout style="@style/SkRow" android:layout_marginTop="6dp">
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk" android:layout_width="38dp" android:layout_height="38dp" android:text="↩" android:tag="bt:Back" />
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk" android:layout_width="38dp" android:layout_height="38dp" android:text="⌂" android:tag="bt:Home" />
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk" android:layout_width="38dp" android:layout_height="38dp" android:text="☰" android:tag="bt:Menu" />
+            </LinearLayout>
+            <LinearLayout style="@style/SkRow">
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk" android:layout_width="38dp" android:layout_height="38dp" android:text="◀◀" android:textSize="9sp" android:tag="bt:Rew" />
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk" android:layout_width="38dp" android:layout_height="38dp" android:text="▶❚❚" android:textSize="9sp" android:tag="bt:Play" />
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk" android:layout_width="38dp" android:layout_height="38dp" android:text="▶▶" android:textSize="9sp" android:tag="bt:Ffwd" />
+            </LinearLayout>
+            <LinearLayout style="@style/SkRow">
+                <ImageButton style="@style/Sk" android:layout_width="38dp" android:layout_height="38dp" android:src="@drawable/ic_mute" android:tint="#E5E5E5" android:padding="10dp" android:tag="key:Mute" android:contentDescription="Mute" />
+                <LinearLayout android:layout_width="42dp" android:layout_height="96dp" android:layout_margin="5dp" android:orientation="vertical" android:background="@drawable/sk_pill" android:backgroundTint="#2A2A2C" android:backgroundTintMode="multiply">
+                    <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Flat" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:layout_margin="0dp" android:text="+" android:textSize="20sp" android:tag="key:Vol_up" />
+                    <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Flat" android:layout_width="match_parent" android:layout_height="0dp" android:layout_weight="1" android:layout_margin="0dp" android:text="−" android:textSize="20sp" android:tag="key:Vol_dn" />
+                </LinearLayout>
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk" android:layout_width="38dp" android:layout_height="38dp" android:text="TV" android:textSize="10sp" android:tag="bt:Guide" />
+            </LinearLayout>
+            <LinearLayout style="@style/SkRow" android:layout_marginTop="8dp">
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Pill" android:layout_width="64dp" android:layout_height="22dp" android:backgroundTint="#1B3A5C" android:text="prime video" android:textSize="8sp" android:textColor="#8ED1FC" android:tag="bt:Prime" />
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Pill" android:layout_width="64dp" android:layout_height="22dp" android:backgroundTint="#F2F2F2" android:text="NETFLIX" android:textSize="9sp" android:textColor="#E50914" android:tag="bt:Netflix" />
+            </LinearLayout>
+            <LinearLayout style="@style/SkRow">
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Pill" android:layout_width="64dp" android:layout_height="22dp" android:backgroundTint="#0E1E45" android:text="Disney+" android:textSize="9sp" android:textColor="#FFFFFF" android:tag="bt:Disney" />
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Pill" android:layout_width="64dp" android:layout_height="22dp" android:backgroundTint="#1CE783" android:text="hulu" android:textSize="10sp" android:textColor="#0B2E1A" android:tag="bt:Hulu" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

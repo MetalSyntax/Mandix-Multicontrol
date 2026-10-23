@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black_bg"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <include android:id="@+id/tabs" layout="@layout/view_device_tabs" />
+        <include android:id="@+id/code" layout="@layout/view_code_selector" />
+
+        <!-- Aire de la sala: mando Damasco (panel verde de 7 teclas). Sin pantalla: el estado se muestra arriba -->
+        <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center_horizontal">
+        <LinearLayout android:layout_width="200dp" android:layout_height="wrap_content" android:layout_marginBottom="10dp" android:orientation="vertical" android:gravity="center" android:padding="6dp" android:background="@drawable/btn_remote_dark_pill">
+            <TextView android:id="@+id/tvTemp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:fontFamily="monospace" android:textColor="#38BDF8" android:textSize="22sp" android:textStyle="bold" />
+            <TextView android:id="@+id/tvAcInfo" android:layout_width="wrap_content" android:layout_height="wrap_content" android:fontFamily="monospace" android:textColor="@color/amber_accent" android:textSize="10sp" android:gravity="center" />
+        </LinearLayout>
+        <LinearLayout style="@style/SkBody" android:layout_width="200dp" android:backgroundTint="#EAE4D2" android:paddingBottom="90dp">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:padding="8dp" android:background="@drawable/sk_panel" android:backgroundTint="#B9D6A8" android:backgroundTintMode="multiply">
+                <LinearLayout style="@style/SkRow">
+                    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center">
+                        <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Key" android:layout_height="24dp" android:backgroundTint="#8B8F95" android:tag="ac:fan" android:contentDescription="Ventilador" />
+                        <TextView style="@style/SkLabel" android:text="✱" android:textSize="11sp" />
+                    </LinearLayout>
+                    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center">
+                        <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Key" android:layout_height="24dp" android:backgroundTint="#8B8F95" android:tag="ac:temp_up" android:contentDescription="Temp +" />
+                        <TextView style="@style/SkLabel" android:text="▲" android:textSize="11sp" />
+                    </LinearLayout>
+                    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center">
+                        <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Key" android:layout_height="24dp" android:backgroundTint="#8B8F95" android:tag="ac:swing" android:contentDescription="Swing" />
+                        <TextView style="@style/SkLabel" android:text="◎" android:textSize="14sp" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout style="@style/SkRow">
+                    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center">
+                        <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Key" android:layout_height="24dp" android:backgroundTint="#8B8F95" android:tag="ac:sleep" android:contentDescription="Sleep" />
+                        <TextView style="@style/SkLabel" android:text="☾" android:textSize="11sp" />
+                    </LinearLayout>
+                    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center">
+                        <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Key" android:layout_height="24dp" android:backgroundTint="#8B8F95" android:tag="ac:temp_down" android:contentDescription="Temp −" />
+                        <TextView style="@style/SkLabel" android:text="▼" android:textSize="11sp" />
+                    </LinearLayout>
+                    <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center">
+                        <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Key" android:layout_height="24dp" android:backgroundTint="#8B8F95" android:tag="ac:timer" android:contentDescription="Timer" />
+                        <TextView style="@style/SkLabel" android:text="⊙" android:textSize="11sp" />
+                    </LinearLayout>
+                </LinearLayout>
+                <LinearLayout android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_gravity="end" android:layout_marginEnd="10dp" android:orientation="vertical" android:gravity="center">
+                    <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Pill" android:layout_width="40dp" android:layout_height="20dp" android:backgroundTint="#8B8F95" android:tag="ac:power" android:contentDescription="Power" />
+                    <TextView style="@style/SkLabel" android:text="I/O" android:textSize="9sp" />
+                </LinearLayout>
+            </LinearLayout>
+            <View android:id="@+id/viewLedIr" android:layout_width="6dp" android:layout_height="6dp" android:layout_marginTop="10dp" android:background="@drawable/led_indicator" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="50dp" android:text="DAMASCO®" android:textColor="#D9262C" android:textSize="16sp" android:textStyle="bold" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:text="Siempre te Da" android:textColor="#D9262C" android:textSize="8sp" android:textStyle="italic" />
+        </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

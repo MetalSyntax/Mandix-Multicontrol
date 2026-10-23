@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black_bg"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <include android:id="@+id/tabs" layout="@layout/view_device_tabs" />
+        <include android:id="@+id/code" layout="@layout/view_code_selector" />
+
+        <!-- Aire de la habitación: mando AIWA (mismo que Midea R51M) -->
+        <LinearLayout style="@style/SkBody" android:layout_width="210dp" android:backgroundTint="#ECEDEF" android:paddingBottom="22dp">
+            <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="vertical" android:gravity="center_horizontal" android:padding="8dp" android:background="@drawable/sk_panel" android:backgroundTint="#C8CBD0" android:backgroundTintMode="multiply">
+                <LinearLayout style="@style/SkRow">
+                    <LinearLayout android:layout_width="30dp" android:layout_height="wrap_content" android:orientation="vertical">
+                        <TextView style="@style/SkLabel" android:text="AUTO" />
+                        <TextView style="@style/SkLabel" android:text="COOL" />
+                        <TextView style="@style/SkLabel" android:text="DRY" />
+                    </LinearLayout>
+                    <!-- Pantalla LCD -->
+                    <LinearLayout android:layout_width="96dp" android:layout_height="62dp" android:orientation="vertical" android:gravity="center" android:background="@drawable/sk_panel" android:backgroundTint="#9FAA97" android:backgroundTintMode="multiply">
+                        <TextView style="@style/SkLabel" android:text="SET TEMP" android:textSize="6sp" android:textColor="#2C3328" />
+                        <TextView android:id="@+id/tvTemp" android:layout_width="wrap_content" android:layout_height="wrap_content" android:fontFamily="monospace" android:textColor="#1E241B" android:textSize="22sp" android:textStyle="bold" />
+                        <TextView android:id="@+id/tvAcInfo" style="@style/SkLabel" android:textSize="6sp" android:textColor="#2C3328" />
+                    </LinearLayout>
+                    <LinearLayout android:layout_width="30dp" android:layout_height="wrap_content" android:orientation="vertical">
+                        <TextView style="@style/SkLabel" android:text="FAN" />
+                        <TextView style="@style/SkLabel" android:text="HIGH" />
+                        <TextView style="@style/SkLabel" android:text="MED." />
+                        <TextView style="@style/SkLabel" android:text="LOW" />
+                    </LinearLayout>
+                </LinearLayout>
+                <TextView style="@style/SkLabel" android:layout_marginTop="6dp" android:text="▼        TEMP        ▲" android:textSize="10sp" />
+                <LinearLayout style="@style/SkRow">
+                    <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Pill" android:layout_width="68dp" android:layout_height="26dp" android:backgroundTint="#F5F5F5" android:tag="ac:temp_down" android:contentDescription="Temp −" />
+                    <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Pill" android:layout_width="68dp" android:layout_height="26dp" android:backgroundTint="#F5F5F5" android:tag="ac:temp_up" android:contentDescription="Temp +" />
+                </LinearLayout>
+                <LinearLayout style="@style/SkRow" android:layout_width="match_parent">
+                    <TextView style="@style/SkLabel" android:layout_width="0dp" android:layout_weight="1" android:text="MODE" />
+                    <TextView style="@style/SkLabel" android:layout_width="0dp" android:layout_weight="1" android:text="ON / OFF" />
+                    <TextView style="@style/SkLabel" android:layout_width="0dp" android:layout_weight="1" android:text="FAN SPEED" />
+                </LinearLayout>
+                <LinearLayout style="@style/SkRow">
+                    <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Pill" android:layout_width="40dp" android:layout_height="18dp" android:backgroundTint="#F5F5F5" android:tag="ac:mode" android:contentDescription="Mode" />
+                    <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Pill" android:layout_width="48dp" android:layout_height="20dp" android:backgroundTint="#F58C9C" android:tag="ac:power" android:contentDescription="On/Off" />
+                    <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Pill" android:layout_width="40dp" android:layout_height="18dp" android:backgroundTint="#F5F5F5" android:tag="ac:fan" android:contentDescription="Fan speed" />
+                </LinearLayout>
+                <LinearLayout style="@style/SkRow" android:layout_width="match_parent">
+                    <TextView style="@style/SkLabel" android:layout_width="0dp" android:layout_weight="1" android:text="SHORT CUT" />
+                    <TextView style="@style/SkLabel" android:layout_width="0dp" android:layout_weight="1" android:text="SLEEP" />
+                    <TextView style="@style/SkLabel" android:layout_width="0dp" android:layout_weight="1" android:text="TIMER ON" />
+                </LinearLayout>
+                <LinearLayout style="@style/SkRow">
+                    <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Pill" android:layout_width="40dp" android:layout_height="18dp" android:backgroundTint="#F5F5F5" android:tag="ac:resend" android:contentDescription="Short cut" />
+                    <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Pill" android:layout_width="40dp" android:layout_height="18dp" android:layout_marginStart="9dp" android:layout_marginEnd="9dp" android:backgroundTint="#F5F5F5" android:tag="ac:sleep" android:contentDescription="Sleep" />
+                    <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Pill" android:layout_width="40dp" android:layout_height="18dp" android:backgroundTint="#F5F5F5" android:tag="ac:timer" android:contentDescription="Timer on" />
+                </LinearLayout>
+                <LinearLayout style="@style/SkRow" android:layout_width="match_parent">
+                    <TextView style="@style/SkLabel" android:layout_width="0dp" android:layout_weight="1" android:text="°C/°F" />
+                    <TextView style="@style/SkLabel" android:layout_width="0dp" android:layout_weight="1" android:text="— 🔒 —" />
+                    <TextView style="@style/SkLabel" android:layout_width="0dp" android:layout_weight="1" android:text="TIMER OFF" />
+                </LinearLayout>
+                <LinearLayout style="@style/SkRow">
+                    <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Pill" android:layout_width="40dp" android:layout_height="18dp" android:backgroundTint="#F5F5F5" android:tag="ac:unit" android:contentDescription="°C/°F" />
+                    <View android:layout_width="58dp" android:layout_height="1dp" />
+                    <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Pill" android:layout_width="40dp" android:layout_height="18dp" android:backgroundTint="#F5F5F5" android:tag="ac:timer" android:contentDescription="Timer off" />
+                </LinearLayout>
+                <LinearLayout style="@style/SkRow" android:layout_width="match_parent">
+                    <TextView style="@style/SkLabel" android:layout_width="0dp" android:layout_weight="1" android:text="LED\nDISPLAY" />
+                    <View android:layout_width="0dp" android:layout_height="1dp" android:layout_weight="1" />
+                    <TextView style="@style/SkLabel" android:layout_width="0dp" android:layout_weight="1" android:text="ENERGY\nSAVER" />
+                </LinearLayout>
+                <LinearLayout style="@style/SkRow">
+                    <androidx.appcompat.widget.AppCompatButton style="@style/Sk" android:layout_width="22dp" android:layout_height="22dp" android:backgroundTint="#F5F5F5" android:tag="ac:led" android:contentDescription="LED display" />
+                    <View android:layout_width="78dp" android:layout_height="1dp" />
+                    <androidx.appcompat.widget.AppCompatButton style="@style/Sk" android:layout_width="22dp" android:layout_height="22dp" android:backgroundTint="#F5F5F5" android:tag="ac:eco" android:contentDescription="Energy saver" />
+                </LinearLayout>
+            </LinearLayout>
+            <View android:id="@+id/viewLedIr" android:layout_width="6dp" android:layout_height="6dp" android:layout_marginTop="10dp" android:background="@drawable/led_indicator" />
+            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginTop="8dp" android:text="aiwa" android:textColor="#9A9DA3" android:textSize="26sp" android:textStyle="bold" android:letterSpacing="0.1" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

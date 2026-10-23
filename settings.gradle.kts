@@ -13,5 +13,5 @@ dependencyResolutionManagement {
     }
 }
 
-rootProject.name = "RM014S_IR_Remote"
+rootProject.name = "Mandix"
 include(":app")
