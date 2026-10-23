@@ -1,7 +1,9 @@
 #!/usr/bin/env python3
 """Genera app/src/main/assets/tv_extra.ir: mandos de TV de IRDB (probonopd/irdb) y Flipper-IRDB
 (Lucaslhm/Flipper-IRDB) en formato Flipper, sin repetir códigos de tv.ir.
-Uso: python3 -I tools/build_tv_extra.py <irdb/codes> <Flipper-IRDB/TVs> <assets/tv.ir> <salida>"""
+Uso: python3 -I tools/build_tv_extra.py <irdb/codes> <Flipper-IRDB/TVs> <assets/tv.ir> <salida> [regex de equipo IRDB]
+audio_extra.ir (AIWA + cornetas): <irdb/codes con solo Aiwa> <Speakers + Audio_and_Video_Receivers/Aiwa>
+<assets/audio.ir> <salida> '^(?!.*(TV|VCR|VIDEO|DVD|CAM))'"""
 import csv, glob, os, re, sys
 
 # Marcas chinas / vendidas en Latinoamérica primero: el barrido las prueba antes
@@ -24,6 +26,9 @@ def key(name):
         'RED': 'Red', 'GREEN': 'Green', 'YELLOW': 'Yellow', 'BLUE': 'Blue', 'PLAY': 'Play', 'PLAYPAUSE': 'Play',
         'STOP': 'Stop', 'REWIND': 'Rew', 'FASTFORWARD': 'Ffwd', 'FAVORITES': 'Fav', 'FAV': 'Fav', 'AUDIO': 'Audio',
         'AGAIN': 'Return', 'RECALL': 'Return', 'PRECH': 'Return', 'CHLIST': 'Ch_list',
+        # Audio (cornetas / minicomponentes)
+        'NEXT': 'Next', 'SKIP+': 'Next', 'SKIPNEXT': 'Next', 'PREVIOUS': 'Prev', 'PREV': 'Prev', 'SKIP-': 'Prev',
+        'PAUSE': 'Pause', 'MODE': 'Mode', 'FUNCTION': 'Mode', 'EQ': 'Eq', 'GEQ': 'Eq', 'EQUALIZER': 'Eq',
     }
     if re.fullmatch(r'\d', n): return n
     return table.get(n)
@@ -36,6 +41,7 @@ def irdb_signal(proto, d, s, f):
     if proto in ('NECx1', 'NECx2'):
         if s < 0 or s == d: return 'Samsung32', d, f
         return 'NECx', d | (s << 8), f
+    if proto == 'Aiwa': return 'NEC42', d | (max(s, 0) << 8), f  # D:8,S:5 = dirección de 13 bits
     if proto == 'Sony12': return 'SIRC', d, f
     if proto == 'Sony15': return 'SIRC15', d, f
     if proto == 'Sony20': return 'SIRC20', d | (max(s, 0) << 5), f
@@ -61,12 +67,12 @@ def sig_id(fl):
     return (fl['protocol'], int(fl['address'].replace(' ', '')[:8] and ''.join(reversed(fl['address'].split())), 16),
             int(''.join(reversed(fl['command'].split())), 16))
 
-def main(irdb, firdb, tvir, out_path):
+def main(irdb, firdb, tvir, out_path, dev_regex=r'TV|TELEVISION|LCD|LED'):
     seen = {sig_id(fl) for fl in parse_flipper(open(tvir).read()) if fl['name'] == 'Power'}
     remotes = []  # (brand, [(key, block_lines)])
     for f in sorted(glob.glob(irdb + '/**/*.csv', recursive=True)):
         brand, dev = os.path.relpath(f, irdb).split('/')[:2]
-        if not re.search(r'TV|TELEVISION|LCD|LED', dev.upper()) or 'CURTAIN' in dev.upper(): continue
+        if not re.search(dev_regex, dev.upper()) or 'CURTAIN' in dev.upper(): continue
         keys = {}
         for r in csv.DictReader(open(f, errors='ignore')):
             k = key(r['functionname'])
@@ -105,4 +111,4 @@ def main(irdb, firdb, tvir, out_path):
     print('mandos nuevos:', n, 'de', len(remotes))
 
 if __name__ == '__main__':
-    main(*sys.argv[1:5])
+    main(*sys.argv[1:6])

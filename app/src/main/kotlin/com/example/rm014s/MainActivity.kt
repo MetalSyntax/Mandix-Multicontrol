@@ -70,6 +70,7 @@ class MainActivity : AppCompatActivity() {
         updateDisplayScreen()
         setupMainFrequencySelector()
         setupButtonListeners()
+        bindDeviceTabs(binding.tabs, "tv")
         checkIrHardware()
     }
 
@@ -103,7 +104,18 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
+    private fun txModeTexts() = when (irHelper.mode) {
+        IrManagerHelper.Mode.ORIGINAL -> R.string.btn_mode_original to R.string.tx_mode_original
+        IrManagerHelper.Mode.ALT -> R.string.btn_mode_alt to R.string.tx_mode_alt
+        IrManagerHelper.Mode.ALT_INV -> R.string.btn_mode_alt_inv to R.string.tx_mode_alt_inv
+    }
+
+    private fun updateTxModeButton() { binding.btnTxMode.setText(txModeTexts().first) }
+
     private fun loadSavedSettings() {
+        irHelper.mode = IrManagerHelper.Mode.values().firstOrNull { it.name == prefs.getString("tx_mode", null) }
+            ?: IrManagerHelper.Mode.ORIGINAL
+        updateTxModeButton()
         freqOverride = prefs.getInt("freq_override", 0)
         profile = prefs.getString("remote_id", null)?.let { RemoteLibrary.find(this, it) }
             ?: RemoteConstants.PROFILES.first()
@@ -223,6 +235,15 @@ class MainActivity : AppCompatActivity() {
         binding.btnPlateManual.setOnClickListener { v ->
             triggerMechanicalFeedback(v)
             showManualDialog()
+        }
+        binding.btnTxMode.setOnClickListener { v ->
+            triggerMechanicalFeedback(v)
+            val modes = IrManagerHelper.Mode.values()
+            irHelper.mode = modes[(irHelper.mode.ordinal + 1) % modes.size]
+            prefs.edit().putString("tx_mode", irHelper.mode.name).apply()
+            updateTxModeButton()
+            val (label, desc) = txModeTexts()
+            Toast.makeText(this, getString(R.string.toast_tx_mode, getString(label), getString(desc)), Toast.LENGTH_SHORT).show()
         }
         binding.btnSet.setOnClickListener { v ->
             triggerMechanicalFeedback(v)

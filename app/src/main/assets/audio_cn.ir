@@ -1,0 +1,137 @@
+Filetype: IR library file
+Version: 1
+# Mando chino de 21 teclas (módulos MP3/BT de cornetas genéricas): NEC dirección 0x00.
+# Fila superior POWER / MODE / MUTE; en la variante "Car MP3" las mismas teclas son CH- / CH / CH+.
+#
+name: Power
+brand: China MP3/BT
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 45 00 00 00
+#
+name: Mode
+brand: China MP3/BT
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 46 00 00 00
+#
+name: Mute
+brand: China MP3/BT
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 47 00 00 00
+#
+name: Play
+brand: China MP3/BT
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 44 00 00 00
+#
+name: Prev
+brand: China MP3/BT
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 40 00 00 00
+#
+name: Next
+brand: China MP3/BT
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 43 00 00 00
+#
+name: Eq
+brand: China MP3/BT
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 07 00 00 00
+#
+name: Vol_dn
+brand: China MP3/BT
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 15 00 00 00
+#
+name: Vol_up
+brand: China MP3/BT
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 09 00 00 00
+#
+name: 0
+brand: China MP3/BT
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 16 00 00 00
+#
+name: 1
+brand: China MP3/BT
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 0C 00 00 00
+#
+name: 2
+brand: China MP3/BT
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 18 00 00 00
+#
+name: 3
+brand: China MP3/BT
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 5E 00 00 00
+#
+name: 4
+brand: China MP3/BT
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 08 00 00 00
+#
+name: 5
+brand: China MP3/BT
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 1C 00 00 00
+#
+name: 6
+brand: China MP3/BT
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 5A 00 00 00
+#
+name: 7
+brand: China MP3/BT
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 42 00 00 00
+#
+name: 8
+brand: China MP3/BT
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 52 00 00 00
+#
+name: 9
+brand: China MP3/BT
+type: parsed
+protocol: NEC
+address: 00 00 00 00
+command: 4A 00 00 00

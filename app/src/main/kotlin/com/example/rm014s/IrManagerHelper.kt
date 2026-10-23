@@ -2,6 +2,7 @@ package com.example.rm014s
 
 import android.content.Context
 import android.hardware.ConsumerIrManager
+import android.os.SystemClock
 import android.util.Log
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.delay
@@ -11,6 +12,14 @@ class IrManagerHelper(context: Context) {
     private val TAG = "IrManagerHelper"
     private val irManager: ConsumerIrManager? =
         context.getSystemService(Context.CONSUMER_IR_SERVICE) as? ConsumerIrManager
+
+    /**
+     * Modo de emisión (ver DIAGNOSTICO_HARDWARE_Y_FALLAS.md):
+     * ORIGINAL = comportamiento previo; ALT = espera real de cada trama (B) + mínimo 3 tramas (C);
+     * ALT_INV = ALT + compensación de polaridad invertida del driver MediaTek (A).
+     */
+    enum class Mode { ORIGINAL, ALT, ALT_INV }
+    var mode = Mode.ORIGINAL
 
     val hasIrEmitter: Boolean
         get() = irManager?.hasIrEmitter() ?: false
@@ -35,8 +44,9 @@ class IrManagerHelper(context: Context) {
      * Emite [signal] con su protocolo real (NEC, Samsung32, SIRC, RC5, RC6, Kaseikyo...).
      * [frequencyOverride] = 0 usa la portadora propia del protocolo.
      * [firstFrameOnly]: solo la trama principal (búsqueda profunda, para ir más rápido).
+     * [padRepeats] = false para aires: su mensaje es un estado completo (a veces en 2 bloques) y no se repite.
      */
-    suspend fun transmit(signal: IrSignal, frequencyOverride: Int = 0, firstFrameOnly: Boolean = false): Boolean {
+    suspend fun transmit(signal: IrSignal, frequencyOverride: Int = 0, firstFrameOnly: Boolean = false, padRepeats: Boolean = true): Boolean {
         if (!hasIrEmitter) {
             Log.w(TAG, "Hardware IR no disponible.")
             return false
@@ -44,16 +54,50 @@ class IrManagerHelper(context: Context) {
         return try {
             val p = IrCodec.encode(signal)
             val freq = if (frequencyOverride > 0) frequencyOverride else p.frequency
-            // transmit() bloquea mientras emite: fuera del hilo de UI. Una trama por llamada.
-            for (frame in if (firstFrameOnly) p.frames.take(1) else p.frames) {
-                withContext(Dispatchers.IO) { irManager?.transmit(freq, frame.pattern) }
-                if (frame.gapUs > 0) delay((frame.gapUs + 999) / 1000L)
+            if (mode == Mode.ORIGINAL) {
+                // transmit() bloquea mientras emite: fuera del hilo de UI. Una trama por llamada.
+                for (frame in if (firstFrameOnly) p.frames.take(1) else p.frames) {
+                    withContext(Dispatchers.IO) { irManager?.transmit(freq, frame.pattern) }
+                    if (frame.gapUs > 0) delay((frame.gapUs + 999) / 1000L)
+                }
+                return true
+            }
+            // Alternativa: firstFrameOnly se ignora, una trama aislada la descarta el firmware del TV (C).
+            for (frame in if (padRepeats) withRepeats(p.frames) else p.frames) {
+                val pattern = if (mode == Mode.ALT_INV) invertForDriver(frame.pattern) else frame.pattern
+                val t0 = SystemClock.elapsedRealtime()
+                withContext(Dispatchers.IO) { irManager?.transmit(freq, pattern) }
+                // transmit() puede volver antes de que el HAL termine de emitir (B): esperar lo que falte.
+                val pendingMs = pattern.sum() / 1000L - (SystemClock.elapsedRealtime() - t0)
+                delay(pendingMs.coerceAtLeast(0) + (frame.gapUs + 999) / 1000L)
             }
             true
         } catch (e: Exception) {
             Log.e(TAG, "Error transmitiendo ${signal.describe()}: ${e.message}", e)
             false
         }
+    }
+
+    companion object {
+        private const val MIN_FRAMES = 3
+        private const val PERIOD_US = 110_000 // periodo NEC: también seguro para el resto de protocolos
+        private const val INV_PAD_US = 500
+
+        /** Completa hasta [MIN_FRAMES] repitiendo la última trama (el código de repetición, si existe). */
+        fun withRepeats(frames: List<IrPattern.Frame>): List<IrPattern.Frame> {
+            if (frames.isEmpty() || frames.size >= MIN_FRAMES) return frames
+            val last = frames.last()
+            val gap = maxOf(last.gapUs, PERIOD_US - last.pattern.sum(), 40_000)
+            val rep = IrPattern.Frame(last.pattern, gap)
+            return frames.dropLast(1) + List(MIN_FRAMES - frames.size + 1) { rep }
+        }
+
+        /**
+         * Driver con polaridad invertida (A): un silencio de relleno al inicio desplaza las marcas a
+         * índices impares, que ese driver enciende. Otro relleno al final mantiene la longitud impar
+         * que exige el HAL MediaTek.
+         */
+        fun invertForDriver(pattern: IntArray): IntArray = intArrayOf(INV_PAD_US) + pattern + INV_PAD_US
     }
 
     /**

@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">RM-014S+ IR Remote</string>
+    <string name="app_name">Mandix</string>
 
     <!-- Pantalla principal -->
     <string name="freq_auto">FREC: AUTO</string>
@@ -14,7 +14,7 @@
     <string name="hw_freq_unknown">Frecuencias: desconocidas</string>
 
     <!-- Búsqueda automática -->
-    <string name="scan_title">📡 BÚSQUEDA AUTOMÁTICA RM-014S+</string>
+    <string name="scan_title">📡 BÚSQUEDA AUTOMÁTICA</string>
     <string name="scan_subtitle">Apunta a la TV. Cuando reaccione (se apaga o baja el volumen), pulsa DETENER / GUARDAR. Si el código ya avanzó, usa 1 ATRÁS y PROBAR.</string>
     <string name="scan_hw_info">Equipo: %1$s • IR: %2$s • Portadora: AUTO por protocolo</string>
     <string name="scan_freq_label">Frecuencia Portadora IR:</string>
@@ -46,7 +46,7 @@
     <string name="toast_saved">¡Código %1$s guardado! (%2$s)</string>
 
     <!-- Selector de marca -->
-    <string name="brand_title">Configurar Marca / Código RM-014S+</string>
+    <string name="brand_title">Configurar Marca / Código</string>
     <string name="brand_subtitle">Selecciona tu marca o escribe un código: 001–038 marcas, %1$s–%2$s biblioteca universal</string>
     <string name="brand_code_label">Código: </string>
     <string name="btn_load">CARGAR</string>
@@ -95,4 +95,45 @@
     <string name="lock_title">Bloqueo / Desbloqueo:</string>
     <string name="lock_body">El código elegido se guarda automáticamente y se mantiene al cerrar la app.</string>
     <string name="btn_manual_ok">✔ ENTENDIDO / VOLVER AL CONTROL</string>
+    <string name="btn_mode_original">⚙ ORIGINAL</string>
+    <string name="btn_mode_alt">⚙ ALTERNA</string>
+    <string name="btn_mode_alt_inv">⚙ ALT+INV</string>
+    <string name="toast_tx_mode">Modo %1$s: %2$s</string>
+    <string name="tx_mode_original">emisión original</string>
+    <string name="tx_mode_alt">espera real + 3 tramas</string>
+    <string name="tx_mode_alt_inv">alterna + polaridad invertida (MediaTek)</string>
+    <string name="toast_code_key_missing">Este código no tiene esa tecla</string>
+    <string name="toast_send_failed">No se pudo emitir (¿equipo sin emisor IR?)</string>
+    <string name="ac_info">MODO %1$s · VENT %2$s</string>
+    <string-array name="ac_modes">
+        <item>AUTO</item>
+        <item>FRÍO</item>
+        <item>SECO</item>
+        <item>VENT</item>
+        <item>CALOR</item>
+    </string-array>
+    <string-array name="ac_fans">
+        <item>AUTO</item>
+        <item>BAJA</item>
+        <item>MEDIA</item>
+        <item>ALTA</item>
+    </string-array>
+    <string name="toast_bluetooth_only">Fire TV recibe esta tecla por Bluetooth: el infrarrojo del celular no la controla</string>
+    <string name="toast_ac_unsupported">Este código no tiene esa función</string>
+    <string name="toast_learned">%1$s ← candidata %2$d/%3$d (%4$s)</string>
+    <string name="toast_learn_reset">Teclas aprendidas borradas</string>
+    <string name="toast_learn_only_custom">Mantener presionado para aprender solo funciona en el código PERSONALIZADO</string>
+    <string name="btn_auto">▶ AUTO (recorre los códigos solo)</string>
+    <string name="btn_auto_running">■ DETENER — probando #%1$d</string>
+    <string name="toast_auto_stopped">Detenido en el código #%1$d: anótalo</string>
+    <string name="btn_wifi_on">📶 Wi-Fi: %1$s (tocar para cambiar)</string>
+    <string name="btn_wifi_off">📶 Wi-Fi apagado: usando IR</string>
+    <string name="wifi_dialog_title">Control por Wi-Fi</string>
+    <string name="wifi_dialog_roku">IP del Roku. El teléfono debe estar en la misma red. En el Roku: Configuración → Sistema → Configuración avanzada del sistema → Control por aplicaciones móviles → Acceso a la red → Permisivo.</string>
+    <string name="wifi_dialog_fire">IP del Fire TV. El teléfono debe estar en la misma red y el Fire TV con Depuración ADB activada (Mi Fire TV → Opciones para desarrolladores).</string>
+    <string name="wifi_use">Usar Wi-Fi</string>
+    <string name="wifi_use_ir">Usar solo IR</string>
+    <string name="toast_roku_limited">El Roku bloquea el control por Wi-Fi: activa Acceso a la red → Permisivo en Control por aplicaciones móviles</string>
+    <string name="toast_wifi_failed">Sin respuesta de %1$s por Wi-Fi (%2$s). ¿Mismo Wi-Fi? ¿IP correcta?</string>
+    <string name="toast_fire_first_connect">Conectando al Fire TV… si en el televisor aparece “¿Permitir depuración?”, elige Permitir siempre</string>
 </resources>

@@ -21,6 +21,8 @@
             android:paddingBottom="24dp"
             android:orientation="vertical">
 
+            <include android:id="@+id/tabs" layout="@layout/view_device_tabs" />
+
             <!-- CUERPO ERGONÓMICO DEL CONTROL REMOTO RM-014S+ -->
             <LinearLayout
                 android:layout_width="324dp"
@@ -795,12 +797,12 @@
                         android:textStyle="bold" />
                 </LinearLayout>
 
-                <!-- 8. PIE SERIGRAFIADO: RM-014S+ -->
+                <!-- 8. PIE SERIGRAFIADO: marca de la app -->
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="16dp"
-                    android:text="RM-014S+"
+                    android:text="MANDIX"
                     android:textColor="#888B94"
                     android:textSize="14sp"
                     android:textStyle="bold"
@@ -837,7 +839,7 @@
                     android:layout_marginBottom="12dp"
                     android:gravity="center"
                     android:orientation="horizontal"
-                    android:weightSum="2">
+                    android:weightSum="3">
 
                     <androidx.appcompat.widget.AppCompatButton
                         android:id="@+id/btnPlateSettings"
@@ -860,6 +862,18 @@
                         android:background="@drawable/btn_remote_dark_pill"
                         android:text="@string/btn_manual"
                         android:textColor="#38BDF8"
+                        android:textSize="11sp"
+                        android:textStyle="bold" />
+
+                    <androidx.appcompat.widget.AppCompatButton
+                        android:id="@+id/btnTxMode"
+                        android:layout_width="0dp"
+                        android:layout_height="38dp"
+                        android:layout_weight="1"
+                        android:layout_marginStart="6dp"
+                        android:background="@drawable/btn_remote_dark_pill"
+                        android:text="@string/btn_mode_original"
+                        android:textColor="#4ADE80"
                         android:textSize="11sp"
                         android:textStyle="bold" />
                 </LinearLayout>

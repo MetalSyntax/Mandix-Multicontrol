@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- Selector de código: ◀ / ▶ recorren la librería; AUTO las recorre solo -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="300dp"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="10dp"
+    android:gravity="center_horizontal"
+    android:orientation="vertical">
+
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal">
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnCodePrev"
+        style="@style/Sk.Pill"
+        android:layout_height="32dp"
+        android:background="@drawable/btn_remote_dark_pill"
+        android:backgroundTint="@null"
+        android:textColor="@color/amber_accent"
+        android:layout_width="44dp"
+        android:layout_weight="0"
+        android:text="◀"
+        android:contentDescription="Código anterior" />
+
+    <TextView
+        android:id="@+id/tvCodeName"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:maxLines="2"
+        android:ellipsize="end"
+        android:textColor="#E5E7EB"
+        android:textSize="10sp"
+        android:textStyle="bold"
+        android:fontFamily="monospace" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnCodeNext"
+        style="@style/Sk.Pill"
+        android:layout_height="32dp"
+        android:background="@drawable/btn_remote_dark_pill"
+        android:backgroundTint="@null"
+        android:textColor="@color/amber_accent"
+        android:layout_width="44dp"
+        android:layout_weight="0"
+        android:text="▶"
+        android:contentDescription="Código siguiente" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnTxMode"
+        style="@style/Sk.Pill"
+        android:layout_height="32dp"
+        android:layout_width="58dp"
+        android:layout_weight="0"
+        android:background="@drawable/btn_remote_dark_pill"
+        android:backgroundTint="@null"
+        android:textColor="#4ADE80"
+        android:textSize="9sp" />
+</LinearLayout>
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnWifi"
+        style="@style/Sk.Pill"
+        android:layout_width="220dp"
+        android:layout_height="34dp"
+        android:background="@drawable/btn_remote_dark_pill"
+        android:backgroundTint="@null"
+        android:textColor="#38BDF8"
+        android:textSize="11sp"
+        android:visibility="gone" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/btnAuto"
+        style="@style/Sk.Pill"
+        android:layout_width="220dp"
+        android:layout_height="34dp"
+        android:background="@drawable/btn_remote_dark_pill"
+        android:backgroundTint="@null"
+        android:textColor="@color/amber_accent"
+        android:textSize="12sp"
+        android:visibility="gone" />
+</LinearLayout>

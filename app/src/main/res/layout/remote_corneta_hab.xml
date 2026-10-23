@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black_bg"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <include android:id="@+id/tabs" layout="@layout/view_device_tabs" />
+        <include android:id="@+id/code" layout="@layout/view_code_selector" />
+
+        <!-- Corneta de la habitación: mando chino de 21 teclas -->
+        <LinearLayout style="@style/SkBody" android:layout_width="180dp" android:background="@drawable/sk_body_rect" android:backgroundTint="#262628" android:paddingTop="10dp">
+            <View android:id="@+id/viewLedIr" android:layout_width="5dp" android:layout_height="5dp" android:layout_gravity="end" android:background="@drawable/led_indicator" />
+            <LinearLayout style="@style/SkRow">
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Key" android:layout_width="34dp" android:layout_height="34dp" android:background="@drawable/sk_circle" android:backgroundTint="#E8502B" android:textColor="#FFFFFF" android:textSize="8sp" android:text="PWR" android:tag="key:Power" />
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Key" android:text="STOP" android:tag="key:Stop" />
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Key" android:layout_width="34dp" android:layout_height="34dp" android:background="@drawable/sk_circle" android:backgroundTint="#1E9E4A" android:textColor="#FFFFFF" android:textSize="8sp" android:text="MUTE" android:tag="key:Mute" />
+            </LinearLayout>
+            <LinearLayout style="@style/SkRow">
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Key" android:text="MODE" android:tag="key:Mode" />
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Key" android:text="↩" android:tag="key:Return" />
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Key" android:text="EQ" android:tag="key:Eq" />
+            </LinearLayout>
+            <LinearLayout style="@style/SkRow">
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Key" android:text="PREV" android:tag="key:Prev" />
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Key" android:text="NEXT" android:tag="key:Next" />
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Key" android:text="▶❚❚" android:tag="key:Play" />
+            </LinearLayout>
+            <LinearLayout style="@style/SkRow">
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Key" android:text="◢−" android:tag="key:Vol_dn" />
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Key" android:text="◢+" android:tag="key:Vol_up" />
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Key" android:text="0" android:tag="key:0" />
+            </LinearLayout>
+            <LinearLayout style="@style/SkRow">
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Key" android:text="1" android:tag="key:1" />
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Key" android:text="2" android:tag="key:2" />
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Key" android:text="3" android:tag="key:3" />
+            </LinearLayout>
+            <LinearLayout style="@style/SkRow">
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Key" android:text="4" android:tag="key:4" />
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Key" android:text="5" android:tag="key:5" />
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Key" android:text="6" android:tag="key:6" />
+            </LinearLayout>
+            <LinearLayout style="@style/SkRow">
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Key" android:text="7" android:tag="key:7" />
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Key" android:text="8" android:tag="key:8" />
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Key" android:text="9" android:tag="key:9" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

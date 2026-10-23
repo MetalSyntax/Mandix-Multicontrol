@@ -10,7 +10,7 @@
     <string name="hw_no_ir">No hardware IR emitter</string>
     <string name="hw_freq_unknown">Frequencies: unknown</string>
 
-    <string name="scan_title">📡 RM-014S+ AUTO SEARCH</string>
+    <string name="scan_title">📡 AUTO SEARCH</string>
     <string name="scan_subtitle">Point at the TV. When it reacts (turns off or volume drops), press STOP / SAVE. If the code already moved on, use 1 BACK and TEST.</string>
     <string name="scan_hw_info">Device: %1$s • IR: %2$s • Carrier: AUTO per protocol</string>
     <string name="scan_freq_label">IR Carrier Frequency:</string>
@@ -41,7 +41,7 @@
     <string name="toast_camera_test">Sending burst... Watch the top LED through another phone\'s camera</string>
     <string name="toast_saved">Code %1$s saved! (%2$s)</string>
 
-    <string name="brand_title">Set Brand / Code RM-014S+</string>
+    <string name="brand_title">Set Brand / Code</string>
     <string name="brand_subtitle">Pick your brand or type a code: 001–038 brands, %1$s–%2$s universal library</string>
     <string name="brand_code_label">Code: </string>
     <string name="btn_load">LOAD</string>
@@ -89,4 +89,45 @@
     <string name="lock_title">Lock / Unlock:</string>
     <string name="lock_body">The chosen code is saved automatically and kept when the app closes.</string>
     <string name="btn_manual_ok">✔ GOT IT / BACK TO REMOTE</string>
+    <string name="btn_mode_original">⚙ ORIGINAL</string>
+    <string name="btn_mode_alt">⚙ ALT</string>
+    <string name="btn_mode_alt_inv">⚙ ALT+INV</string>
+    <string name="toast_tx_mode">Mode %1$s: %2$s</string>
+    <string name="tx_mode_original">original emission</string>
+    <string name="tx_mode_alt">real wait + 3 frames</string>
+    <string name="tx_mode_alt_inv">alt + inverted polarity (MediaTek)</string>
+    <string name="toast_code_key_missing">This code has no such key</string>
+    <string name="toast_send_failed">Could not transmit (no IR emitter?)</string>
+    <string name="ac_info">MODE %1$s · FAN %2$s</string>
+    <string-array name="ac_modes">
+        <item>AUTO</item>
+        <item>COOL</item>
+        <item>DRY</item>
+        <item>FAN</item>
+        <item>HEAT</item>
+    </string-array>
+    <string-array name="ac_fans">
+        <item>AUTO</item>
+        <item>LOW</item>
+        <item>MED</item>
+        <item>HIGH</item>
+    </string-array>
+    <string name="toast_bluetooth_only">Fire TV gets this key over Bluetooth: the phone IR cannot control it</string>
+    <string name="toast_ac_unsupported">This code does not support that function</string>
+    <string name="toast_learned">%1$s ← candidate %2$d/%3$d (%4$s)</string>
+    <string name="toast_learn_reset">Learned keys cleared</string>
+    <string name="toast_learn_only_custom">Long-press learning only works on the CUSTOM code</string>
+    <string name="btn_auto">▶ AUTO (cycles codes by itself)</string>
+    <string name="btn_auto_running">■ STOP — trying #%1$d</string>
+    <string name="toast_auto_stopped">Stopped at code #%1$d: write it down</string>
+    <string name="btn_wifi_on">📶 Wi-Fi: %1$s (tap to change)</string>
+    <string name="btn_wifi_off">📶 Wi-Fi off: using IR</string>
+    <string name="wifi_dialog_title">Wi-Fi control</string>
+    <string name="wifi_dialog_roku">Roku IP. The phone must be on the same network. On the Roku: Settings → System → Advanced system settings → Control by mobile apps → Network access → Permissive.</string>
+    <string name="wifi_dialog_fire">Fire TV IP. The phone must be on the same network and the Fire TV must have ADB debugging on (My Fire TV → Developer options).</string>
+    <string name="wifi_use">Use Wi-Fi</string>
+    <string name="wifi_use_ir">IR only</string>
+    <string name="toast_roku_limited">The Roku blocks Wi-Fi control: set Network access → Permissive in Control by mobile apps</string>
+    <string name="toast_wifi_failed">No Wi-Fi answer from %1$s (%2$s). Same Wi-Fi? Right IP?</string>
+    <string name="toast_fire_first_connect">Connecting to Fire TV… if the TV asks “Allow USB debugging?”, choose Always allow</string>
 </resources>

@@ -146,26 +146,39 @@ object RemoteConstants {
 }
 
 /**
- * Librería universal de TV, como la memoria del RM-014S+ (números 101+):
- * - assets/tv.ir: librería universal de flipperzero-firmware (GPLv3).
- * - assets/tv_extra.ir: mandos de IRDB + Flipper-IRDB que no están en tv.ir (tools/build_tv_extra.py).
- * Cada código de encendido distinto es un "código" seleccionable.
+ * Librerías universales por tipo de equipo, como la memoria del RM-014S+ (números 101+).
+ * [powerKey] = la tecla que define cada código (en aires, el apagado: es la única que todos tienen).
+ * - tv.ir / audio.ir / ac.ir: librerías universales de flipperzero-firmware (GPLv3).
+ * - tv_extra.ir / audio_extra.ir: IRDB + Flipper-IRDB sin repetir (tools/build_tv_extra.py).
+ * - audio_cn.ir: mando chino de 21 teclas de las cornetas Bluetooth genéricas.
  */
+enum class Device(val files: List<String>, val label: String, val powerKey: String) {
+    TV(listOf("tv.ir", "tv_extra.ir"), "TV", "Power"),
+    AUDIO(listOf("audio_cn.ir", "audio.ir", "audio_extra.ir"), "AUDIO", "Power"),
+    AC(listOf("ac.ir"), "AIRE", "Off")
+}
+
+/** Cada código de encendido distinto es un "código" seleccionable. */
 object RemoteLibrary {
     const val FIRST_CODE = 101
-    private var cache: List<RemoteProfile>? = null
+    private val cache = HashMap<Device, List<RemoteProfile>>()
 
-    fun codes(context: Context): List<RemoteProfile> = cache ?: listOf("tv.ir", "tv_extra.ir")
-        .fold(emptyList<RemoteProfile>()) { acc, file ->
-            acc + parse(context.assets.open(file).bufferedReader().readText(), FIRST_CODE + acc.size)
-        }.also { cache = it }
+    fun codes(context: Context, device: Device = Device.TV): List<RemoteProfile> = cache.getOrPut(device) {
+        device.files.fold(emptyList()) { acc, file ->
+            acc + parse(context.assets.open(file).bufferedReader().readText(), FIRST_CODE + acc.size, device)
+        }
+    }
 
-    fun parse(text: String, firstCode: Int = FIRST_CODE): List<RemoteProfile> {
-        class Entry(val name: String, val brand: String?, val signal: IrSignal)
+    fun parse(text: String, firstCode: Int = FIRST_CODE, device: Device = Device.TV): List<RemoteProfile> {
+        class Entry(val name: String, val brand: String?, val group: Int, val signal: IrSignal)
+        // "# Model: X" separa mandos en las librerías de audio/aire de Flipper (group 0 = sin separadores)
+        var group = 0
+        val models = HashMap<Int, String>()
         val signals = text.split("\n#").mapNotNull { block ->
             val f = block.lines().mapNotNull { l -> l.split(":", limit = 2).takeIf { it.size == 2 }?.let { it[0].trim() to it[1].trim() } }.toMap()
+            f["Model"]?.let { models[++group] = it; return@mapNotNull null }
             val name = f["name"] ?: return@mapNotNull null
-            Entry(name, f["brand"], when (f["type"]) {
+            Entry(name, f["brand"] ?: models[group], group, when (f["type"]) {
                 "raw" -> IrSignal("RAW", rawFrequency = f["frequency"]!!.toInt(),
                     raw = f["data"]!!.split(" ").filter { it.isNotBlank() }.map { it.toInt() }.toIntArray())
                 else -> IrSignal(f["protocol"]!!, leHex(f["address"]!!), leHex(f["command"]!!))
@@ -179,13 +192,16 @@ object RemoteLibrary {
         val result = ArrayList<RemoteProfile>()
         signals.forEachIndexed { i, e ->
             val s = e.signal
-            if (e.name != "Power" || !seen.add(s.describe() + s.raw?.contentHashCode())) return@forEachIndexed
-            // Las teclas que siguen a este encendido en el archivo son del mismo mando (tienen prioridad)
-            val block = signals.drop(i + 1).takeWhile { it.name != "Power" }.associate { it.name to it.signal }
-            val keys = (if (s.isRaw) emptyMap() else byRemote[s.protocol to s.address]!!) + block + ("Power" to s)
+            val power = device.powerKey
+            if (e.name != power || !seen.add(s.describe() + s.raw?.contentHashCode())) return@forEachIndexed
+            // Teclas del mismo mando: todo su grupo "# Model", o lo que sigue a este encendido (tienen prioridad)
+            val block = if (e.group > 0) signals.filter { it.group == e.group }.reversed().associate { it.name to it.signal }
+                else signals.drop(i + 1).takeWhile { it.name != power }.associate { it.name to it.signal }
+            val keys = (if (s.isRaw) emptyMap() else byRemote[s.protocol to s.address]!!) + block + (power to s)
             val code = (firstCode + result.size).toString()
             val brand = e.brand?.let { "$it • " } ?: ""
-            result.add(RemoteProfile("lib:$code", "TV #$code • $brand${s.describe()}", "UNIVERSAL", code, s, keys))
+            val id = if (device == Device.TV) "lib:$code" else "${device.name.lowercase()}:$code"
+            result.add(RemoteProfile(id, "${device.label} #$code • $brand${s.describe()}", "UNIVERSAL", code, s, keys))
         }
         return result
     }

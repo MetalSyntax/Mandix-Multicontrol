@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/black_bg"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_horizontal"
+        android:orientation="vertical"
+        android:padding="12dp">
+
+        <include android:id="@+id/tabs" layout="@layout/view_device_tabs" />
+        <include android:id="@+id/code" layout="@layout/view_code_selector" />
+
+        <!-- Corneta de la sala: control negro con aro de navegación, BS-/BS+ -->
+        <LinearLayout style="@style/SkBody" android:layout_width="160dp" android:background="@drawable/sk_body_rect" android:backgroundTint="#202022" android:paddingBottom="60dp">
+            <View android:id="@+id/viewLedIr" android:layout_width="5dp" android:layout_height="5dp" android:layout_gravity="start" android:background="@drawable/led_indicator" />
+            <LinearLayout style="@style/SkRow">
+                <ImageButton style="@style/Sk" android:layout_width="40dp" android:layout_height="40dp" android:backgroundTint="#D32F2F" android:src="@drawable/ic_power" android:padding="9dp" android:tag="key:Power" android:contentDescription="Power" />
+                <View android:layout_width="24dp" android:layout_height="1dp" />
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk" android:layout_width="36dp" android:layout_height="36dp" android:text="MODE" android:textSize="8sp" android:tag="key:Mode" />
+            </LinearLayout>
+            <FrameLayout android:layout_width="124dp" android:layout_height="124dp" android:layout_marginTop="6dp" android:background="@drawable/sk_circle" android:backgroundTint="#141416" android:backgroundTintMode="multiply">
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Flat" android:layout_width="40dp" android:layout_height="38dp" android:layout_gravity="top|center_horizontal" android:layout_margin="0dp" android:text="▲" android:textSize="11sp" android:tag="key:Vol_up" />
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Flat" android:layout_width="40dp" android:layout_height="38dp" android:layout_gravity="bottom|center_horizontal" android:layout_margin="0dp" android:text="▼" android:textSize="11sp" android:tag="key:Vol_dn" />
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Flat" android:layout_width="38dp" android:layout_height="40dp" android:layout_gravity="start|center_vertical" android:layout_margin="0dp" android:text="|◀◀" android:textSize="9sp" android:tag="key:Prev" />
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk.Flat" android:layout_width="38dp" android:layout_height="40dp" android:layout_gravity="end|center_vertical" android:layout_margin="0dp" android:text="▶▶|" android:textSize="9sp" android:tag="key:Next" />
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk" android:layout_width="44dp" android:layout_height="44dp" android:layout_gravity="center" android:layout_margin="0dp" android:text="▶❚❚" android:textSize="10sp" android:tag="key:Play" />
+            </FrameLayout>
+            <LinearLayout style="@style/SkRow" android:layout_marginTop="8dp">
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk" android:layout_width="36dp" android:layout_height="36dp" android:text="♫" android:tag="key:Eq" />
+                <View android:layout_width="30dp" android:layout_height="1dp" />
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk" android:layout_width="36dp" android:layout_height="36dp" android:text="◎" android:textSize="20sp" android:tag="key:Effect" />
+            </LinearLayout>
+            <ImageButton style="@style/Sk" android:layout_width="36dp" android:layout_height="36dp" android:src="@drawable/ic_mute" android:tint="#E5E5E5" android:padding="9dp" android:tag="key:Mute" android:contentDescription="Mute" />
+            <LinearLayout style="@style/SkRow">
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk" android:layout_width="36dp" android:layout_height="36dp" android:text="BS−" android:textSize="9sp" android:tag="key:Bass_dn" />
+                <View android:layout_width="30dp" android:layout_height="1dp" />
+                <androidx.appcompat.widget.AppCompatButton style="@style/Sk" android:layout_width="36dp" android:layout_height="36dp" android:text="BS+" android:textSize="9sp" android:tag="key:Bass_up" />
+            </LinearLayout>
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

@@ -8,11 +8,11 @@ android {
     compileSdk = 34
 
     defaultConfig {
-        applicationId = "com.example.rm014s"
+        applicationId = "com.mandix.remote"
         minSdk = 21
         targetSdk = 34
-        versionCode = 4
-        versionName = "2.2"
+        versionCode = 12
+        versionName = "4.3"
 
         testInstrumentationRunner = "androidx.test.runner.AndroidJUnitRunner"
     }
@@ -48,5 +48,13 @@ dependencies {
     implementation("androidx.constraintlayout:constraintlayout:2.1.4")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.3")
     implementation("androidx.lifecycle:lifecycle-runtime-ktx:2.7.0")
+    // Cliente ADB (protocolo + autenticación RSA) para manejar el Fire TV por Wi-Fi
+    implementation("dev.mobile:dadb:1.2.9") {
+        // su POM publica JUnit como dependencia de ejecución: no va en la app
+        exclude(group = "org.junit.platform")
+        exclude(group = "org.junit.jupiter")
+        exclude(group = "org.opentest4j")
+        exclude(group = "org.apiguardian")
+    }
     testImplementation("junit:junit:4.13.2")
 }
